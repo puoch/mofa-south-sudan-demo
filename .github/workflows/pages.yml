@@ -1,0 +1,76 @@
+name: Static demo site (GitHub Pages)
+
+# Publishes a static, read-only copy of the demonstration website with
+# placeholder content only. It has no forms and collects nothing. The
+# registration prototype and staff console are not part of it.
+# Requires Settings > Pages > Source: GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: mofa
+          POSTGRES_USER: mofa
+          POSTGRES_PASSWORD: ci-only-password
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U mofa" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DB_NAME: mofa
+      DB_USER: mofa
+      DB_PASSWORD: ci-only-password
+      DB_HOST: 127.0.0.1
+      DB_PORT: "5432"
+      MOFA_ENVIRONMENT: static-demo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo_pgsql, gd, intl, mbstring, opcache
+          tools: composer:v2
+
+      - name: Install site with placeholder content
+        run: |
+          composer install --no-interaction --no-progress --prefer-dist
+          export DRUPAL_HASH_SALT="$(php -r 'echo bin2hex(random_bytes(32));')"
+          echo "DRUPAL_HASH_SALT=$DRUPAL_HASH_SALT" >> "$GITHUB_ENV"
+          ADMIN_PASS="$(php -r 'echo bin2hex(random_bytes(8));')" ./scripts/install-from-config.sh
+
+      - name: Build static copy
+        run: |
+          (cd web && php -S 127.0.0.1:8080 .ht.router.php > /tmp/php-server.log 2>&1 &)
+          sleep 2
+          ./scripts/build-static.sh
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
