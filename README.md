@@ -69,13 +69,15 @@ cd tests/e2e && npm ci && npx playwright test
 | --- | --- | --- |
 | 1 | Setup, design system, content architecture | Complete |
 | 2 | Public website foundation with placeholder pages | Complete |
-| 3 | Diaspora registration prototype, synthetic data only | Complete, awaiting review |
-| Later | Staff and mission access, real content, hosting | Not authorized |
+| 3 | Diaspora registration prototype, synthetic data only | Complete |
+| 4 | Staff and mission access to records, synthetic data only | Complete, awaiting review |
+| Later | Exports, corrections, real content, hosting | Not authorized |
 
 See [docs/approvals-and-blockers.md](docs/approvals-and-blockers.md) for what
 is still pending, [docs/phase-1-report.md](docs/phase-1-report.md) and
 [docs/phase-2-report.md](docs/phase-2-report.md) and
-[docs/phase-3-report.md](docs/phase-3-report.md) for phase summaries, and
+[docs/phase-3-report.md](docs/phase-3-report.md) and
+[docs/phase-4-report.md](docs/phase-4-report.md) for phase summaries, and
 [docs/guides/editor-guide.md](docs/guides/editor-guide.md) for editors.
 
 ## Rules for contributors

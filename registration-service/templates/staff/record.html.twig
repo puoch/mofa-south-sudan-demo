@@ -1,0 +1,86 @@
+{% extends 'staff/base.html.twig' %}
+
+{% block title %}{{ errors ? 'Error: ' }}Record {{ record.reference }}{% endblock %}
+
+{% block body %}
+  <p><a href="{{ path('staff_records') }}">Back to records</a></p>
+  <h1>Record <span class="mono">{{ record.reference }}</span></h1>
+  <p class="watermark" aria-label="Access notice">Viewed by {{ app.user.email }} on {{ viewed_at|date('j M Y H:i:s T') }}. This view is logged. Do not copy or share it.</p>
+  <p class="print-only">Printing is not authorized for this record.</p>
+
+  <div class="no-print">
+    {% if errors %}
+      <div class="panel panel--warning" role="alert">
+        <h2 class="h3">There is a problem</h2>
+        <ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul>
+      </div>
+    {% endif %}
+    {% if record.possibleDuplicate %}
+      <div class="panel"><p>Possible duplicate: another record has the same passport or national ID number. Duplicates are not merged until the Ministry decides how to handle them.</p></div>
+    {% endif %}
+
+    <h2 class="h3">Contact and residence</h2>
+    <dl class="details">
+      <dt>Full name</dt><dd>{{ record.fullName }}</dd>
+      <dt>Email</dt><dd>{{ record.email }}</dd>
+      <dt>Phone</dt><dd>{{ record.phone }}</dd>
+      <dt>Nationality</dt><dd>{{ record.nationality|country_name }}</dd>
+      <dt>Country of residence</dt><dd>{{ record.countryOfResidence|country_name }}</dd>
+      <dt>City</dt><dd>{{ record.cityOfResidence }}</dd>
+      <dt>Received</dt><dd>{{ record.createdAt|date('j M Y H:i') }}</dd>
+      <dt>Assigned to</dt><dd>{{ record.assignment == 'hq_queue' ? 'Headquarters queue' : record.assignment }}</dd>
+    </dl>
+
+    <h2 class="h3">Date of birth and identity documents</h2>
+    <dl class="details">
+      <dt>Date of birth</dt><dd>{{ sensitive.dateOfBirth|date('j F Y') }}</dd>
+      <dt>Passport number</dt><dd class="mono">{{ sensitive.passportNumber ?? 'Not given' }}</dd>
+      {% if sensitive.passportNumber %}
+        <dt>Passport issuing country</dt><dd>{{ sensitive.passportIssuingCountry|country_name }}</dd>
+        <dt>Passport expiry</dt><dd>{{ sensitive.passportExpiry|date('j F Y') }}</dd>
+      {% endif %}
+      <dt>National ID number</dt><dd class="mono">{{ sensitive.nationalIdNumber ?? 'Not given' }}</dd>
+    </dl>
+    {% if revealed %}
+      <p>Full document numbers are shown for this page only. The reveal has been logged.</p>
+    {% elseif can_reveal %}
+      <form method="post" action="{{ path('staff_record_reveal', {reference: record.reference}) }}">
+        <input type="hidden" name="_token" value="{{ csrf_token('reveal-' ~ record.reference) }}">
+        <p>Document numbers are masked. Revealing them is logged with your name.</p>
+        <div class="form-actions"><input type="submit" value="Reveal document numbers"></div>
+      </form>
+    {% endif %}
+
+    {% if can_assign %}
+      <h2 class="h3">Reassign</h2>
+      <form method="post" action="{{ path('staff_record_assign', {reference: record.reference}) }}" novalidate>
+        <input type="hidden" name="_token" value="{{ csrf_token('assign-' ~ record.reference) }}">
+        <div class="form-item">
+          <label for="assignment" class="form-required">Assign to</label>
+          <select id="assignment" name="assignment">
+            <option value="hq_queue"{% if record.assignment == 'hq_queue' %} selected{% endif %}>Headquarters queue</option>
+            {% for mission in missions %}
+              <option value="{{ mission.code }}"{% if record.assignment == mission.code %} selected{% endif %}>{{ mission.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-item">
+          <label for="reason" class="form-required">Reason</label>
+          <textarea id="reason" name="reason" rows="3" maxlength="300"></textarea>
+        </div>
+        <div class="form-actions"><input type="submit" value="Reassign record"></div>
+      </form>
+    {% endif %}
+
+    <h2 class="h3">Assignment history</h2>
+    {% if history is empty %}
+      <p>Assigned automatically when received. No changes since.</p>
+    {% else %}
+      <ul>
+        {% for change in history %}
+          <li>{{ change.changedAt|date('j M Y H:i') }}: {{ change.fromAssignment }} to {{ change.toAssignment }} by {{ change.actor }}. Reason: {{ change.reason }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+{% endblock %}

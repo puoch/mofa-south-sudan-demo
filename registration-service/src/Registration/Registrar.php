@@ -13,8 +13,8 @@ use Doctrine\ORM\EntityManagerInterface;
 /**
  * Stores a validated registration and returns its reference number.
  *
- * Every record goes to the headquarters queue: no jurisdiction rules are
- * approved, so nothing is routed to a mission. A matching passport or
+ * The MissionRouter assigns each record to a mission, or to the headquarters
+ * queue when no single approved mission applies. A matching passport or
  * national ID number is flagged for headquarters as a possible duplicate, never merged or rejected,
  * because the Ministry has not decided how duplicates are handled.
  */
@@ -26,6 +26,7 @@ final class Registrar
         private readonly EntityManagerInterface $entityManager,
         private readonly FieldCipher $cipher,
         private readonly ReferenceGenerator $references,
+        private readonly MissionRouter $router,
     ) {
     }
 
@@ -54,6 +55,7 @@ final class Registrar
             (string) $request->countryOfResidence,
             trim((string) $request->cityOfResidence),
         );
+        $registration->assignTo($this->router->route($registration->getCountryOfResidence()));
         if ($isDuplicate) {
             $registration->flagPossibleDuplicate();
         }

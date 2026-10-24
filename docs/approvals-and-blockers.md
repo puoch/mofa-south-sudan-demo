@@ -43,7 +43,9 @@ named approval. Updated 24 October 2026.
 ### Registration service
 - Replace environment-variable keys with a key management service (ADR 0014).
 - Run the registry on its own PostgreSQL instance with separate network rules.
-- Build staff login with MFA, roles, row-level security and audit review (not authorized yet).
+- Use separate database roles per scope so row-level security fails closed (ADR 0016).
+- Decide on central sign-on, add security keys and account recovery (ADR 0017).
+- Approve the role matrix, the reveal rule and who owns the jurisdiction directory.
 - Remove the synthetic-only guards only through a reviewed change after approval (ADR 0015).
 - Approved privacy notice in place of the draft placeholder.
 

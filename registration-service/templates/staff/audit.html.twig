@@ -1,0 +1,19 @@
+{% extends 'staff/base.html.twig' %}
+
+{% block title %}Audit log{% endblock %}
+
+{% block body %}
+  <h1>Audit log</h1>
+  <p>The latest 200 entries. Entries cannot be changed or deleted.</p>
+  <div class="table-wrap" role="region" aria-label="Audit log" tabindex="0">
+    <table>
+      <caption class="visually-hidden">Audit entries, newest first</caption>
+      <thead><tr><th scope="col">Time</th><th scope="col">Who</th><th scope="col">Action</th><th scope="col">Target</th><th scope="col">Outcome</th></tr></thead>
+      <tbody>
+        {% for event in events %}
+          <tr><td>{{ event.occurredAt|date('j M Y H:i:s') }}</td><td>{{ event.actor }}</td><td>{{ event.action }}</td><td class="mono">{{ event.target }}</td><td>{{ event.outcome }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

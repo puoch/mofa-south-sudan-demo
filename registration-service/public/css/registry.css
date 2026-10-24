@@ -154,3 +154,104 @@ h2.h3 {
   font-family: var(--font-body);
   font-size: var(--font-size-400);
 }
+.container--wide {
+  max-width: 72rem;
+}
+.staff-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  list-style: none;
+  margin: var(--space-4) auto 0;
+  padding: 0;
+}
+.staff-nav a {
+  color: #ffffff;
+}
+.staff-nav a[aria-current="page"] {
+  font-weight: 600;
+  text-decoration-thickness: 3px;
+}
+.staff-nav__user {
+  margin-inline-start: auto;
+}
+.mono {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin-block-end: var(--space-6);
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--color-surface);
+}
+th, td {
+  text-align: start;
+  padding: var(--space-2) var(--space-3);
+  border-block-end: 1px solid var(--color-line);
+  vertical-align: top;
+}
+th {
+  background: var(--color-brand-navy-tint);
+  color: var(--color-ink);
+}
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+  gap: var(--space-2) var(--space-5);
+  margin-block-end: var(--space-6);
+}
+.details dt {
+  font-weight: 600;
+}
+.details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 40rem) {
+  .details {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .details dd {
+    margin-block-end: var(--space-3);
+  }
+  .staff-nav__user {
+    margin-inline-start: 0;
+    flex-basis: 100%;
+  }
+}
+.watermark {
+  border: 2px dashed var(--color-line-strong);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-100);
+  color: var(--color-text-muted);
+}
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-4);
+}
+.button-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--color-link);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  min-height: 24px;
+}
+.print-only {
+  display: none;
+}
+@media print {
+  .no-print, .staff-nav, .demo-banner {
+    display: none !important;
+  }
+  .print-only {
+    display: block;
+  }
+}

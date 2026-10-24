@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\UniqueConstraint(name: 'registration_reference_unique', columns: ['reference'])]
 class Registration
 {
-    /** Records wait in the headquarters queue until routing rules are approved. */
+    /** Records with no single approved mission wait in the headquarters queue. */
     public const ASSIGNMENT_HQ_QUEUE = 'hq_queue';
 
     #[ORM\Id]
@@ -101,6 +101,39 @@ class Registration
     public function getAssignment(): string
     {
         return $this->assignment;
+    }
+
+    /**
+     * Sets the assigned mission code, or ASSIGNMENT_HQ_QUEUE.
+     */
+    public function assignTo(string $assignment): void
+    {
+        $this->assignment = $assignment;
+    }
+
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    public function getNationality(): string
+    {
+        return $this->nationality;
+    }
+
+    public function getCountryOfResidence(): string
+    {
+        return $this->countryOfResidence;
+    }
+
+    public function getCityOfResidence(): string
+    {
+        return $this->cityOfResidence;
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
     }
 
     public function getStatus(): string

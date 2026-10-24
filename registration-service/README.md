@@ -31,6 +31,22 @@ registration page to it, start Drupal with
 `MOFA_REGISTRATION_PROTOTYPE_URL=http://127.0.0.1:8081/register` and
 rebuild caches.
 
+## Staff console
+
+Sign in at http://127.0.0.1:8081/staff. Create demo data first:
+
+```bash
+php bin/console registry:seed-missions
+export REGISTRY_DEMO_PASSWORD='choose-a-long-password'
+export REGISTRY_DEMO_TOTP_SECRET=$(php -r 'require "vendor/autoload.php"; echo App\Security\Totp::generateSecret();')
+php bin/console registry:seed-staff          # creates mission.a.demo@example.org, hq.oversight.demo@example.org and others
+php bin/console registry:seed-synthetic --count=30
+```
+
+Add `REGISTRY_DEMO_TOTP_SECRET` to an authenticator app to get sign-in
+codes. To create a single account instead, use
+`php bin/console registry:staff:create name@example.org hq_oversight`.
+
 ## Tests
 
 ```bash
@@ -38,7 +54,8 @@ createdb mofa_registry_test --owner=mofa_registry
 echo 'DATABASE_URL="postgresql://mofa_registry:YOUR_PASSWORD@127.0.0.1:5432/mofa_registry?serverVersion=16&charset=utf8"' > .env.test.local
 php bin/console doctrine:migrations:migrate --env=test
 php bin/phpunit
-cd ../tests/e2e && REGISTRY_URL=http://127.0.0.1:8081 npx playwright test specs/registry.spec.js
+php bin/console registry:seed-staff --set=desktop --set=mobile   # with the two variables above
+cd ../tests/e2e && REGISTRY_URL=http://127.0.0.1:8081 npx playwright test specs/registry.spec.js specs/staff.spec.js
 ```
 
 ## Synthetic data rules
