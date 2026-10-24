@@ -76,6 +76,9 @@ jobs:
             echo "APP_SECRET=$(php -r 'echo bin2hex(random_bytes(16));')"
             echo "REGISTRY_FIELD_KEY=$(php -r 'echo base64_encode(random_bytes(32));')"
             echo "REGISTRY_INDEX_KEY=$(php -r 'echo base64_encode(random_bytes(32));')"
+            # PHP's built-in web server does not pass process environment
+            # variables to the app, so the URL must be in .env.local too.
+            echo "DATABASE_URL=\"$DATABASE_URL\""
           } > .env.local
           php bin/console doctrine:migrations:migrate --no-interaction
           php bin/console doctrine:migrations:migrate --no-interaction --env=test
