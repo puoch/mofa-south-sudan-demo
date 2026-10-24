@@ -42,11 +42,11 @@ function mofa_core_node_view(array &$build, NodeInterface $node, EntityViewDispl
       '#props' => $prototype ? [
         'variant' => 'info',
         'heading' => t('Registration prototype for review'),
-        'message' => t('Registration is not open. The button below opens a development prototype for review, which accepts made-up details only. Do not enter real information.'),
+        'message' => t('Registration is optional. It is not open yet: the button below opens a development prototype for review, which accepts made-up details only. Do not enter real information.'),
       ] : [
         'variant' => 'info',
         'heading' => t('Registration is not available'),
-        'message' => t('This website is a demonstration and does not collect registration information. The button below is inactive.'),
+        'message' => t('Registration is optional. This website is a demonstration and does not collect registration information. The button below is inactive.'),
       ],
     ],
     'button' => [

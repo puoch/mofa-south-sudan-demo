@@ -37,9 +37,9 @@ final class RegistrationType extends AbstractType
             ->add('countryOfResidence', CountryType::class, ['label' => 'Country of residence'] + $country)
             ->add('cityOfResidence', TextType::class, ['label' => 'City of residence', 'attr' => ['autocomplete' => 'off']])
             ->add('dateOfBirth', DateType::class, ['label' => 'Date of birth'] + $date)
-            ->add('passportNumber', TextType::class, ['label' => 'Passport number', 'help' => 'Prototype only: use SYN followed by six digits, such as SYN123456.', 'attr' => ['autocomplete' => 'off', 'spellcheck' => 'false']])
-            ->add('passportIssuingCountry', CountryType::class, ['label' => 'Passport issuing country'] + $country)
-            ->add('passportExpiry', DateType::class, ['label' => 'Passport expiry date'] + $date)
+            ->add('passportNumber', TextType::class, ['label' => 'Passport number', 'required' => false, 'help' => 'Prototype only: use SYN followed by six digits, such as SYN123456.', 'attr' => ['autocomplete' => 'off', 'spellcheck' => 'false']])
+            ->add('passportIssuingCountry', CountryType::class, ['label' => 'Passport issuing country', 'required' => false] + $country)
+            ->add('passportExpiry', DateType::class, ['label' => 'Passport expiry date', 'required' => false] + $date)
             ->add('syntheticConfirmation', CheckboxType::class, ['label' => 'I confirm that every detail I entered is made up and does not belong to a real person.'])
             ->add('privacyAcknowledged', CheckboxType::class, ['label' => 'I have read the draft privacy notice.'])
             // Honeypot: hidden from people, often filled in by bots.

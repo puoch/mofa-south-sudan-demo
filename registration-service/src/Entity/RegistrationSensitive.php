@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Encrypted passport details and date of birth for one registration.
+ * Passport columns are empty when the registrant gave no passport.
  *
  * Kept in its own table so that, in a later phase, database grants and
  * row-level security can give staff roles access to contact details without
@@ -31,20 +32,20 @@ class RegistrationSensitive
     #[ORM\Column(type: Types::TEXT)]
     private string $dateOfBirth;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private string $passportNumber;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $passportNumber;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private string $passportIssuingCountry;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $passportIssuingCountry;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private string $passportExpiry;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $passportExpiry;
 
     /** Keyed hash of the normalized passport number, for duplicate checks. */
-    #[ORM\Column(length: 64)]
-    private string $passportIndex;
+    #[ORM\Column(length: 64, nullable: true)]
+    private ?string $passportIndex;
 
-    public function __construct(Registration $registration, string $dateOfBirth, string $passportNumber, string $passportIssuingCountry, string $passportExpiry, string $passportIndex)
+    public function __construct(Registration $registration, string $dateOfBirth, ?string $passportNumber = null, ?string $passportIssuingCountry = null, ?string $passportExpiry = null, ?string $passportIndex = null)
     {
         $this->registration = $registration;
         $this->dateOfBirth = $dateOfBirth;
@@ -60,22 +61,22 @@ class RegistrationSensitive
         return $this->dateOfBirth;
     }
 
-    public function getPassportNumber(): string
+    public function getPassportNumber(): ?string
     {
         return $this->passportNumber;
     }
 
-    public function getPassportIssuingCountry(): string
+    public function getPassportIssuingCountry(): ?string
     {
         return $this->passportIssuingCountry;
     }
 
-    public function getPassportExpiry(): string
+    public function getPassportExpiry(): ?string
     {
         return $this->passportExpiry;
     }
 
-    public function getPassportIndex(): string
+    public function getPassportIndex(): ?string
     {
         return $this->passportIndex;
     }

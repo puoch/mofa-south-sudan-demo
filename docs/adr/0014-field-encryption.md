@@ -7,7 +7,9 @@
 - Passport number, issuing country, expiry date and date of birth are sealed
   with XChaCha20-Poly1305 (libsodium) before they reach the database. The
   column name is bound as associated data, so a value moved to another column
-  fails to decrypt. Ciphertexts carry a version prefix (`v1:`) for later key
+  fails to decrypt. Passport details are optional; when given, all three
+  passport columns and the blind index must be present together (a database
+  check enforces it). Ciphertexts carry a version prefix (`v1:`) for later key
   rotation, and a database check constraint rejects values without it.
 - Duplicate passport numbers are found with a keyed BLAKE2b hash (a blind
   index) under a second, separate key. Duplicates are flagged for

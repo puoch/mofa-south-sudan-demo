@@ -31,12 +31,12 @@ final class Registrar
 
     public function register(RegistrationRequest $request, string $actor = 'public_form'): string
     {
-        $passport = strtoupper(trim((string) $request->passportNumber));
-        if (!preg_match(RegistrationRequest::SYNTHETIC_PASSPORT_PATTERN, $passport)) {
+        $passport = $request->hasPassport() ? strtoupper(trim((string) $request->passportNumber)) : null;
+        if ($passport !== null && !preg_match(RegistrationRequest::SYNTHETIC_PASSPORT_PATTERN, $passport)) {
             throw new \DomainException('Only synthetic passport numbers can be stored.');
         }
-        $passportIndex = $this->cipher->blindIndex($passport, 'passport_number');
-        $isDuplicate = $this->entityManager->getRepository(RegistrationSensitive::class)->count(['passportIndex' => $passportIndex]) > 0;
+        $passportIndex = $passport !== null ? $this->cipher->blindIndex($passport, 'passport_number') : null;
+        $isDuplicate = $passportIndex !== null && $this->entityManager->getRepository(RegistrationSensitive::class)->count(['passportIndex' => $passportIndex]) > 0;
 
         $registration = new Registration(
             $this->uniqueReference(),
@@ -53,9 +53,9 @@ final class Registrar
         new RegistrationSensitive(
             $registration,
             $this->cipher->encrypt($request->dateOfBirth->format('Y-m-d'), 'date_of_birth'),
-            $this->cipher->encrypt($passport, 'passport_number'),
-            $this->cipher->encrypt((string) $request->passportIssuingCountry, 'passport_issuing_country'),
-            $this->cipher->encrypt($request->passportExpiry->format('Y-m-d'), 'passport_expiry'),
+            $passport !== null ? $this->cipher->encrypt($passport, 'passport_number') : null,
+            $passport !== null ? $this->cipher->encrypt((string) $request->passportIssuingCountry, 'passport_issuing_country') : null,
+            $passport !== null ? $this->cipher->encrypt($request->passportExpiry->format('Y-m-d'), 'passport_expiry') : null,
             $passportIndex,
         );
         $this->entityManager->wrapInTransaction(function (EntityManagerInterface $em) use ($registration, $actor): void {

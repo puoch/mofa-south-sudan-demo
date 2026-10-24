@@ -94,6 +94,37 @@ final class RegistrationFormTest extends WebTestCase
         self::assertResponseRedirects('/register');
     }
 
+    public function testRegistrationIsOptionalNoticeIsShown(): void
+    {
+        $this->client->request('GET', '/register');
+        self::assertSelectorTextContains('[aria-label="Registration is optional"]', 'Registration is voluntary');
+        self::assertSelectorTextContains('legend', 'About you');
+        self::assertSelectorExists('#registration_passportNumber:not([required])');
+    }
+
+    public function testPassportDetailsAreOptional(): void
+    {
+        $this->submit($this->validData([
+            'registration[passportNumber]' => '',
+            'registration[passportIssuingCountry]' => '',
+            'registration[passportExpiry]' => '',
+        ]));
+        self::assertResponseRedirects('/register/confirmation');
+        $row = $this->db->fetchAssociative('SELECT s.* FROM registration_sensitive s');
+        self::assertNull($row['passport_number']);
+        self::assertNull($row['passport_index']);
+        self::assertStringStartsWith('v1:', $row['date_of_birth']);
+    }
+
+    public function testPartialPassportDetailsAreRefused(): void
+    {
+        $this->submit($this->validData(['registration[passportExpiry]' => '', 'registration[passportIssuingCountry]' => '']));
+        self::assertResponseStatusCodeSame(422);
+        self::assertSelectorTextContains('.error-summary', 'Enter the passport expiry date, or leave all passport fields empty.');
+        self::assertSelectorTextContains('.error-summary', 'Select the passport issuing country, or leave all passport fields empty.');
+        self::assertSame(0, (int) $this->db->fetchOne('SELECT COUNT(*) FROM registration'));
+    }
+
     public function testRealLookingPassportAndEmailAreRefused(): void
     {
         $this->submit($this->validData([
@@ -144,6 +175,13 @@ final class RegistrationFormTest extends WebTestCase
         $this->submit($this->validData());
         $this->expectException(\Doctrine\DBAL\Exception::class);
         $this->db->executeStatement("UPDATE registration_sensitive SET passport_number = 'SYN123456'");
+    }
+
+    public function testDatabaseRefusesPartialPassportDetails(): void
+    {
+        $this->submit($this->validData());
+        $this->expectException(\Doctrine\DBAL\Exception::class);
+        $this->db->executeStatement('UPDATE registration_sensitive SET passport_expiry = NULL');
     }
 
     public function testAuditLogIsAppendOnly(): void

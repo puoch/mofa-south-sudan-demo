@@ -6,10 +6,12 @@ namespace App\Registration;
 
 use App\Validator\SyntheticEmail;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * What the public form submits. Which fields are required is pending Ministry
- * approval; for the prototype every confirmed field is required.
+ * approval. Passport details are optional, as the project owner asked on
+ * 24 October 2026; if any passport field is given, all three are needed.
  *
  * Passport numbers and email addresses are restricted to synthetic formats so
  * that real details are rejected rather than stored.
@@ -49,15 +51,12 @@ final class RegistrationRequest
     #[Assert\GreaterThan('1900-01-01', message: 'Enter a real date of birth.')]
     public ?\DateTimeImmutable $dateOfBirth = null;
 
-    #[Assert\NotBlank(message: 'Enter a passport number.')]
     #[Assert\Regex(pattern: self::SYNTHETIC_PASSPORT_PATTERN, message: 'This prototype accepts only made-up passport numbers: SYN followed by six digits, like SYN123456.')]
     public ?string $passportNumber = null;
 
-    #[Assert\NotBlank(message: 'Select the passport issuing country.')]
     #[Assert\Country]
     public ?string $passportIssuingCountry = null;
 
-    #[Assert\NotNull(message: 'Enter the passport expiry date.')]
     public ?\DateTimeImmutable $passportExpiry = null;
 
     #[Assert\IsTrue(message: 'Confirm that every detail you entered is made up.')]
@@ -65,4 +64,30 @@ final class RegistrationRequest
 
     #[Assert\IsTrue(message: 'Confirm that you have read the draft privacy notice.')]
     public bool $privacyAcknowledged = false;
+
+    public function hasPassport(): bool
+    {
+        return ($this->passportNumber ?? '') !== '' || ($this->passportIssuingCountry ?? '') !== '' || $this->passportExpiry !== null;
+    }
+
+    /**
+     * Passport details are optional, but a partial set is not useful.
+     */
+    #[Assert\Callback]
+    public function validatePassportSet(ExecutionContextInterface $context): void
+    {
+        if (!$this->hasPassport()) {
+            return;
+        }
+        $missing = [
+            'passportNumber' => [($this->passportNumber ?? '') === '', 'Enter the passport number, or leave all passport fields empty.'],
+            'passportIssuingCountry' => [($this->passportIssuingCountry ?? '') === '', 'Select the passport issuing country, or leave all passport fields empty.'],
+            'passportExpiry' => [$this->passportExpiry === null, 'Enter the passport expiry date, or leave all passport fields empty.'],
+        ];
+        foreach ($missing as $field => [$isMissing, $message]) {
+            if ($isMissing) {
+                $context->buildViolation($message)->atPath($field)->addViolation();
+            }
+        }
+    }
 }
