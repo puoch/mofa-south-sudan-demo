@@ -32,9 +32,22 @@ named approval. Updated 24 October 2026.
 | Arabic rollout date and variety | Arabic content |
 | Final security architecture approval, independent security and accessibility testing | Launch |
 | Deployment authorization | Launch |
-| Registration architecture, eligibility, verification, retention, export rules | Diaspora registration (not authorized) |
+| Registration architecture for real use (prototype follows ADR 0010) | Any real registration |
+| Registration eligibility, minors, field purposes and required fields | Real registration form |
+| Country and territory list for the form | Real registration form (prototype uses the ISO 3166 list as a placeholder) |
+| Duplicate handling, verification, correction, retention and export rules | Real registration records |
+| Confirmation email: sender, provider and wording | Sending any email (the prototype sends none) |
 
 ## Technical blockers before any production use
+
+### Registration service
+- Replace environment-variable keys with a key management service (ADR 0014).
+- Run the registry on its own PostgreSQL instance with separate network rules.
+- Build staff login with MFA, roles, row-level security and audit review (not authorized yet).
+- Remove the synthetic-only guards only through a reviewed change after approval (ADR 0015).
+- Approved privacy notice in place of the draft placeholder.
+
+### Website
 
 - Stop running `drush mofa:placeholder-content` and remove placeholder items once real content editing starts.
 - Make the home page introduction editable once approved text exists (ADR 0012).

@@ -101,10 +101,11 @@ nodes:
     title: Diaspora registration
     summary: Online registration is planned but not available. This page collects no information.
     body: |
+      <p><strong>Registration is optional.</strong> No one is required to register, and a passport or national ID is not required.</p>
       <p>The Ministry plans to offer online registration for South Sudanese living abroad. Registration is not available on this demonstration website, and this page does not collect or store any information.</p>
       <p>Before registration can open, the Ministry must approve its purpose, the information it asks for, how that information is protected, and how long it is kept.</p>
       <p>Registering will not confirm nationality or the validity of any passport.</p>
-    notes: Registration is not authorized in Phases 1 and 2. Do not add a form. See ADR 0010.
+    notes: Live registration is not authorized. Drupal must never hold a registration form; the Phase 3 prototype is a separate service (ADR 0010, 0013). The project owner asked on 24 October 2026 that registration, passport and national ID be stated as optional.
   - type: page
     path: /diaspora/resources
     title: Guidance and resources
