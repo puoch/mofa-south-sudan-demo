@@ -69,6 +69,14 @@ test.describe('site content', () => {
     expect(await page.locator('.button--inactive').evaluate((el) => el.tagName)).toBe('SPAN');
   });
 
+  test('the help and enquiries page collects nothing and points to emergency services', async ({ page }) => {
+    await page.goto('/diaspora/assistance');
+    await expect(page.locator('main')).toContainText('This is not an emergency service');
+    await expect(page.locator('main')).toContainText('contact the local emergency services');
+    await expect(page.locator('main form, main input, main select, main textarea')).toHaveCount(0);
+    await expect(page.locator('.button--inactive')).toContainText('Ask for help');
+  });
+
   test('missions are labelled as placeholders and show no jurisdictions', async ({ page }) => {
     await page.goto('/missions/directory');
     await expect(page.locator('.listing__header')).toContainText('placeholders');

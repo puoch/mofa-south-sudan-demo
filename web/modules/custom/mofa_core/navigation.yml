@@ -47,6 +47,7 @@ main:
     children:
       - { title: Diaspora information, path: /diaspora/information }
       - { title: Registration (demonstration), path: /diaspora/registration }
+      - { title: Help and enquiries (demonstration), path: /diaspora/assistance }
       - { title: Guidance and resources, path: /diaspora/resources }
       - { title: Contact a mission, path: /diaspora/missions }
   - title: Contacts

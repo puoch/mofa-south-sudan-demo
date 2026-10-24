@@ -37,6 +37,8 @@ named approval. Updated 24 October 2026.
 | Country and territory list for the form | Real registration form (prototype uses the ISO 3166 list as a placeholder) |
 | Duplicate handling, verification, correction, retention and export rules | Real registration records |
 | Confirmation email: sender, provider and wording | Sending any email (the prototype sends none) |
+| Help and enquiry requests: who responds, response times, out-of-hours cover, email or SMS provider | Any real help or enquiry service (the prototype sends nothing) |
+| Whether to ask the browser for the person's location | Automatic location on the help form (the prototype uses typed-in location only) |
 
 ## Technical blockers before any production use
 

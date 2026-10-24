@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block site_sub %}Diaspora help and enquiries prototype{% endblock %}
+{% block title %}Request received{% endblock %}
+
+{% block body %}
+  <div class="panel panel--success">
+    <h1>Request received</h1>
+    <p>Your reference number is</p>
+    <p class="reference">{{ reference }}</p>
+  </div>
+
+  <div class="panel panel--warning" role="note" aria-label="No one will respond">
+    <p><strong>No one will respond to this request.</strong> This is a demonstration. If you are in immediate danger, contact the local emergency services in the country you are in now.</p>
+  </div>
+
+  <h2>Where this request would go</h2>
+  <p>In this prototype nothing is sent by email or text message. The routing below is recorded in the prototype's logs only.</p>
+  <table class="routing">
+    <caption class="visually-hidden">Routing for this {{ type == 'distress' ? 'distress call' : 'enquiry' }}</caption>
+    <tbody>
+      <tr>
+        <th scope="row">Ministry headquarters</th>
+        <td>Received (every request goes to headquarters)</td>
+      </tr>
+      <tr>
+        <th scope="row">Nearest mission</th>
+        <td>
+          {%- if mission_name -%}
+            Received by {{ mission_name }}
+          {%- else -%}
+            Not assigned: no single approved mission serves this country, so headquarters would decide who responds.
+          {%- endif -%}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Write down this reference number now. It will not be shown again.</p>
+  <p><a href="{{ path('assistance') }}">Submit another synthetic request</a></p>
+{% endblock %}
