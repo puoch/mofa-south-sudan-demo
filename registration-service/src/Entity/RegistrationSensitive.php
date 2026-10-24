@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Encrypted passport details and date of birth for one registration.
- * Passport columns are empty when the registrant gave no passport.
+ * Passport and national ID columns are empty when the registrant gave none.
  *
  * Kept in its own table so that, in a later phase, database grants and
  * row-level security can give staff roles access to contact details without
@@ -18,6 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 #[ORM\Table(name: 'registration_sensitive')]
 #[ORM\Index(name: 'registration_sensitive_passport_index', columns: ['passport_index'])]
+#[ORM\Index(name: 'registration_sensitive_national_id_index', columns: ['national_id_index'])]
 class RegistrationSensitive
 {
     #[ORM\Id]
@@ -45,6 +46,13 @@ class RegistrationSensitive
     #[ORM\Column(length: 64, nullable: true)]
     private ?string $passportIndex;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $nationalIdNumber = null;
+
+    /** Keyed hash of the national ID number, for duplicate checks. */
+    #[ORM\Column(length: 64, nullable: true)]
+    private ?string $nationalIdIndex = null;
+
     public function __construct(Registration $registration, string $dateOfBirth, ?string $passportNumber = null, ?string $passportIssuingCountry = null, ?string $passportExpiry = null, ?string $passportIndex = null)
     {
         $this->registration = $registration;
@@ -54,6 +62,17 @@ class RegistrationSensitive
         $this->passportExpiry = $passportExpiry;
         $this->passportIndex = $passportIndex;
         $registration->setSensitive($this);
+    }
+
+    public function setNationalId(string $encryptedNumber, string $index): void
+    {
+        $this->nationalIdNumber = $encryptedNumber;
+        $this->nationalIdIndex = $index;
+    }
+
+    public function getNationalIdNumber(): ?string
+    {
+        return $this->nationalIdNumber;
     }
 
     public function getDateOfBirth(): string

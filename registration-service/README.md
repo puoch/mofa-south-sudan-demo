@@ -44,6 +44,8 @@ cd ../tests/e2e && REGISTRY_URL=http://127.0.0.1:8081 npx playwright test specs/
 ## Synthetic data rules
 
 - Passport numbers: `SYN` followed by six digits, such as `SYN123456`.
+- National ID numbers: `SYNID` followed by six digits, such as `SYNID123456`.
+- Passport and national ID are both optional.
 - Email addresses: example.com, example.org, example.net, `.example` or `.test`.
 - Phone numbers: use the fictional +1 555-01xx range, such as `+15550100123`.
 

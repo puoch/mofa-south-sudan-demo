@@ -24,11 +24,11 @@
 
   <div class="panel" role="note" aria-label="Registration is optional">
     <h2 class="h3">Registration is optional</h2>
-    <p>Registration is voluntary. You do not have to register, and passport details are optional.</p>
+    <p>Registration is voluntary. You do not have to register, and you do not need a passport or national ID to register.</p>
   </div>
 
   <div class="panel">
-    <p><strong>This form is a prototype.</strong> It shows how registration could work once the Ministry approves it. Use made-up details only. Passport numbers must start with SYN and email addresses must end in example.org or a similar test domain, so real details are refused.</p>
+    <p><strong>This form is a prototype.</strong> It shows how registration could work once the Ministry approves it. Use made-up details only. Passport numbers must start with SYN, national ID numbers with SYNID, and email addresses must end in example.org or a similar test domain, so real details are refused.</p>
     <p>Registering is not proof of nationality and does not verify your identity.</p>
   </div>
 
@@ -50,11 +50,12 @@
       {{ form_row(form.cityOfResidence) }}
     </fieldset>
     <fieldset>
-      <legend>Passport (optional)</legend>
-      <p id="passport-hint" class="form-item__description">You can leave this section empty. If you add a passport, fill in all three fields.</p>
+      <legend>Identity documents (optional)</legend>
+      <p class="form-item__description">You can give a passport, a national ID, both or neither. If you add a passport, fill in all three passport fields.</p>
       {{ form_row(form.passportNumber) }}
       {{ form_row(form.passportIssuingCountry) }}
       {{ form_row(form.passportExpiry) }}
+      {{ form_row(form.nationalIdNumber) }}
     </fieldset>
     <fieldset>
       <legend>Confirm</legend>

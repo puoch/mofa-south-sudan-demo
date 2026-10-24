@@ -40,6 +40,7 @@ final class RegistrationType extends AbstractType
             ->add('passportNumber', TextType::class, ['label' => 'Passport number', 'required' => false, 'help' => 'Prototype only: use SYN followed by six digits, such as SYN123456.', 'attr' => ['autocomplete' => 'off', 'spellcheck' => 'false']])
             ->add('passportIssuingCountry', CountryType::class, ['label' => 'Passport issuing country', 'required' => false] + $country)
             ->add('passportExpiry', DateType::class, ['label' => 'Passport expiry date', 'required' => false] + $date)
+            ->add('nationalIdNumber', TextType::class, ['label' => 'National ID number', 'required' => false, 'help' => 'Prototype only: use SYNID followed by six digits, such as SYNID123456.', 'attr' => ['autocomplete' => 'off', 'spellcheck' => 'false']])
             ->add('syntheticConfirmation', CheckboxType::class, ['label' => 'I confirm that every detail I entered is made up and does not belong to a real person.'])
             ->add('privacyAcknowledged', CheckboxType::class, ['label' => 'I have read the draft privacy notice.'])
             // Honeypot: hidden from people, often filled in by bots.

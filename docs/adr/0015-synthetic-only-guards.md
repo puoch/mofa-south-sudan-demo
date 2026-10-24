@@ -11,7 +11,8 @@ alone do not stop someone typing real details.
 ## Decision
 The prototype refuses real-looking data at several layers:
 1. Passport numbers must match `SYN` followed by six digits, checked by the
-   form and again in the service that stores records.
+   form and again in the service that stores records. National ID numbers
+   must match `SYNID` followed by six digits. Both documents are optional.
 2. Email addresses must use domains reserved for testing (example.com,
    example.org, example.net, `.example`, `.test`).
 3. A required checkbox confirms every detail is made up.

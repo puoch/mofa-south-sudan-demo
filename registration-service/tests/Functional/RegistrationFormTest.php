@@ -116,6 +116,36 @@ final class RegistrationFormTest extends WebTestCase
         self::assertStringStartsWith('v1:', $row['date_of_birth']);
     }
 
+    public function testNationalIdIsOptionalAndEncrypted(): void
+    {
+        $this->submit($this->validData([
+            'registration[passportNumber]' => '',
+            'registration[passportIssuingCountry]' => '',
+            'registration[passportExpiry]' => '',
+            'registration[nationalIdNumber]' => 'SYNID654321',
+        ]));
+        self::assertResponseRedirects('/register/confirmation');
+        $this->client->followRedirect();
+        self::assertSelectorTextNotContains('main', 'SYNID654321');
+        $row = $this->db->fetchAssociative('SELECT * FROM registration_sensitive');
+        self::assertNull($row['passport_number']);
+        self::assertStringNotContainsString('SYNID654321', $row['national_id_number']);
+        $cipher = static::getContainer()->get(FieldCipher::class);
+        self::assertSame('SYNID654321', $cipher->decrypt($row['national_id_number'], 'national_id_number'));
+
+        // The same national ID again is flagged for headquarters.
+        $this->submit($this->validData(['registration[nationalIdNumber]' => 'synid654321']));
+        $flags = $this->db->fetchFirstColumn('SELECT possible_duplicate FROM registration ORDER BY id');
+        self::assertSame([false, true], array_map('boolval', $flags));
+    }
+
+    public function testRealLookingNationalIdIsRefused(): void
+    {
+        $this->submit($this->validData(['registration[nationalIdNumber]' => '1234567890']));
+        self::assertResponseStatusCodeSame(422);
+        self::assertSelectorTextContains('.error-summary', 'only made-up national ID numbers');
+    }
+
     public function testPartialPassportDetailsAreRefused(): void
     {
         $this->submit($this->validData(['registration[passportExpiry]' => '', 'registration[passportIssuingCountry]' => '']));

@@ -10,8 +10,9 @@ Date: 24 October 2026. Phase 3 authorized by the project owner on
    registration data and has no access to it (ADR 0010, 0013).
 2. **Public form** with every field the specification confirms: full name,
    date of birth, nationality, email, phone, country and city of residence,
-   passport number, issuing country and expiry. Passport details are
-   optional (all three or none), and the form and the Drupal page both say
+   passport number, issuing country and expiry, plus a national ID number
+   the project owner added. Passport details (all three or none) and the
+   national ID are each optional, and the form and the Drupal page both say
    that registration is optional, as the project owner asked. Server-rendered, no
    JavaScript, CSRF protection, a honeypot field and a rate limit of 10
    submissions per 15 minutes per address.
@@ -39,7 +40,7 @@ Date: 24 October 2026. Phase 3 authorized by the project owner on
 
 | Suite | Result |
 | --- | --- |
-| PHPUnit unit and functional tests (registration service) | 35 passed |
+| PHPUnit unit and functional tests (registration service) | 37 passed |
 | Playwright: registration accessibility (axe, WCAG 2.2 AA), errors, confirmation, 320px reflow | 10 passed (desktop and mobile) |
 | Full Playwright suite including the website | 132 passed, 32 skipped (desktop-only or mobile-only checks) |
 | Drupal structure checks | 122 passed |

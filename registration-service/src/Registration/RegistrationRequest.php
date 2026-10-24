@@ -10,15 +10,17 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * What the public form submits. Which fields are required is pending Ministry
- * approval. Passport details are optional, as the project owner asked on
- * 24 October 2026; if any passport field is given, all three are needed.
+ * approval. Passport details and the national ID number are both optional,
+ * as the project owner asked on 24 October 2026; if any passport field is
+ * given, all three are needed.
  *
  * Passport numbers and email addresses are restricted to synthetic formats so
  * that real details are rejected rather than stored.
  */
 final class RegistrationRequest
 {
-    public const SYNTHETIC_PASSPORT_PATTERN = '/^SYN\d{6}$/';
+    public const SYNTHETIC_PASSPORT_PATTERN = '/^SYN\d{6}$/i';
+    public const SYNTHETIC_NATIONAL_ID_PATTERN = '/^SYNID\d{6}$/i';
 
     #[Assert\NotBlank(message: 'Enter a full name.')]
     #[Assert\Length(max: 200)]
@@ -59,11 +61,19 @@ final class RegistrationRequest
 
     public ?\DateTimeImmutable $passportExpiry = null;
 
+    #[Assert\Regex(pattern: self::SYNTHETIC_NATIONAL_ID_PATTERN, message: 'This prototype accepts only made-up national ID numbers: SYNID followed by six digits, like SYNID123456.')]
+    public ?string $nationalIdNumber = null;
+
     #[Assert\IsTrue(message: 'Confirm that every detail you entered is made up.')]
     public bool $syntheticConfirmation = false;
 
     #[Assert\IsTrue(message: 'Confirm that you have read the draft privacy notice.')]
     public bool $privacyAcknowledged = false;
+
+    public function hasNationalId(): bool
+    {
+        return ($this->nationalIdNumber ?? '') !== '';
+    }
 
     public function hasPassport(): bool
     {

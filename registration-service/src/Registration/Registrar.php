@@ -14,8 +14,8 @@ use Doctrine\ORM\EntityManagerInterface;
  * Stores a validated registration and returns its reference number.
  *
  * Every record goes to the headquarters queue: no jurisdiction rules are
- * approved, so nothing is routed to a mission. A matching passport number is
- * flagged for headquarters as a possible duplicate, never merged or rejected,
+ * approved, so nothing is routed to a mission. A matching passport or
+ * national ID number is flagged for headquarters as a possible duplicate, never merged or rejected,
  * because the Ministry has not decided how duplicates are handled.
  */
 final class Registrar
@@ -36,7 +36,14 @@ final class Registrar
             throw new \DomainException('Only synthetic passport numbers can be stored.');
         }
         $passportIndex = $passport !== null ? $this->cipher->blindIndex($passport, 'passport_number') : null;
-        $isDuplicate = $passportIndex !== null && $this->entityManager->getRepository(RegistrationSensitive::class)->count(['passportIndex' => $passportIndex]) > 0;
+        $nationalId = $request->hasNationalId() ? strtoupper(trim((string) $request->nationalIdNumber)) : null;
+        if ($nationalId !== null && !preg_match(RegistrationRequest::SYNTHETIC_NATIONAL_ID_PATTERN, $nationalId)) {
+            throw new \DomainException('Only synthetic national ID numbers can be stored.');
+        }
+        $nationalIdIndex = $nationalId !== null ? $this->cipher->blindIndex($nationalId, 'national_id_number') : null;
+        $sensitiveRepository = $this->entityManager->getRepository(RegistrationSensitive::class);
+        $isDuplicate = ($passportIndex !== null && $sensitiveRepository->count(['passportIndex' => $passportIndex]) > 0)
+            || ($nationalIdIndex !== null && $sensitiveRepository->count(['nationalIdIndex' => $nationalIdIndex]) > 0);
 
         $registration = new Registration(
             $this->uniqueReference(),
@@ -50,7 +57,7 @@ final class Registrar
         if ($isDuplicate) {
             $registration->flagPossibleDuplicate();
         }
-        new RegistrationSensitive(
+        $sensitive = new RegistrationSensitive(
             $registration,
             $this->cipher->encrypt($request->dateOfBirth->format('Y-m-d'), 'date_of_birth'),
             $passport !== null ? $this->cipher->encrypt($passport, 'passport_number') : null,
@@ -58,6 +65,9 @@ final class Registrar
             $passport !== null ? $this->cipher->encrypt($request->passportExpiry->format('Y-m-d'), 'passport_expiry') : null,
             $passportIndex,
         );
+        if ($nationalId !== null) {
+            $sensitive->setNationalId($this->cipher->encrypt($nationalId, 'national_id_number'), $nationalIdIndex);
+        }
         $this->entityManager->wrapInTransaction(function (EntityManagerInterface $em) use ($registration, $actor): void {
             $em->persist($registration);
             $em->persist(new AuditEvent($actor, 'registration.created', $registration->getReference()));
