@@ -91,15 +91,15 @@ legend {
   padding: 0;
 }
 .form-item--checkbox {
-  display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  column-gap: var(--space-3);
+  align-items: start;
 }
 .form-item--checkbox input {
   inline-size: 24px;
   block-size: 24px;
   margin: 0;
-  flex: none;
   accent-color: var(--color-brand-navy);
 }
 .form-item--checkbox label {
@@ -107,10 +107,7 @@ legend {
   margin: 0;
 }
 .form-item--checkbox .form-item--error-message {
-  flex-basis: 100%;
-}
-.form-item--checkbox {
-  flex-wrap: wrap;
+  grid-column: 1 / -1;
 }
 .panel {
   border-inline-start: 6px solid var(--color-info-border);
@@ -254,4 +251,19 @@ th {
   .print-only {
     display: block;
   }
+}
+.routing {
+  border-collapse: collapse;
+  inline-size: 100%;
+  margin-block-end: var(--space-6);
+}
+.routing th,
+.routing td {
+  border-block-end: 1px solid var(--color-line);
+  padding: var(--space-3) var(--space-3) var(--space-3) 0;
+  text-align: start;
+  vertical-align: top;
+}
+.routing th {
+  inline-size: 40%;
 }

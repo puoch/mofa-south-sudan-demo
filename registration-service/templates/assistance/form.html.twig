@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/theme.html.twig' %}
+
+{% block site_sub %}Diaspora help and enquiries prototype{% endblock %}
+{% block title %}{{ form.vars.submitted and not form.vars.valid ? 'Error: ' }}Ask for help or make an enquiry{% endblock %}
+
+{% block body %}
+  <h1>Ask for help or make an enquiry</h1>
+
+  <div class="panel panel--warning" role="note" aria-label="This is not an emergency service">
+    <h2 class="h3">This is not an emergency service</h2>
+    <p><strong>If you are in immediate danger, contact the local emergency services in the country you are in now.</strong></p>
+    <p>This page is a demonstration. Nothing you submit is sent to anyone, and no one will read it or reply.</p>
+  </div>
+
+  {% if form.vars.submitted and not form.vars.valid %}
+    <div class="panel panel--warning error-summary" role="alert" aria-labelledby="error-summary-title" tabindex="-1">
+      <h2 id="error-summary-title" class="h3">There is a problem</h2>
+      <ul>
+        {% for error in form.vars.errors %}
+          <li>{{ error.message }}</li>
+        {% endfor %}
+        {% for child in form %}
+          {% for error in child.vars.errors %}
+            <li><a href="#{{ child.vars.id ~ (child.vars.expanded ?? false ? '_0') }}">{{ error.message }}</a></li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <div class="panel">
+    <p><strong>This form is a prototype.</strong> It shows how members of the diaspora could ask the Ministry for help or send an enquiry. Use made-up details only: email addresses must end in example.org or a similar test domain, so real addresses are refused.</p>
+    <p>In the proposed service, each request would go to the Ministry headquarters and to the mission that serves the country you are in.</p>
+  </div>
+
+  {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+    <fieldset{% if form.requestType.vars.errors|length > 0 %} aria-describedby="{{ form.requestType.vars.id }}_error1"{% endif %}>
+      <legend>{{ form.requestType.vars.label }}</legend>
+      {{ form_errors(form.requestType) }}
+      {% for choice in form.requestType %}
+        {{ form_row(choice) }}
+      {% endfor %}
+    </fieldset>
+    <fieldset>
+      <legend>Your contact details</legend>
+      {{ form_row(form.fullName) }}
+      {{ form_row(form.email) }}
+      {{ form_row(form.phone) }}
+    </fieldset>
+    <fieldset>
+      <legend>Your situation</legend>
+      {{ form_row(form.message) }}
+    </fieldset>
+    <fieldset>
+      <legend>Where you are now</legend>
+      <p class="form-item__description">Type in where you are. This page does not use your device's location.</p>
+      {{ form_row(form.country) }}
+      {{ form_row(form.city) }}
+      {{ form_row(form.locationDetails) }}
+    </fieldset>
+    <fieldset>
+      <legend>Confirm</legend>
+      {{ form_row(form.syntheticConfirmation) }}
+      {{ form_row(form.notEmergencyAcknowledged) }}
+    </fieldset>
+    {{ form_rest(form) }}
+    <div class="form-actions">
+      <input type="submit" value="Submit request">
+    </div>
+  {{ form_end(form) }}
+{% endblock %}

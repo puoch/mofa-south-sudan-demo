@@ -15,6 +15,11 @@ use Drupal\node\NodeInterface;
 const MOFA_CORE_REGISTRATION_PATH = '/diaspora/registration';
 
 /**
+ * Path of the diaspora help and enquiries information page.
+ */
+const MOFA_CORE_ASSISTANCE_PATH = '/diaspora/assistance';
+
+/**
  * Implements hook_ENTITY_TYPE_view() for nodes.
  *
  * Adds the registration entry point to the diaspora registration page. Live
@@ -22,12 +27,20 @@ const MOFA_CORE_REGISTRATION_PATH = '/diaspora/registration';
  * data. By default the button is inactive. In development, setting
  * MOFA_REGISTRATION_PROTOTYPE_URL links it to the separate registration
  * prototype, which accepts synthetic details only.
+ *
+ * The help and enquiries page works the same way, with
+ * MOFA_ASSISTANCE_PROTOTYPE_URL. Drupal never collects those requests either.
  */
 function mofa_core_node_view(array &$build, NodeInterface $node, EntityViewDisplayInterface $display, string $view_mode): void {
   if ($view_mode !== 'full' || $node->bundle() !== 'page') {
     return;
   }
   $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $node->id());
+  if ($alias === MOFA_CORE_ASSISTANCE_PATH) {
+    $build['mofa_assistance_demo'] = _mofa_core_assistance_entry_point();
+    $build['#cache']['tags'][] = 'path_alias_list';
+    return;
+  }
   if ($alias !== MOFA_CORE_REGISTRATION_PATH) {
     return;
   }
@@ -62,4 +75,40 @@ function mofa_core_node_view(array &$build, NodeInterface $node, EntityViewDispl
     ],
   ];
   $build['#cache']['tags'][] = 'path_alias_list';
+}
+
+/**
+ * Builds the entry point to the help and enquiries prototype.
+ */
+function _mofa_core_assistance_entry_point(): array {
+  $prototype = Settings::get('mofa_assistance_prototype_url', '');
+  return [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['registration-demo']],
+    '#weight' => 1000,
+    'notice' => [
+      '#type' => 'component',
+      '#component' => 'mofa_theme:alert',
+      '#props' => $prototype ? [
+        'variant' => 'info',
+        'heading' => t('Help and enquiries prototype for review'),
+        'message' => t('This is not an emergency service. If you are in immediate danger, contact the local emergency services. The button below opens a development prototype for review, which accepts made-up details only. Do not enter real information.'),
+      ] : [
+        'variant' => 'info',
+        'heading' => t('Online help requests are not available'),
+        'message' => t('This is not an emergency service. If you are in immediate danger, contact the local emergency services. This website is a demonstration and does not collect requests. The button below is inactive.'),
+      ],
+    ],
+    'button' => [
+      '#type' => 'component',
+      '#component' => 'mofa_theme:button',
+      '#props' => $prototype ? [
+        'label' => t('Open the help and enquiries prototype'),
+        'url' => $prototype,
+      ] : [
+        'label' => t('Ask for help or make an enquiry'),
+        'inactive_note' => t('Demonstration only. Requests are not active and nothing is collected.'),
+      ],
+    ],
+  ];
 }

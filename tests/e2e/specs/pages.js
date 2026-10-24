@@ -14,6 +14,7 @@ module.exports = [
   { path: '/news/placeholder-press-release-1', name: 'News item' },
   { path: '/diaspora', name: 'SSD Diaspora' },
   { path: '/diaspora/registration', name: 'Diaspora registration (demonstration)' },
+  { path: '/diaspora/assistance', name: 'Help and enquiries (demonstration)' },
   { path: '/contacts', name: 'Contacts' },
   { path: '/archives', name: 'Archives' },
   { path: '/archives/news', name: 'Archived news' },

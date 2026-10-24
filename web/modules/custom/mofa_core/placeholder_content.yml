@@ -107,6 +107,16 @@ nodes:
       <p>Registering will not confirm nationality or the validity of any passport.</p>
     notes: Live registration is not authorized. Drupal must never hold a registration form; the Phase 3 prototype is a separate service (ADR 0010, 0013). The project owner asked on 24 October 2026 that registration, passport and national ID be stated as optional.
   - type: page
+    path: /diaspora/assistance
+    title: Help and enquiries
+    summary: How members of the diaspora could ask for help or send an enquiry. This page collects no information.
+    body: |
+      <p><strong>This is not an emergency service.</strong> If you are in immediate danger, contact the local emergency services in the country you are in.</p>
+      <p>The Ministry plans to let South Sudanese living abroad ask for help or send an enquiry online. Each request would go to the Ministry headquarters and to the mission that serves the country the person is in.</p>
+      <p>Online requests are not available on this demonstration website, and this page does not collect or store any information.</p>
+      <p>Before this service can open, the Ministry must approve how requests are handled, who responds and how quickly, which mission serves which country, and how the information is protected.</p>
+    notes: Live help requests are not authorized. Drupal must never hold the form; the prototype is part of the separate registration service. Routing to missions waits for the approved jurisdiction directory.
+  - type: page
     path: /diaspora/resources
     title: Guidance and resources
     summary: Guidance and useful resources for the diaspora.

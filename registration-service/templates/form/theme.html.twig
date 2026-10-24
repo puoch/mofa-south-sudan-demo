@@ -3,7 +3,7 @@
 {# Rows use the website theme's form classes. Symfony already links help and
    error text to each field with aria-describedby and sets aria-invalid. #}
 {%- block form_row_render -%}
-  {%- set checkbox = 'checkbox' in block_prefixes -%}
+  {%- set checkbox = 'checkbox' in block_prefixes or 'radio' in block_prefixes -%}
   {%- set row_class = 'form-item' ~ (checkbox ? ' form-item--checkbox') ~ (row_attr.class is defined ? ' ' ~ row_attr.class) -%}
   <div{% with {attr: row_attr|merge({class: row_class})} %}{{ block('attributes') }}{% endwith %}>
     {%- if checkbox -%}
@@ -33,10 +33,10 @@
   {%- endif -%}
 {%- endblock form_errors -%}
 
-{# Checkbox labels are full sentences; mark only required text inputs. #}
+{# Checkbox and radio labels are full sentences; mark only required text inputs. #}
 {%- block form_label -%}
   {%- if label is not same as(false) -%}
     {%- set label = label|default(name|humanize) -%}
-    <label for="{{ id }}"{% if required and 'checkbox' not in block_prefixes %} class="form-required"{% endif %}>{{ label|trans({}, translation_domain) }}</label>
+    <label for="{{ id }}"{% if required and 'checkbox' not in block_prefixes and 'radio' not in block_prefixes %} class="form-required"{% endif %}>{{ label|trans({}, translation_domain) }}</label>
   {%- endif -%}
 {%- endblock form_label -%}
