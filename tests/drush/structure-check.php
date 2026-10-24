@@ -42,10 +42,13 @@ $check(FieldConfig::loadByName('node', 'service', 'field_service_status')?->getD
 // Workflow.
 $workflow = Workflow::load('editorial');
 $plugin = $workflow->getTypePlugin();
-foreach (['draft', 'review', 'approved', 'published', 'archived'] as $state) {
+foreach (['draft', 'review', 'approved', 'published', 'archived', 'withdrawn'] as $state) {
   $check($plugin->hasState($state), "Workflow has state $state");
 }
 $check(!$plugin->getState('approved')->isPublishedState(), 'Approved is not yet published');
+$check($plugin->getState('archived')->isPublishedState(), 'Archived items stay public in the Archives section');
+$check(!$plugin->getState('withdrawn')->isPublishedState(), 'Withdrawn items are not public');
+$check(!$plugin->getState('archived')->canTransitionTo('published'), 'Archived items must be reviewed again before republishing');
 $check(!$plugin->getState('draft')->canTransitionTo('published'), 'Draft cannot go straight to Published');
 $check(!$plugin->getState('review')->canTransitionTo('published'), 'In review cannot go straight to Published');
 foreach ($types as $type) {
@@ -73,12 +76,19 @@ foreach ($anon->getPermissions() as $p) {
 }
 $check(\Drupal::config('user.settings')->get('register') === 'admin_only', 'Visitors cannot create accounts');
 
+// Phase 2 listings and front page.
+foreach (['news', 'missions', 'leadership', 'publications', 'archived_news', 'archive_records'] as $view) {
+  $check((bool) \Drupal\views\Entity\View::load($view), "Listing view $view exists");
+}
+$check(\Drupal::config('system.site')->get('page.front') === '/home', 'Front page is the content-driven home page');
+
 // Languages: English only at launch.
 $langs = array_keys(\Drupal::languageManager()->getLanguages());
 $check($langs === ['en'], 'Only English is enabled (found: ' . implode(',', $langs) . ')');
 
 // Registration must not exist in Phase 1/2.
 $check(!\Drupal::moduleHandler()->moduleExists('webform'), 'No form-builder module is installed');
+$check(!\Drupal::moduleHandler()->moduleExists('contact'), 'No contact form module is installed');
 $check(!NodeType::load('registration'), 'No registration content type exists');
 
 foreach ($failures as $f) {

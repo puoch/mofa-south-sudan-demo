@@ -28,6 +28,24 @@ revisions and are translatable (ADR 0006).
 
 News, publications and other items move to the Archives section through the
 **Archived** workflow state, so there is one archive mechanism for all types.
+Archived items stay public; **Withdrawn** items are not.
+
+## Listings (Phase 2)
+
+| Path | Shows |
+| --- | --- |
+| `/news` | Current news items, newest first, with keyword search and a category filter |
+| `/news/latest`, `/news/press-releases`, `/news/statements`, `/news/announcements` | Category pages (taxonomy term pages with these aliases), current items only |
+| `/missions/directory` | Missions, A to Z, with a mission-type filter |
+| `/about-mfaic/leadership` | Leadership profiles in display order |
+| `/services/consular`, `/services/immigration`, `/services/trade-and-investment`, `/services/other` | Service category pages |
+| `/archives/news` | Archived news, with search and category filter |
+| `/archives/publications` | Current and archived publications, with search |
+| `/archives/announcements` | Archive records (historical announcements) |
+| `/home` (front page) | Hero (tagline from the site slogan), the three latest news items, service pathways, and the About South Sudan introduction |
+
+Section and gateway pages list their child pages automatically from the main
+menu, using each child page's summary as its description.
 
 ## Vocabularies
 

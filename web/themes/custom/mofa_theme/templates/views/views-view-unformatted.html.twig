@@ -1,0 +1,6 @@
+{% if title %}<h3>{{ title }}</h3>{% endif %}
+<div class="l-grid listing__grid">
+  {% for row in rows %}
+    <div{{ row.attributes.addClass('listing__item') }}>{{ row.content }}</div>
+  {% endfor %}
+</div>

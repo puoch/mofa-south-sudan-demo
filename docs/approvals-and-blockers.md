@@ -36,6 +36,9 @@ named approval. Updated 24 October 2026.
 
 ## Technical blockers before any production use
 
+- Stop running `drush mofa:placeholder-content` and remove placeholder items once real content editing starts.
+- Make the home page introduction editable once approved text exists (ADR 0012).
+
 - Remove or disable `mofa_styleguide` and its anonymous permission; change the front page.
 - Add multifactor login for all staff accounts.
 - Add Config Split (or equivalent) so dev-only modules never reach production.

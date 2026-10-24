@@ -1,9 +1,22 @@
-// Pages covered by every suite. Phase 2 adds the real section pages.
+// Pages covered by the accessibility, structure and reflow suites.
 module.exports = [
+  { path: '/', name: 'Home' },
+  { path: '/missions', name: 'Missions' },
+  { path: '/missions/directory', name: 'Mission directory' },
+  { path: '/missions/placeholder-mission-a', name: 'Mission profile' },
+  { path: '/about-mfaic', name: 'About MFA&IC' },
+  { path: '/about-mfaic/leadership', name: 'Leadership' },
+  { path: '/about-south-sudan', name: 'About South Sudan gateway' },
+  { path: '/about-south-sudan/history-and-government', name: 'History and Government' },
+  { path: '/services', name: 'Services' },
+  { path: '/services/consular', name: 'Consular information (category)' },
+  { path: '/news', name: 'News and press' },
+  { path: '/news/placeholder-press-release-1', name: 'News item' },
+  { path: '/diaspora', name: 'SSD Diaspora' },
+  { path: '/diaspora/registration', name: 'Diaspora registration (demonstration)' },
+  { path: '/contacts', name: 'Contacts' },
+  { path: '/archives', name: 'Archives' },
+  { path: '/archives/news', name: 'Archived news' },
   { path: '/styleguide', name: 'Component library' },
-  { path: '/styleguide/layouts/home', name: 'Home layout' },
-  { path: '/styleguide/layouts/gateway', name: 'Gateway layout' },
-  { path: '/styleguide/layouts/listing', name: 'Listing layout' },
-  { path: '/styleguide/layouts/detail', name: 'Detail layout' },
   { path: '/user/login', name: 'Staff login' },
 ];

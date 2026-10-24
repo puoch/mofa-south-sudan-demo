@@ -8,7 +8,7 @@
 {% if view_mode == 'full' %}
   <article{{ attributes.addClass('node-full', 'node-full--' ~ node.bundle|clean_class) }}>
     {{ include('mofa_theme:page-header', {
-      eyebrow: node.type.entity.label,
+      eyebrow: eyebrow,
       title: label|render|striptags|trim,
       lead: summary,
       placeholder: is_placeholder,
@@ -17,9 +17,17 @@
       {% if is_placeholder %}
         {{ include('mofa_theme:placeholder-notice', {}, with_context = false) }}
       {% endif %}
+      {% if context_notice %}
+        {{ include('mofa_theme:context-notice', context_notice, with_context = false) }}
+      {% endif %}
       <div class="node-full__body">
         {{ content|without('field_placeholder', 'field_summary', 'field_sources', 'field_last_reviewed', 'field_content_owner', 'field_context_notice', 'field_context_notice_date', 'moderation_control') }}
       </div>
+      {% if child_tiles %}
+        <div class="node-full__children">
+          {{ include('mofa_theme:link-tiles', { heading: node.bundle == 'national_profile' ? 'Explore South Sudan'|t : 'In this section'|t, items: child_tiles }, with_context = false) }}
+        </div>
+      {% endif %}
       {{ content.moderation_control }}
       {{ include('mofa_theme:editorial-meta', editorial, with_context = false) }}
     </div>

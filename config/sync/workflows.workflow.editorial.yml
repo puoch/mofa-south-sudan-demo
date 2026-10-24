@@ -26,9 +26,9 @@ type_settings:
       label: 'Approved for publication'
       weight: 0
     archived:
-      label: Archived
+      label: 'Archived (public in Archives)'
       weight: 10
-      published: false
+      published: true
       default_revision: true
     draft:
       label: Draft
@@ -43,6 +43,11 @@ type_settings:
     review:
       label: 'In review'
       weight: -5
+    withdrawn:
+      label: 'Withdrawn (not public)'
+      weight: 15
+      published: false
+      default_revision: true
   transitions:
     approve:
       label: Approve
@@ -80,6 +85,7 @@ type_settings:
       label: 'Restore to draft'
       from:
         - archived
+        - withdrawn
       to: draft
       weight: 6
     submit_for_review:
@@ -88,6 +94,13 @@ type_settings:
         - draft
       to: review
       weight: 1
+    withdraw:
+      label: Withdraw
+      from:
+        - published
+        - archived
+      to: withdrawn
+      weight: 6
   entity_types:
     media:
       - document
