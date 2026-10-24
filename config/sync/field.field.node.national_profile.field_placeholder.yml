@@ -1,0 +1,23 @@
+uuid: fe1cd96c-79d1-434e-8942-e90b598c1eb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_placeholder
+    - node.type.national_profile
+id: node.national_profile.field_placeholder
+field_name: field_placeholder
+entity_type: node
+bundle: national_profile
+label: 'Unverified placeholder content'
+description: 'Leave ticked until the content has been verified and approved. Ticked content shows a visible placeholder notice.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Placeholder
+  off_label: Verified
+field_type: boolean

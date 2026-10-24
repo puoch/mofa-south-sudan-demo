@@ -1,0 +1,21 @@
+uuid: 9e04c99d-d298-4b7d-b90b-cb1973e97968
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_reviewed
+    - node.type.archive_record
+  module:
+    - datetime
+id: node.archive_record.field_last_reviewed
+field_name: field_last_reviewed
+entity_type: node
+bundle: archive_record
+label: 'Last reviewed'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,23 @@
+uuid: 05ab2dac-e765-45b8-9f88-8931791bf458
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_placeholder
+    - node.type.archive_record
+id: node.archive_record.field_placeholder
+field_name: field_placeholder
+entity_type: node
+bundle: archive_record
+label: 'Unverified placeholder content'
+description: 'Leave ticked until the content has been verified and approved. Ticked content shows a visible placeholder notice.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Placeholder
+  off_label: Verified
+field_type: boolean

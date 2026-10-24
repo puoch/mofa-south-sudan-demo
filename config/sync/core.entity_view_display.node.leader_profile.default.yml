@@ -1,0 +1,112 @@
+uuid: dc5ccde2-ec37-487d-9a66-9ed5f763f42a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.leader_profile.body
+    - field.field.node.leader_profile.field_content_owner
+    - field.field.node.leader_profile.field_display_order
+    - field.field.node.leader_profile.field_image
+    - field.field.node.leader_profile.field_last_reviewed
+    - field.field.node.leader_profile.field_placeholder
+    - field.field.node.leader_profile.field_position_title
+    - field.field.node.leader_profile.field_source_notes
+    - field.field.node.leader_profile.field_sources
+    - node.type.leader_profile
+  module:
+    - datetime
+    - link
+    - text
+    - user
+id: node.leader_profile.default
+targetEntityType: node
+bundle: leader_profile
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 118
+    region: content
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_content_owner:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 119
+    region: content
+  field_display_order:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 120
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 121
+    region: content
+  field_last_reviewed:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: mofa_date
+    third_party_settings: {  }
+    weight: 122
+    region: content
+  field_placeholder:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 123
+    region: content
+  field_position_title:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 124
+    region: content
+  field_sources:
+    type: link
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 125
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_source_notes: true
+  langcode: true

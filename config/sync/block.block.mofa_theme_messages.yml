@@ -1,0 +1,20 @@
+uuid: cf1c4dca-99df-46a3-8452-79f3cc96d327
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - mofa_theme
+id: mofa_theme_messages
+theme: mofa_theme
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

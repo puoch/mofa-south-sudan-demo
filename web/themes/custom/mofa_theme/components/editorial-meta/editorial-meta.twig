@@ -1,0 +1,15 @@
+<aside class="editorial-meta" aria-labelledby="editorial-meta-heading">
+  <h2 class="editorial-meta__heading" id="editorial-meta-heading">{{ 'Sources and review'|t }}</h2>
+  <dl class="editorial-meta__facts">
+    <div><dt>{{ 'Last reviewed'|t }}</dt><dd>{{ last_reviewed|default('Not yet reviewed'|t) }}</dd></div>
+    <div><dt>{{ 'Content owner'|t }}</dt><dd>{{ owner|default('Not yet assigned'|t) }}</dd></div>
+  </dl>
+  {% if sources %}
+    <h3 class="editorial-meta__subheading">{{ 'Sources'|t }}</h3>
+    <ul class="editorial-meta__sources">
+      {% for source in sources %}
+        <li>{% if source.url %}<a href="{{ source.url }}">{{ source.title|default(source.url) }}</a>{% else %}{{ source.title }}{% endif %}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</aside>

@@ -1,0 +1,11 @@
+uuid: 00b58b20-5c0c-4ec7-9350-b8a70d0a19ae
+langcode: en
+status: true
+dependencies: {  }
+name: Publication
+type: publication
+description: 'Official publications and downloadable documents.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

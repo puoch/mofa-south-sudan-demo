@@ -1,0 +1,12 @@
+<header class="page-header">
+  <div class="l-container">
+    {% if eyebrow or placeholder %}
+      <div class="page-header__top">
+        {% if eyebrow %}<p class="page-header__eyebrow">{{ eyebrow }}</p>{% endif %}
+        {% if placeholder %}{{ include('mofa_theme:placeholder-notice', { compact: true }, with_context = false) }}{% endif %}
+      </div>
+    {% endif %}
+    <h1 class="page-header__title">{{ title }}</h1>
+    {% if lead %}<p class="page-header__lead">{{ lead }}</p>{% endif %}
+  </div>
+</header>

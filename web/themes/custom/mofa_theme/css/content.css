@@ -1,0 +1,83 @@
+/* Drupal output that is not a component: node pages, fields, messages, tabs. */
+.node-full__body {
+  max-width: var(--measure);
+}
+.node-full__body > * + * {
+  margin-block-start: var(--space-4);
+}
+.field-label {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.node-meta {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-2) var(--space-5);
+  margin: 0 0 var(--space-5);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-2);
+}
+.node-meta dt {
+  font-weight: 600;
+}
+.node-meta dd {
+  margin: 0;
+  min-width: 0;
+}
+@media (max-width: 30em) {
+  .node-meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .node-meta dd {
+    margin-block-end: var(--space-2);
+  }
+}
+.messages {
+  padding: var(--space-4);
+  margin-block: var(--space-4);
+  border-inline-start: 6px solid var(--color-info-border);
+  background: var(--color-info-bg);
+}
+.messages--error {
+  border-color: var(--color-warning-border);
+  background: var(--color-warning-bg);
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin-block: var(--space-4);
+}
+.tabs a {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width) solid var(--color-line-strong);
+  border-radius: var(--radius-2);
+  background: var(--color-surface);
+  text-decoration: none;
+}
+.tabs a.is-active {
+  background: var(--color-brand-navy);
+  border-color: var(--color-brand-navy);
+  color: #ffffff;
+}
+.page-title-block {
+  padding-block: var(--space-5) 0;
+}
+.node-full__body .field--label-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin-block: var(--space-2);
+}
+.node-full__body .field--label-inline .field__label {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.node-full__body .field--label-inline .field__label::after {
+  content: ":";
+}

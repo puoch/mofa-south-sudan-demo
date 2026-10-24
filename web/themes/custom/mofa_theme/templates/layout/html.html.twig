@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Document wrapper. The language and text direction come from Drupal, so an
+ * Arabic page later renders with lang="ar" dir="rtl" without template changes.
+ */
+#}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <meta name="robots" content="noindex, nofollow">
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+  </head>
+  <body{{ attributes.addClass('mofa') }}>
+    <a href="#main-content" class="skip-link visually-hidden focusable">{{ 'Skip to main content'|t }}</a>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+  </body>
+</html>

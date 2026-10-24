@@ -1,0 +1,8 @@
+uuid: 60d9434f-8f56-4233-8aae-4cdea8424f87
+langcode: en
+status: true
+dependencies: {  }
+id: mofa_date
+label: 'MoFA date'
+locked: false
+pattern: 'j F Y'

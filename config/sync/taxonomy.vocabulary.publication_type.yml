@@ -1,0 +1,9 @@
+uuid: bf227a86-4011-4ed0-b90c-5fecef61350d
+langcode: en
+status: true
+dependencies: {  }
+name: 'Publication type'
+vid: publication_type
+description: 'Kind of official publication.'
+weight: 0
+new_revision: false

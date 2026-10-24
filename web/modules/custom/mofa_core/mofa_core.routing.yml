@@ -1,0 +1,7 @@
+mofa_core.home:
+  path: '/home'
+  defaults:
+    _controller: '\Drupal\mofa_core\Controller\HomeController::build'
+    _title: 'Home'
+  requirements:
+    _permission: 'access content'

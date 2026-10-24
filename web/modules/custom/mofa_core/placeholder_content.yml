@@ -1,0 +1,262 @@
+# Phase 2 placeholder content.
+#
+# Every item is synthetic and marked "Unverified placeholder content". Nothing
+# here is official Ministry information: no real officeholders, missions,
+# jurisdictions, contact details, statistics or policies. Body text describes
+# what each page will contain once approved content exists.
+#
+# Built by: drush mofa:placeholder-content (safe to run repeatedly; items are
+# matched by their path alias).
+
+terms:
+  news_category:
+    - { name: News, path: /news/latest }
+    - { name: Press release, path: /news/press-releases }
+    - { name: Statement, path: /news/statements }
+    - { name: Announcement, path: /news/announcements }
+  service_category:
+    - { name: Consular information, path: /services/consular }
+    - { name: Immigration guidance, path: /services/immigration }
+    - { name: Trade and investment, path: /services/trade-and-investment }
+    - { name: Other services, path: /services/other }
+  publication_type:
+    - { name: Placeholder publication type }
+  mission_type:
+    - { name: Embassy }
+    - { name: Other approved representation }
+
+nodes:
+  # --- Section landing pages -------------------------------------------------
+  - type: page
+    path: /missions
+    title: Missions
+    summary: South Sudan's diplomatic missions and the countries they serve.
+    body: |
+      <p>This section will list the Republic of South Sudan's embassies and other approved representations, with a profile and contact details for each.</p>
+      <p>Mission details and the countries each mission serves will be published only after the Ministry approves its official jurisdiction directory. Until then, all mission entries are placeholders.</p>
+  - type: page
+    path: /missions/jurisdictions
+    title: Countries and jurisdictions served
+    summary: Which mission serves which country, once the Ministry approves its directory.
+    body: |
+      <p>This page will show which mission serves each country, including countries served by a regional or non-resident mission.</p>
+      <p>The official jurisdiction directory has not yet been approved, so no assignments are shown. Nothing on this website should be read as an official jurisdiction assignment.</p>
+    notes: Pending decision - official jurisdiction directory and its owner.
+
+  - type: page
+    path: /about-mfaic
+    title: About MFA&IC
+    summary: The Ministry of Foreign Affairs and International Cooperation, its mandate, leadership and departments.
+    body: |
+      <p>This section will introduce the Ministry of Foreign Affairs and International Cooperation: its role, its mandate and functions, its leadership and departments, and its approach to foreign policy and cooperation.</p>
+  - type: page
+    path: /about-mfaic/overview
+    title: Ministry overview
+    summary: An introduction to the Ministry.
+    body: |
+      <p>This page will give an approved overview of the Ministry, its history and its role within the Government of the Republic of South Sudan.</p>
+  - type: page
+    path: /about-mfaic/mandate
+    title: Mandate and functions
+    summary: The Ministry's mandate and functions as set out in approved sources.
+    body: |
+      <p>This page will set out the Ministry's mandate and functions, using approved wording and citing the instruments that establish them.</p>
+    notes: Do not publish an institutional mandate without Ministry approval and a cited source.
+  - type: page
+    path: /about-mfaic/departments
+    title: Departments
+    summary: The Ministry's departments and what each one does.
+    body: |
+      <p>This page will describe the Ministry's departments and directorates once the organisational structure is approved for publication.</p>
+  - type: page
+    path: /about-mfaic/foreign-policy
+    title: Foreign policy and cooperation
+    summary: Principles of South Sudan's foreign policy and international cooperation.
+    body: |
+      <p>This page will present the approved principles and priorities of the Republic of South Sudan's foreign policy and its international cooperation.</p>
+
+  - type: page
+    path: /services
+    title: Services
+    summary: Information about consular matters, immigration guidance, trade and investment, and other Ministry services.
+    body: |
+      <p>This section will explain the services the Ministry and its missions provide, and how to get help.</p>
+      <p>Pages here are information only. They do not mean that any service, such as visa issuance, immigration processing or payments, is available online.</p>
+
+  - type: page
+    path: /diaspora
+    title: SSD Diaspora
+    summary: Information, guidance and resources for South Sudanese living abroad.
+    body: |
+      <p>This section will bring together information and guidance for South Sudanese communities abroad, and help them reach their nearest mission.</p>
+      <p>Online diaspora registration is not available. The registration page in this demonstration explains what is planned and does not collect any information.</p>
+  - type: page
+    path: /diaspora/information
+    title: Diaspora information
+    summary: General information for South Sudanese living abroad.
+    body: |
+      <p>This page will provide approved general information for members of the South Sudanese diaspora.</p>
+  - type: page
+    path: /diaspora/registration
+    title: Diaspora registration
+    summary: Online registration is planned but not available. This page collects no information.
+    body: |
+      <p>The Ministry plans to offer online registration for South Sudanese living abroad. Registration is not available on this demonstration website, and this page does not collect or store any information.</p>
+      <p>Before registration can open, the Ministry must approve its purpose, the information it asks for, how that information is protected, and how long it is kept.</p>
+      <p>Registering will not confirm nationality or the validity of any passport.</p>
+    notes: Registration is not authorized in Phases 1 and 2. Do not add a form. See ADR 0010.
+  - type: page
+    path: /diaspora/resources
+    title: Guidance and resources
+    summary: Guidance and useful resources for the diaspora.
+    body: |
+      <p>This page will list approved guidance and resources for members of the diaspora.</p>
+  - type: page
+    path: /diaspora/missions
+    title: Contact a mission
+    summary: How to find and contact the mission that serves your country.
+    body: |
+      <p>Missions will be listed in the <a href="/missions/directory">mission directory</a> once their details are approved. The countries each mission serves will follow the Ministry's approved jurisdiction directory.</p>
+
+  - type: page
+    path: /contacts
+    title: Contacts
+    summary: How to contact the Ministry, its departments and its missions.
+    body: |
+      <p>This section will give official contact details for the Ministry headquarters, its departments and its missions.</p>
+      <p>No contact details are shown yet, because none have been approved for publication. There is no contact form on this demonstration website.</p>
+  - type: page
+    path: /contacts/headquarters
+    title: Ministry headquarters
+    summary: Contact details for the Ministry headquarters, once approved.
+    body: |
+      <p>Official address, telephone and email details for the Ministry headquarters will appear here once approved.</p>
+  - type: page
+    path: /contacts/departments
+    title: Department contacts
+    summary: Contact pathways for Ministry departments, once approved.
+    body: |
+      <p>Contact pathways for the Ministry's departments will appear here once approved.</p>
+  - type: page
+    path: /contacts/missions
+    title: Mission contacts
+    summary: Contact details for missions are in the mission directory.
+    body: |
+      <p>Contact details for each mission will be shown on its profile in the <a href="/missions/directory">mission directory</a> once approved.</p>
+
+  - type: page
+    path: /archives
+    title: Archives
+    summary: Historical announcements, official publications and archived news.
+    body: |
+      <p>This section keeps older material available: historical announcements and records, official publications and news items that are no longer current.</p>
+
+  - type: page
+    path: /about-this-site
+    title: About this demonstration
+    summary: What this website is, and what it is not.
+    body: |
+      <p>This is a development demonstration of a proposed website for the Ministry of Foreign Affairs and International Cooperation of the Republic of South Sudan.</p>
+      <p>It is not an official government website. It is not deployed or approved, and it is not connected to any government system. All text, images, names and contact details are placeholders and have not been verified.</p>
+  - type: page
+    path: /accessibility
+    title: Accessibility
+    summary: The accessibility standard this website aims to meet.
+    body: |
+      <p>This website is being designed to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA. A full accessibility statement will be published after independent testing.</p>
+  - type: page
+    path: /privacy
+    title: Privacy notice
+    summary: The privacy notice is awaiting approval.
+    body: |
+      <p>A privacy notice will be published here once it has been approved by the Ministry's governance group. This demonstration website does not use analytics or cookies for tracking, and it does not collect personal information.</p>
+    notes: Pending decision - legal basis and privacy policy.
+
+  # --- About South Sudan gateway and child pages ----------------------------
+  - type: national_profile
+    path: /about-south-sudan
+    title: About South Sudan
+    summary: Discover South Sudan
+    body: |
+      <p>Placeholder introduction. This gateway will open with about 500 to 800 words of approved, welcoming editorial text about the Republic of South Sudan, written from official government sources.</p>
+      <p>The pages below will take visitors further: basic information, history and government, geography and natural heritage, people and culture, the economy and investment, foreign relations, and the national symbols.</p>
+    notes: Gateway copy awaits editorial approval. Research report draft text exists but is not approved.
+  - type: national_profile
+    path: /about-south-sudan/basic-information
+    title: Basic Information
+    summary: Official name, capital, national days and other country facts.
+    body: |
+      <p>This page will give key country facts, each with its source and the date it was last reviewed.</p>
+      <p>The population figure will be published only after explicit approval by the National Bureau of Statistics.</p>
+    notes: Population awaits NBS approval. Administrative structure wording and any map need government and legal approval.
+  - type: national_profile
+    path: /about-south-sudan/history-and-government
+    title: History and Government
+    summary: A neutral chronology and the system of government.
+    body: |
+      <p>This page will give a short, neutral account of South Sudan's modern history and describe its constitutional system of government.</p>
+    notice: Placeholder for a dated notice about the current political context. Time-sensitive information will be kept here, separate from the history, once dated and verified wording is approved.
+    notice_date: '2026-10-24'
+    notes: Post-2013 conflict and 2018 agreement coverage await an editorial decision. Transition and election information needs approval and dated source verification.
+  - type: national_profile
+    path: /about-south-sudan/geography-and-natural-heritage
+    title: Geography and Natural Heritage
+    summary: Landscapes, rivers, wildlife and heritage sites.
+    body: |
+      <p>This page will describe South Sudan's landscapes, rivers, wetlands and wildlife, with prominent coverage of the Boma-Badingilo Migratory Landscape, subject to verified and approved wording.</p>
+    notes: Boma-Badingilo wording to be verified against UNESCO and approved. No unapproved maps.
+  - type: national_profile
+    path: /about-south-sudan/people-and-culture
+    title: People and Culture
+    summary: Communities, languages, religion and cultural life.
+    body: |
+      <p>This page will recognise the country's cultural and linguistic diversity, include a neutral discussion of religion, and describe cultural life and heritage.</p>
+    notes: Language wording needs legal confirmation (sources conflict on official languages).
+  - type: national_profile
+    path: /about-south-sudan/economy-and-investment
+    title: Economy and Investment
+    summary: Economic structure, with a link to trade and investment services.
+    body: |
+      <p>This page will describe the structure of the economy and its opportunities, and guide interested visitors to <a href="/services/trade-and-investment">trade and investment</a> information.</p>
+  - type: national_profile
+    path: /about-south-sudan/foreign-relations
+    title: Foreign Relations
+    summary: Foreign-policy principles and international memberships.
+    body: |
+      <p>This page will summarise the approved principles of South Sudan's foreign policy and its membership of international and regional organisations.</p>
+  - type: national_profile
+    path: /about-south-sudan/national-symbols
+    title: National Symbols
+    summary: The national flag, coat of arms and anthem.
+    body: |
+      <p>This page will explain the national flag, the coat of arms and the national anthem, using the official artwork and approved text, with references to the laws that govern them.</p>
+    notes: Needs official flag artwork and anthem text. No unofficial colour values.
+
+  # --- Synthetic news, missions, leaders, services, publications, archives --
+  - { type: news_item, path: /news/placeholder-press-release-1, title: Placeholder press release headline, category: Press release, days_ago: 1, summary: Placeholder summary of a press release., body: '<p>Placeholder text. An approved press release will replace it.</p>' }
+  - { type: news_item, path: /news/placeholder-statement-1, title: Placeholder statement headline, category: Statement, days_ago: 3, summary: Placeholder summary of a statement., body: '<p>Placeholder text. An approved statement will replace it.</p>' }
+  - { type: news_item, path: /news/placeholder-news-1, title: Placeholder news headline, category: News, days_ago: 5, summary: Placeholder summary of a news item., body: '<p>Placeholder text. An approved news item will replace it.</p>' }
+  - { type: news_item, path: /news/placeholder-announcement-1, title: Placeholder announcement headline, category: Announcement, days_ago: 8, summary: Placeholder summary of an announcement., body: '<p>Placeholder text. An approved announcement will replace it.</p>' }
+  - { type: news_item, path: /news/placeholder-news-2, title: Second placeholder news headline, category: News, days_ago: 12, summary: Placeholder summary of a news item., body: '<p>Placeholder text. An approved news item will replace it.</p>' }
+  - { type: news_item, path: /news/placeholder-press-release-2, title: Second placeholder press release headline, category: Press release, days_ago: 15, summary: Placeholder summary of a press release., body: '<p>Placeholder text. An approved press release will replace it.</p>' }
+  - { type: news_item, path: /news/placeholder-archived-news-1, title: Placeholder archived news headline, category: News, days_ago: 400, state: archived, summary: Placeholder summary of an older news item kept in the archives., body: '<p>Placeholder text for an archived news item.</p>' }
+  - { type: news_item, path: /news/placeholder-archived-statement-1, title: Placeholder archived statement headline, category: Statement, days_ago: 500, state: archived, summary: Placeholder summary of an older statement kept in the archives., body: '<p>Placeholder text for an archived statement.</p>' }
+
+  - { type: mission, path: /missions/placeholder-mission-a, title: Placeholder mission A, mission_type: Embassy, city: Placeholder city, summary: Placeholder mission entry. Not a real mission., body: '<p>Mission profile placeholder. Approved details will replace it.</p>' }
+  - { type: mission, path: /missions/placeholder-mission-b, title: Placeholder mission B, mission_type: Embassy, city: Placeholder city, summary: Placeholder mission entry. Not a real mission., body: '<p>Mission profile placeholder. Approved details will replace it.</p>' }
+  - { type: mission, path: /missions/placeholder-mission-c, title: Placeholder mission C, mission_type: Other approved representation, city: Placeholder city, summary: Placeholder mission entry. Not a real mission., body: '<p>Mission profile placeholder. Approved details will replace it.</p>' }
+
+  - { type: leader_profile, path: /about-mfaic/leadership/placeholder-profile-1, title: Leadership profile placeholder 1, position: Position to be confirmed, order: 1, body: '<p>Biography placeholder. Only officeholders confirmed by the Ministry will be published.</p>' }
+  - { type: leader_profile, path: /about-mfaic/leadership/placeholder-profile-2, title: Leadership profile placeholder 2, position: Position to be confirmed, order: 2, body: '<p>Biography placeholder. Only officeholders confirmed by the Ministry will be published.</p>' }
+  - { type: leader_profile, path: /about-mfaic/leadership/placeholder-profile-3, title: Leadership profile placeholder 3, position: Position to be confirmed, order: 3, body: '<p>Biography placeholder. Only officeholders confirmed by the Ministry will be published.</p>' }
+
+  - { type: service, path: /services/consular/placeholder-service, title: Placeholder consular information page, service_category: Consular information, summary: Information only. Placeholder for approved consular guidance., body: '<p>Placeholder text. Approved consular information will replace it. This does not mean any service is available online.</p>' }
+  - { type: service, path: /services/immigration/placeholder-service, title: Placeholder immigration guidance page, service_category: Immigration guidance, summary: Information only. Placeholder for approved immigration guidance., body: '<p>Placeholder text. Approved immigration guidance will replace it. Visa issuance and immigration processing are not available on this website.</p>' }
+  - { type: service, path: /services/trade-and-investment/placeholder-service, title: Placeholder trade and investment page, service_category: Trade and investment, summary: Information only. Placeholder for approved trade and investment information., body: '<p>Placeholder text. Approved trade and investment information will replace it.</p>' }
+  - { type: service, path: /services/other/placeholder-service, title: Placeholder service information page, service_category: Other services, summary: Information only. Placeholder for other approved Ministry services., body: '<p>Placeholder text. Approved service information will replace it.</p>' }
+
+  - { type: publication, path: /publications/placeholder-publication-1, title: Placeholder publication title, publication_type: Placeholder publication type, publication_date: '2026-09-30', summary: Placeholder summary of an official publication., body: '<p>Placeholder description. The approved document will be attached here.</p>' }
+  - { type: publication, path: /publications/placeholder-publication-2, title: Second placeholder publication title, publication_type: Placeholder publication type, publication_date: '2025-06-30', summary: Placeholder summary of an official publication., body: '<p>Placeholder description. The approved document will be attached here.</p>' }
+
+  - { type: archive_record, path: /archives/records/placeholder-record-1, title: Placeholder historical announcement, original_date: '2012-01-01', collection: Placeholder collection, summary: Placeholder for a historical announcement from the Ministry's records., body: '<p>Placeholder description of a historical record.</p>' }
+  - { type: archive_record, path: /archives/records/placeholder-record-2, title: Second placeholder historical announcement, original_date: '2013-01-01', collection: Placeholder collection, summary: Placeholder for a historical announcement from the Ministry's records., body: '<p>Placeholder description of a historical record.</p>' }

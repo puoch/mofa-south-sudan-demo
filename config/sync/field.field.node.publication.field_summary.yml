@@ -1,0 +1,19 @@
+uuid: 269f8835-4f41-4bb3-a8d9-aabd2748d210
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_summary
+    - node.type.publication
+id: node.publication.field_summary
+field_name: field_summary
+entity_type: node
+bundle: publication
+label: Summary
+description: 'One or two sentences used in listings and search results.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

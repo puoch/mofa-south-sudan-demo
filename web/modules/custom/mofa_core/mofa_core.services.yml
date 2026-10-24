@@ -1,0 +1,7 @@
+services:
+  mofa_core.navigation_builder:
+    class: Drupal\mofa_core\NavigationBuilder
+    arguments: ['@entity_type.manager', '@extension.list.module']
+  mofa_core.placeholder_content_builder:
+    class: Drupal\mofa_core\PlaceholderContentBuilder
+    arguments: ['@entity_type.manager', '@extension.list.module', '@path_alias.manager']

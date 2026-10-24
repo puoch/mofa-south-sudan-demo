@@ -1,0 +1,22 @@
+uuid: ed369fa1-8029-4159-89e3-03d44f26ff73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_source_notes
+    - node.type.publication
+  module:
+    - text
+id: node.publication.field_source_notes
+field_name: field_source_notes
+entity_type: node
+bundle: publication
+label: 'Source and review notes'
+description: 'Editorial notes on sourcing, approvals and open questions. Not shown publicly.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

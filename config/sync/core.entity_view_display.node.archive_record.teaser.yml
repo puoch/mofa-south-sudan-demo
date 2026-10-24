@@ -1,0 +1,63 @@
+uuid: 98ef0b19-adc9-46a7-8cc2-8399d9d1a285
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.archive_record.body
+    - field.field.node.archive_record.field_collection
+    - field.field.node.archive_record.field_content_owner
+    - field.field.node.archive_record.field_document
+    - field.field.node.archive_record.field_last_reviewed
+    - field.field.node.archive_record.field_original_date
+    - field.field.node.archive_record.field_placeholder
+    - field.field.node.archive_record.field_source_notes
+    - field.field.node.archive_record.field_sources
+    - field.field.node.archive_record.field_summary
+    - node.type.archive_record
+  module:
+    - datetime
+id: node.archive_record.teaser
+targetEntityType: node
+bundle: archive_record
+mode: teaser
+content:
+  field_original_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: mofa_date
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_placeholder:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_summary:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  content_moderation_control: true
+  field_collection: true
+  field_content_owner: true
+  field_document: true
+  field_last_reviewed: true
+  field_source_notes: true
+  field_sources: true
+  langcode: true
+  links: true

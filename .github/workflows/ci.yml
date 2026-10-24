@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: mofa
+          POSTGRES_USER: mofa
+          POSTGRES_PASSWORD: ci-only-password
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U mofa" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DB_NAME: mofa
+      DB_USER: mofa
+      DB_PASSWORD: ci-only-password
+      DB_HOST: 127.0.0.1
+      DB_PORT: "5432"
+      DRUPAL_ERROR_LEVEL: verbose
+      MOFA_ENVIRONMENT: ci
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo_pgsql, gd, intl, mbstring, opcache
+          tools: composer:v2
+
+      - name: Install PHP dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Lint custom PHP
+        run: find web/modules/custom web/themes/custom tests/drush -name '*.php' -o -name '*.theme' -o -name '*.module' | xargs -n1 php -l
+
+      - name: Scan for committed secrets
+        env:
+          GITLEAKS_VERSION: "8.24.3"
+        run: |
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar xz gitleaks
+          ./gitleaks git . --redact --verbose
+          rm gitleaks
+
+      - name: Install site from configuration
+        run: |
+          export DRUPAL_HASH_SALT="$(php -r 'echo bin2hex(random_bytes(32));')"
+          echo "DRUPAL_HASH_SALT=$DRUPAL_HASH_SALT" >> "$GITHUB_ENV"
+          ADMIN_PASS="$(php -r 'echo bin2hex(random_bytes(8));')" ./scripts/install-from-config.sh
+
+      - name: Configuration matches the database
+        run: vendor/bin/drush config:status 2>&1 | tee /dev/stderr | grep -q "No differences"
+
+      - name: Start web server
+        run: |
+          cd web
+          php -S 127.0.0.1:8080 .ht.router.php > /tmp/php-server.log 2>&1 &
+          sleep 2
+          curl --fail -s -o /dev/null http://127.0.0.1:8080/styleguide
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install test dependencies
+        working-directory: tests/e2e
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: End-to-end, accessibility and reflow tests
+        working-directory: tests/e2e
+        run: npx playwright test
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: tests/e2e/report
+          retention-days: 14

@@ -1,0 +1,13 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Placeholder notice
+status: stable
+description: Visible label for unverified placeholder content. Shown on any node whose "Unverified placeholder content" box is ticked.
+props:
+  type: object
+  properties:
+    message:
+      type: string
+      title: Message
+    compact:
+      type: boolean
+      title: Compact badge form

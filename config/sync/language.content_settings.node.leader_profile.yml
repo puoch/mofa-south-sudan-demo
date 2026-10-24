@@ -1,0 +1,16 @@
+uuid: 772f4826-b79d-440e-ae6a-e74e5e8ab495
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.leader_profile
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.leader_profile
+target_entity_type_id: node
+target_bundle: leader_profile
+default_langcode: site_default
+language_alterable: false

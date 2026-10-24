@@ -1,0 +1,11 @@
+uuid: a5a8d8d7-204d-4b40-9f3d-e5f113670aab
+langcode: en
+status: true
+dependencies: {  }
+name: 'Service information'
+type: service
+description: 'Information about Ministry services. Does not imply a service is operational online.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

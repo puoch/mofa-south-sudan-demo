@@ -1,0 +1,21 @@
+.context-notice {
+  margin-block: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border-inline-start: 6px solid var(--color-brand-navy);
+  background: var(--color-info-bg);
+}
+.context-notice__heading {
+  margin-block-end: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--font-size-300);
+  font-weight: 700;
+}
+.context-notice__date {
+  margin-block-end: var(--space-2);
+  font-size: var(--font-size-100);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+.context-notice__body {
+  margin: 0;
+}

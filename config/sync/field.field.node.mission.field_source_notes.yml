@@ -1,0 +1,22 @@
+uuid: 13bb1191-24e7-4507-a2a4-7d8493bfbc5b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_source_notes
+    - node.type.mission
+  module:
+    - text
+id: node.mission.field_source_notes
+field_name: field_source_notes
+entity_type: node
+bundle: mission
+label: 'Source and review notes'
+description: 'Editorial notes on sourcing, approvals and open questions. Not shown publicly.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

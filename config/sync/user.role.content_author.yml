@@ -1,0 +1,71 @@
+uuid: bd6133a8-74bd-4394-adc1-91d89f25cc3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - media.type.document
+    - media.type.image
+    - node.type.archive_record
+    - node.type.leader_profile
+    - node.type.mission
+    - node.type.national_profile
+    - node.type.news_item
+    - node.type.page
+    - node.type.publication
+    - node.type.service
+    - workflows.workflow.editorial
+  module:
+    - content_moderation
+    - filter
+    - media
+    - node
+    - path
+    - system
+    - taxonomy
+    - toolbar
+id: content_author
+label: 'Content author'
+weight: 2
+is_admin: false
+permissions:
+  - 'access content overview'
+  - 'access media overview'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'create archive_record content'
+  - 'create document media'
+  - 'create image media'
+  - 'create leader_profile content'
+  - 'create mission content'
+  - 'create national_profile content'
+  - 'create news_item content'
+  - 'create page content'
+  - 'create publication content'
+  - 'create service content'
+  - 'create url aliases'
+  - 'edit own archive_record content'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit own leader_profile content'
+  - 'edit own mission content'
+  - 'edit own national_profile content'
+  - 'edit own news_item content'
+  - 'edit own page content'
+  - 'edit own publication content'
+  - 'edit own service content'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition submit_for_review'
+  - 'use text format basic_html'
+  - 'view archive_record revisions'
+  - 'view latest version'
+  - 'view leader_profile revisions'
+  - 'view mission revisions'
+  - 'view national_profile revisions'
+  - 'view news_item revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view publication revisions'
+  - 'view service revisions'
+  - 'view the administration theme'

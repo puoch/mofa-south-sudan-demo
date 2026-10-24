@@ -1,0 +1,23 @@
+uuid: dc71ba18-e0de-4967-8d01-1efa1f64f782
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sources
+    - node.type.news_item
+  module:
+    - link
+id: node.news_item.field_sources
+field_name: field_sources
+entity_type: node
+bundle: news_item
+label: Sources
+description: 'Official sources first, then authoritative international sources.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 16
+field_type: link

@@ -1,0 +1,9 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Image placeholder
+status: stable
+description: Neutral box standing in for an authorized photograph, map or illustration. Never replace it with unlicensed images.
+props:
+  type: object
+  properties:
+    label: { type: string, title: What the image will show }
+    ratio: { type: string, title: Aspect ratio, enum: ['16/9', '4/3', '1/1', '21/9'] }

@@ -1,0 +1,11 @@
+uuid: 52a56222-a5b4-45cb-97ca-497334481c63
+langcode: en
+status: true
+dependencies: {  }
+name: 'Country profile page'
+type: national_profile
+description: 'About South Sudan gateway and child pages, with source attribution and review dates.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

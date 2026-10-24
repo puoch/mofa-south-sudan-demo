@@ -1,0 +1,53 @@
+uuid: 04b10a6d-b5f0-4b3a-8d07-1ce74b73c890
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.national_profile.body
+    - field.field.node.national_profile.field_content_owner
+    - field.field.node.national_profile.field_context_notice
+    - field.field.node.national_profile.field_context_notice_date
+    - field.field.node.national_profile.field_hero_image
+    - field.field.node.national_profile.field_last_reviewed
+    - field.field.node.national_profile.field_placeholder
+    - field.field.node.national_profile.field_source_notes
+    - field.field.node.national_profile.field_sources
+    - field.field.node.national_profile.field_summary
+    - node.type.national_profile
+id: node.national_profile.teaser
+targetEntityType: node
+bundle: national_profile
+mode: teaser
+content:
+  field_placeholder:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_summary:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  content_moderation_control: true
+  field_content_owner: true
+  field_context_notice: true
+  field_context_notice_date: true
+  field_hero_image: true
+  field_last_reviewed: true
+  field_source_notes: true
+  field_sources: true
+  langcode: true
+  links: true

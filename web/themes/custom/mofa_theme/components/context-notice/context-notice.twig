@@ -1,0 +1,5 @@
+<section class="context-notice" aria-labelledby="context-notice-heading">
+  <h2 class="context-notice__heading" id="context-notice-heading">{{ heading|default('Current context'|t) }}</h2>
+  <p class="context-notice__date">{{ 'Information as of'|t }} <time{% if datetime %} datetime="{{ datetime }}"{% endif %}>{{ date }}</time></p>
+  <p class="context-notice__body">{{ body }}</p>
+</section>

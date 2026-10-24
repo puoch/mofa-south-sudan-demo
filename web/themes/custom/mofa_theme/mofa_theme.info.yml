@@ -1,0 +1,19 @@
+name: MoFA Theme
+type: theme
+description: 'Responsive, accessible public theme for the proposed MoFA WEBSITE (development demonstration).'
+package: MoFA
+core_version_requirement: ^11
+base theme: false
+libraries:
+  - mofa_theme/global
+regions:
+  header_notice: 'Header notice'
+  primary_menu: 'Primary menu'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  content_top: 'Content top'
+  content: Content
+  sidebar: Sidebar
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_bottom: 'Footer bottom'

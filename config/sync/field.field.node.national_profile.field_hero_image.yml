@@ -1,0 +1,24 @@
+uuid: 41c06953-3e2f-416d-b37e-cd4aa6509348
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hero_image
+    - media.type.image
+    - node.type.national_profile
+id: node.national_profile.field_hero_image
+field_name: field_hero_image
+entity_type: node
+bundle: national_profile
+label: 'Hero image'
+description: 'Authorized images only.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+field_type: entity_reference

@@ -1,0 +1,19 @@
+uuid: 33536fa7-5919-45b7-838b-e32e65a93f20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_head_of_mission
+    - node.type.mission
+id: node.mission.field_head_of_mission
+field_name: field_head_of_mission
+entity_type: node
+bundle: mission
+label: 'Head of mission'
+description: 'Only names confirmed by the Ministry.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

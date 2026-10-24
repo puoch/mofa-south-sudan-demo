@@ -1,0 +1,20 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="l-container hero__inner">
+    <div class="hero__text">
+      {% if eyebrow or placeholder %}
+        <div class="hero__top">
+          {% if eyebrow %}<p class="hero__eyebrow">{{ eyebrow }}</p>{% endif %}
+          {% if placeholder %}{{ include('mofa_theme:placeholder-notice', { compact: true }, with_context = false) }}{% endif %}
+        </div>
+      {% endif %}
+      {% set h = 'h' ~ (heading_level|default(1)) %}
+      <{{ h }} class="hero__title" id="hero-title">{{ title }}</{{ h }}>
+      {% if tagline %}<p class="hero__tagline">{{ tagline }}</p>{% endif %}
+      {% if text %}<p class="hero__body">{{ text }}</p>{% endif %}
+      {% if actions %}<div class="hero__actions">{{ actions }}</div>{% endif %}
+    </div>
+    <div class="hero__media">
+      {{ include('mofa_theme:image-placeholder', { label: image_label, ratio: '4/3' }, with_context = false) }}
+    </div>
+  </div>
+</section>

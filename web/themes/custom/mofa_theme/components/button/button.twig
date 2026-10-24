@@ -1,0 +1,9 @@
+{% set classes = ['button', 'button--' ~ (variant|default('primary'))] %}
+{% if url %}
+  <a href="{{ url }}" class="{{ classes|join(' ') }}">{{ label }}</a>
+{% else %}
+  <span class="button-inactive">
+    <span class="{{ classes|join(' ') }} button--inactive">{{ label }}</span>
+    <span class="button-inactive__note">{{ inactive_note|default('Demonstration only. This is not active.'|t) }}</span>
+  </span>
+{% endif %}

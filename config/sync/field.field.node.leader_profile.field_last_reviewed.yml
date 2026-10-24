@@ -1,0 +1,21 @@
+uuid: 93b6ff5a-22ad-460e-8bc2-dd3888acba52
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_reviewed
+    - node.type.leader_profile
+  module:
+    - datetime
+id: node.leader_profile.field_last_reviewed
+field_name: field_last_reviewed
+entity_type: node
+bundle: leader_profile
+label: 'Last reviewed'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,23 @@
+.image-placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 100%;
+  padding: var(--space-4);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, rgb(20 40 75 / 0.05) 14px 28px),
+    var(--color-brand-navy-tint);
+  border: 1px dashed var(--color-line-strong);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+.image-placeholder__label {
+  display: grid;
+  gap: var(--space-1);
+  max-width: 32ch;
+  font-size: var(--font-size-100);
+}
+.image-placeholder__tag {
+  font-weight: 700;
+  color: var(--color-ink);
+}

@@ -1,0 +1,3 @@
+view mofa styleguide:
+  title: 'View the component library'
+  description: 'Development-only pages. Do not grant on a production site.'

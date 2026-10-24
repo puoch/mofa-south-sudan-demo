@@ -1,0 +1,19 @@
+uuid: 10f67d39-c0d1-4337-81dc-50d5c131486d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_owner
+    - node.type.leader_profile
+id: node.leader_profile.field_content_owner
+field_name: field_content_owner
+entity_type: node
+bundle: leader_profile
+label: 'Content owner'
+description: 'The department or unit responsible for keeping this content accurate.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,11 @@
+uuid: 44a5e01d-c468-44c6-afb7-2251de8df63e
+langcode: en
+status: true
+dependencies: {  }
+name: 'Archive record'
+type: archive_record
+description: 'Historical documents and records that did not originate as news items.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

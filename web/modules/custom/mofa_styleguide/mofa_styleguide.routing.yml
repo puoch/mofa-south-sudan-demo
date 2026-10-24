@@ -1,0 +1,15 @@
+mofa_styleguide.index:
+  path: '/styleguide'
+  defaults:
+    _controller: '\Drupal\mofa_styleguide\Controller\StyleguideController::index'
+    _title: 'Design system and component library'
+  requirements:
+    _permission: 'view mofa styleguide'
+mofa_styleguide.layout:
+  path: '/styleguide/layouts/{layout}'
+  defaults:
+    _controller: '\Drupal\mofa_styleguide\Controller\StyleguideController::layout'
+    _title_callback: '\Drupal\mofa_styleguide\Controller\StyleguideController::layoutTitle'
+  requirements:
+    _permission: 'view mofa styleguide'
+    layout: 'home|gateway|listing|detail'

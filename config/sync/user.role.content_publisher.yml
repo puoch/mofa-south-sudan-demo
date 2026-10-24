@@ -1,0 +1,68 @@
+uuid: 3baab448-ee33-44f6-bc96-584909bd142d
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - node.type.archive_record
+    - node.type.leader_profile
+    - node.type.mission
+    - node.type.national_profile
+    - node.type.news_item
+    - node.type.page
+    - node.type.publication
+    - node.type.service
+    - workflows.workflow.editorial
+  module:
+    - content_moderation
+    - filter
+    - media
+    - node
+    - system
+    - taxonomy
+    - toolbar
+id: content_publisher
+label: 'Content publisher'
+weight: 4
+is_admin: false
+permissions:
+  - 'access content overview'
+  - 'access media overview'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'edit any archive_record content'
+  - 'edit any leader_profile content'
+  - 'edit any mission content'
+  - 'edit any national_profile content'
+  - 'edit any news_item content'
+  - 'edit any page content'
+  - 'edit any publication content'
+  - 'edit any service content'
+  - 'revert archive_record revisions'
+  - 'revert leader_profile revisions'
+  - 'revert mission revisions'
+  - 'revert national_profile revisions'
+  - 'revert news_item revisions'
+  - 'revert page revisions'
+  - 'revert publication revisions'
+  - 'revert service revisions'
+  - 'use editorial transition archive'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition publish'
+  - 'use editorial transition request_changes'
+  - 'use editorial transition restore_to_draft'
+  - 'use editorial transition withdraw'
+  - 'use text format basic_html'
+  - 'view any unpublished content'
+  - 'view archive_record revisions'
+  - 'view latest version'
+  - 'view leader_profile revisions'
+  - 'view mission revisions'
+  - 'view national_profile revisions'
+  - 'view news_item revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view publication revisions'
+  - 'view service revisions'
+  - 'view the administration theme'

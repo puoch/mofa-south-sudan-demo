@@ -1,0 +1,27 @@
+.placeholder-notice {
+  margin-block: 0 var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-placeholder-bg);
+  border: 2px dashed var(--color-placeholder-border);
+  border-radius: var(--radius-2);
+  color: var(--color-placeholder-text);
+}
+.placeholder-notice p {
+  margin: 0;
+}
+.placeholder-notice__title {
+  font-weight: 700;
+}
+.placeholder-badge {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  border: 1px dashed var(--color-placeholder-border);
+  border-radius: var(--radius-1);
+  background: var(--color-placeholder-bg);
+  color: var(--color-placeholder-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}

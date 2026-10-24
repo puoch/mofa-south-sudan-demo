@@ -1,0 +1,12 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Button
+status: stable
+description: Link styled as a button. Without a URL it renders as an inactive demonstration control that cannot be activated.
+props:
+  type: object
+  required: [label]
+  properties:
+    label: { type: string, title: Label }
+    url: { type: string, title: URL }
+    variant: { type: string, title: Variant, enum: [primary, secondary] }
+    inactive_note: { type: string, title: Explanation shown when inactive }

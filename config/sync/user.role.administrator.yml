@@ -1,0 +1,9 @@
+uuid: 974ca7a7-e7b3-4f68-b60a-bde42edfa1a4
+langcode: en
+status: true
+dependencies: {  }
+id: administrator
+label: 'Administrator (Ministry ICT)'
+weight: 6
+is_admin: true
+permissions: {  }

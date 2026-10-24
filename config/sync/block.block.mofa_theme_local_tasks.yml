@@ -1,0 +1,20 @@
+uuid: cd677aec-fc0d-49e6-8271-823a924f8bf8
+langcode: en
+status: true
+dependencies:
+  theme:
+    - mofa_theme
+id: mofa_theme_local_tasks
+theme: mofa_theme
+region: content_top
+weight: 5
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

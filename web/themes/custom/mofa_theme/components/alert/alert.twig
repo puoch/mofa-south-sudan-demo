@@ -1,0 +1,5 @@
+{% set v = variant|default('info') %}
+<div class="alert alert--{{ v }}">
+  {% if heading %}<p class="alert__heading">{{ heading }}</p>{% endif %}
+  <p class="alert__message">{{ message }}</p>
+</div>

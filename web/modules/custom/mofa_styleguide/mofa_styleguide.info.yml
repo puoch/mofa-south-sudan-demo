@@ -1,0 +1,5 @@
+name: MoFA component library
+type: module
+description: 'Development-only pages showing the design tokens, components and page layouts of the MoFA theme. Disable before any production use.'
+package: MoFA
+core_version_requirement: ^11

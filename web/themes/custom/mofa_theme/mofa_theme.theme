@@ -1,0 +1,170 @@
+<?php
+
+/**
+ * @file
+ * Theme hooks for the MoFA theme.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ *
+ * Exposes the editorial fields in a template-friendly shape so every content
+ * type shows the placeholder notice and the sources/review box the same way.
+ */
+function mofa_theme_preprocess_node(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $variables['is_placeholder'] = $node->hasField('field_placeholder')
+    && (bool) $node->get('field_placeholder')->value;
+  $variables['summary'] = $node->hasField('field_summary') ? $node->get('field_summary')->value : NULL;
+
+  $variables['editorial'] = [
+    'last_reviewed' => NULL,
+    'owner' => $node->hasField('field_content_owner') ? $node->get('field_content_owner')->value : NULL,
+    'sources' => [],
+  ];
+  if ($node->hasField('field_last_reviewed') && !$node->get('field_last_reviewed')->isEmpty()) {
+    $date = new DrupalDateTime($node->get('field_last_reviewed')->value);
+    $variables['editorial']['last_reviewed'] = \Drupal::service('date.formatter')
+      ->format($date->getTimestamp(), 'mofa_date');
+  }
+  if ($node->hasField('field_sources')) {
+    foreach ($node->get('field_sources') as $item) {
+      $variables['editorial']['sources'][] = [
+        'title' => $item->title ?: $item->uri,
+        'url' => $item->getUrl()->toString(),
+      ];
+    }
+  }
+  $variables['meta_line'] = _mofa_theme_meta_line($node);
+
+  // Dated context notice (Country profile pages).
+  $variables['context_notice'] = NULL;
+  if ($node->hasField('field_context_notice') && !$node->get('field_context_notice')->isEmpty()) {
+    $date = $node->get('field_context_notice_date')->value;
+    $variables['context_notice'] = [
+      'body' => $node->get('field_context_notice')->value,
+      'datetime' => $date,
+      'date' => $date ? \Drupal::service('date.formatter')->format((new DrupalDateTime($date))->getTimestamp(), 'mofa_date') : t('Date not set'),
+    ];
+  }
+
+  $variables['eyebrow'] = $variables['view_mode'] === 'full' ? _mofa_theme_eyebrow($node) : NULL;
+
+  // Section and gateway pages list their child pages from the main menu.
+  $variables['child_tiles'] = [];
+  if ($variables['view_mode'] === 'full' && in_array($node->bundle(), ['page', 'national_profile'], TRUE)) {
+    $variables['child_tiles'] = _mofa_theme_child_tiles($node);
+    $variables['#cache']['tags'][] = 'config:system.menu.main';
+    $variables['#cache']['tags'][] = 'node_list';
+  }
+}
+
+/**
+ * Returns the small label above a full page's title.
+ *
+ * Pages in the main menu show their top-level section; other content types
+ * show what kind of item they are.
+ */
+function _mofa_theme_eyebrow(NodeInterface $node): ?string {
+  $trail = array_values(array_filter(\Drupal::service('menu.active_trail')->getActiveTrailIds('main')));
+  if (count($trail) > 1) {
+    $top = \Drupal::service('plugin.manager.menu.link')->createInstance(end($trail));
+    return (string) $top->getTitle();
+  }
+  if ($node->bundle() === 'news_item' && $term = $node->get('field_news_category')->entity) {
+    return $term->label();
+  }
+  return match ($node->bundle()) {
+    'mission' => (string) t('Mission'),
+    'leader_profile' => (string) t('Leadership'),
+    'service' => (string) t('Services'),
+    'publication' => (string) t('Publication'),
+    'archive_record' => (string) t('Archives'),
+    default => NULL,
+  };
+}
+
+/**
+ * Returns link-tile items for the main-menu children of a node's menu link.
+ *
+ * Each tile uses the child page's summary when the child is a node.
+ */
+function _mofa_theme_child_tiles(NodeInterface $node): array {
+  $links = \Drupal::entityTypeManager()->getStorage('menu_link_content')->loadByProperties(['menu_name' => 'main']);
+  $own = $node->toUrl()->getInternalPath();
+  $parent = NULL;
+  foreach ($links as $link) {
+    $url = $link->getUrlObject();
+    if ($url->isRouted() && $url->getRouteName() === 'entity.node.canonical' && $url->getInternalPath() === $own) {
+      $parent = $link->getPluginId();
+      break;
+    }
+  }
+  if (!$parent) {
+    return [];
+  }
+  $tree = \Drupal::service('menu.link_tree');
+  $parameters = (new \Drupal\Core\Menu\MenuTreeParameters())->setRoot($parent)->excludeRoot()->setMaxDepth(1)->onlyEnabledLinks();
+  $items = $tree->transform($tree->load('main', $parameters), [
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ]);
+  $tiles = [];
+  foreach ($items as $element) {
+    $url = $element->link->getUrlObject();
+    $description = NULL;
+    if ($url->isRouted() && $url->getRouteName() === 'entity.node.canonical') {
+      $child = \Drupal::entityTypeManager()->getStorage('node')->load($url->getRouteParameters()['node']);
+      if ($child && $child->hasField('field_summary')) {
+        $description = $child->get('field_summary')->value;
+      }
+    }
+    elseif ($url->isRouted() && $url->getRouteName() === 'entity.taxonomy_term.canonical') {
+      $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($url->getRouteParameters()['taxonomy_term']);
+      $description = $term ? t('All @category items', ['@category' => mb_strtolower($term->label())]) : NULL;
+    }
+    $tiles[] = [
+      'title' => $element->link->getTitle(),
+      'url' => $url->toString(),
+      'description' => $description,
+    ];
+  }
+  return $tiles;
+}
+
+/**
+ * Builds the short meta line used on teasers: date and category.
+ */
+function _mofa_theme_meta_line(NodeInterface $node): ?string {
+  $parts = [];
+  foreach (['field_news_category', 'field_service_category', 'field_publication_type', 'field_mission_type'] as $field) {
+    if ($node->hasField($field) && $term = $node->get($field)->entity) {
+      $parts[] = $term->label();
+    }
+  }
+  if ($node->bundle() === 'news_item') {
+    $parts[] = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'mofa_date');
+  }
+  return $parts ? implode(' · ', $parts) : NULL;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ *
+ * Node templates and the component library print their own heading, so the
+ * generic page title block is hidden there to avoid a duplicate <h1>.
+ */
+function mofa_theme_preprocess_block(array &$variables): void {
+  $route = (string) \Drupal::routeMatch()->getRouteName();
+  // Node pages and the component library lay out their own containers.
+  $variables['full_width'] = in_array($route, ['entity.node.canonical', 'mofa_core.home'], TRUE) || str_starts_with($route, 'mofa_styleguide.');
+  $variables['#cache']['contexts'][] = 'route';
+  if (($variables['plugin_id'] ?? '') === 'page_title_block' && $variables['full_width']) {
+    $variables['content'] = [];
+    $variables['attributes']['hidden'] = TRUE;
+  }
+}

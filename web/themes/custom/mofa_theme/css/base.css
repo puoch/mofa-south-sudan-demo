@@ -1,0 +1,122 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-200);
+  line-height: var(--line-height-body);
+}
+:lang(ar) body,
+body:lang(ar) {
+  line-height: 1.8;
+}
+h1, h2, h3, h4 {
+  color: var(--color-ink);
+  line-height: var(--line-height-heading);
+  margin-block: 0 var(--space-4);
+  text-wrap: balance;
+}
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+h1 { font-size: var(--font-size-700); }
+h2 { font-size: var(--font-size-600); }
+h3 { font-size: var(--font-size-400); font-weight: 600; }
+h4 { font-size: var(--font-size-300); font-weight: 600; }
+p, ul, ol, dl, blockquote, figure, table {
+  margin-block: 0 var(--space-4);
+}
+p, li {
+  max-width: var(--measure);
+}
+a {
+  color: var(--color-link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+a:visited {
+  color: var(--color-link-visited);
+}
+a:hover {
+  text-decoration-thickness: 3px;
+}
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 0;
+  box-shadow: 0 0 0 6px var(--color-focus-outer);
+}
+a:focus-visible {
+  background: var(--color-focus);
+  color: var(--color-focus-outer);
+  text-decoration: none;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  text-align: start;
+  padding: var(--space-2) var(--space-3);
+  border-block-end: var(--border-width) solid var(--color-line);
+  vertical-align: top;
+}
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
+}
+.visually-hidden.focusable:focus,
+.visually-hidden.focusable:active {
+  position: static !important;
+  clip: auto;
+  overflow: visible;
+  height: auto;
+  width: auto;
+}
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--space-4);
+  inset-block-start: var(--space-2);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-focus);
+  color: var(--color-focus-outer);
+  font-weight: 600;
+}
+[hidden] {
+  display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid CanvasText;
+  }
+}

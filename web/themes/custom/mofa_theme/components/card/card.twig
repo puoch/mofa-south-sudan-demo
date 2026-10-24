@@ -1,0 +1,18 @@
+{% set h = 'h' ~ (heading_level|default(3)) %}
+<article class="card">
+  {% if image_label %}
+    <div class="card__media">{{ include('mofa_theme:image-placeholder', { label: image_label, ratio: '16/9' }, with_context = false) }}</div>
+  {% endif %}
+  <div class="card__body">
+    {% if meta or placeholder %}
+      <div class="card__meta">
+        {% if meta %}<span>{{ meta }}</span>{% endif %}
+        {% if placeholder %}{{ include('mofa_theme:placeholder-notice', { compact: true }, with_context = false) }}{% endif %}
+      </div>
+    {% endif %}
+    <{{ h }} class="card__heading">
+      {% if url %}<a href="{{ url }}" class="card__link">{{ heading }}</a>{% else %}{{ heading }}{% endif %}
+    </{{ h }}>
+    {% if summary %}<p class="card__summary">{{ summary }}</p>{% endif %}
+  </div>
+</article>

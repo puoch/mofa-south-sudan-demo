@@ -1,0 +1,54 @@
+# Composer-managed code
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
+/drush/Commands/contrib/
+/recipes/*
+!/recipes/README.md
+
+# Scaffold files written by drupal/core-composer-scaffold
+/web/.csslintrc
+/web/.eslintignore
+/web/.eslintrc.json
+/web/.ht.router.php
+/web/.htaccess
+/web/INSTALL.txt
+/web/README.md
+/web/autoload.php
+/web/autoload_runtime.php
+/web/example.gitignore
+/web/index.php
+/web/robots.txt
+/web/update.php
+/web/web.config
+/web/sites/README.txt
+/web/sites/development.services.yml
+/web/sites/example.settings.local.php
+/web/sites/example.sites.php
+/web/sites/default/default.services.yml
+/web/sites/default/default.settings.php
+/web/modules/README.txt
+/web/themes/README.txt
+/web/profiles/README.txt
+
+# Environment-specific and generated files. Never commit secrets.
+/web/sites/*/settings.local.php
+/web/sites/*/settings.ddev.php
+/web/sites/*/files/
+/web/sites/*/private/
+/private/
+.env
+
+# Tests
+/tests/e2e/node_modules/
+/tests/e2e/test-results/
+/tests/e2e/report/
+/tests/e2e/blob-report/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/

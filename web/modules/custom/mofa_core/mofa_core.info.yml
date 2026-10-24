@@ -1,0 +1,7 @@
+name: MoFA core
+type: module
+description: 'Site-specific helpers for the MoFA WEBSITE: information architecture and navigation.'
+package: MoFA
+core_version_requirement: ^11
+dependencies:
+  - drupal:menu_link_content

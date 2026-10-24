@@ -1,0 +1,11 @@
+uuid: cbd71f6c-b2f6-4cd7-817c-e3ac7154da75
+langcode: en
+status: true
+dependencies: {  }
+name: 'News item'
+type: news_item
+description: 'News, press releases, statements and official announcements.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

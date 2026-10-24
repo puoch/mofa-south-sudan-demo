@@ -1,0 +1,19 @@
+uuid: 70747fcb-b673-4d00-86d2-e3973b8ec19c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_owner
+    - node.type.service
+id: node.service.field_content_owner
+field_name: field_content_owner
+entity_type: node
+bundle: service
+label: 'Content owner'
+description: 'The department or unit responsible for keeping this content accurate.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

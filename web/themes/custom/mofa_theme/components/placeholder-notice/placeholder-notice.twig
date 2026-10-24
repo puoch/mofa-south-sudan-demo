@@ -1,0 +1,8 @@
+{% if compact %}
+  <span class="placeholder-badge">{{ 'Unverified placeholder'|t }}</span>
+{% else %}
+  <div class="placeholder-notice" role="note">
+    <p class="placeholder-notice__title">{{ 'Unverified placeholder content'|t }}</p>
+    <p>{{ message|default('This text, and any images, names or contact details on this page, are demonstration placeholders. They have not been verified or approved by the Ministry.'|t) }}</p>
+  </div>
+{% endif %}

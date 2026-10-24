@@ -1,0 +1,14 @@
+<nav class="link-tiles" aria-label="{{ heading|default('Pages in this section'|t) }}">
+  {% if heading %}<h2 class="link-tiles__heading">{{ heading }}</h2>{% endif %}
+  <ul class="link-tiles__list">
+    {% for item in items %}
+      <li class="link-tiles__item">
+        <a class="link-tiles__link" href="{{ item.url }}">
+          <span class="link-tiles__title">{{ item.title }}</span>
+          {% if item.description %}<span class="link-tiles__description">{{ item.description }}</span>{% endif %}
+          <svg class="link-tiles__arrow" aria-hidden="true" focusable="false" viewBox="0 0 16 16" width="16" height="16"><path d="M5 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

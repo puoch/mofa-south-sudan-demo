@@ -1,0 +1,21 @@
+uuid: 00d77131-ddef-414b-82f2-baa922cb6931
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_original_date
+    - node.type.archive_record
+  module:
+    - datetime
+id: node.archive_record.field_original_date
+field_name: field_original_date
+entity_type: node
+bundle: archive_record
+label: 'Original date'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

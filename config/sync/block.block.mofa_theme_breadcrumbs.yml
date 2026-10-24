@@ -1,0 +1,20 @@
+uuid: 231fd325-cf8d-4da7-8742-12267c806fe5
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - mofa_theme
+id: mofa_theme_breadcrumbs
+theme: mofa_theme
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }
