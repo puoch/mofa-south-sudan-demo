@@ -31,6 +31,8 @@ jobs:
       MOFA_ENVIRONMENT: ci
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -46,9 +48,12 @@ jobs:
         run: find web/modules/custom web/themes/custom tests/drush -name '*.php' -o -name '*.theme' -o -name '*.module' | xargs -n1 php -l
 
       - name: Scan for committed secrets
-        uses: gitleaks/gitleaks-action@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_VERSION: "8.24.3"
+        run: |
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar xz gitleaks
+          ./gitleaks git . --redact --verbose
+          rm gitleaks
 
       - name: Install site from configuration
         run: |
