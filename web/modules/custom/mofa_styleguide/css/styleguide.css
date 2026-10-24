@@ -1,0 +1,106 @@
+.sg-section > h2 {
+  font-size: var(--font-size-500);
+}
+.sg-intro {
+  max-width: var(--measure);
+}
+.sg-swatches {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sg-swatch {
+  max-width: none;
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-2);
+  overflow: hidden;
+}
+.sg-swatch__chip {
+  height: 4.5rem;
+  border-block-end: var(--border-width) solid var(--color-line);
+}
+.sg-swatch__body {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-3);
+  font-size: var(--font-size-100);
+}
+.sg-swatch__name {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.sg-swatch code {
+  font-size: 0.8125rem;
+}
+.sg-type > * + * {
+  margin-block-start: var(--space-3);
+}
+.sg-example {
+  padding: var(--space-5);
+  background: var(--color-canvas);
+  border: 1px dashed var(--color-line-strong);
+  border-radius: var(--radius-2);
+}
+.sg-example + .sg-example {
+  margin-block-start: var(--space-4);
+}
+.sg-component {
+  margin-block-end: var(--space-7);
+}
+.sg-component > h3 {
+  margin-block-end: var(--space-1);
+}
+.sg-component > p {
+  color: var(--color-text-muted);
+}
+.sg-temp {
+  font-weight: 700;
+  color: var(--color-placeholder-text);
+}
+.sg-prose p {
+  max-width: var(--measure);
+}
+.sg-pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin-block-start: var(--space-6);
+}
+.sg-pager a, .sg-pager span {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-3);
+  border: var(--border-width) solid var(--color-line-strong);
+  border-radius: var(--radius-2);
+  background: var(--color-surface);
+}
+.sg-pager [aria-current] {
+  background: var(--color-brand-navy);
+  border-color: var(--color-brand-navy);
+  color: #ffffff;
+  font-weight: 600;
+}
+.sg-related {
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-2);
+}
+.sg-related h2 {
+  font-family: var(--font-body);
+  font-size: var(--font-size-300);
+  font-weight: 700;
+}
+.sg-related ul {
+  padding-inline-start: 1.2em;
+  margin: 0;
+}

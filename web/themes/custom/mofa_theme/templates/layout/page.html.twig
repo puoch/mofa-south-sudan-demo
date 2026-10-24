@@ -1,0 +1,66 @@
+{#
+/**
+ * @file
+ * Page layout: demonstration banner, identity, navigation, content, footer.
+ */
+#}
+<div class="site">
+  <header class="site-header" role="banner">
+    {{ include('mofa_theme:demo-banner', {}, with_context = false) }}
+    {{ page.header_notice }}
+    <div class="site-header__identity l-container">
+      {{ include('mofa_theme:site-identity', { front_url: path('<front>'), arms_src: base_path ~ directory ~ '/images/coat-of-arms-placeholder.svg' }, with_context = false) }}
+      <button type="button" class="site-header__menu-toggle" aria-expanded="false" aria-controls="site-nav" hidden>
+        <span class="site-header__menu-icon" aria-hidden="true"></span>
+        <span>{{ 'Menu'|t }}</span>
+      </button>
+    </div>
+    {% if page.primary_menu %}
+      <nav class="site-nav" id="site-nav" aria-label="{{ 'Main'|t }}">
+        <div class="l-container">
+          {{ page.primary_menu }}
+        </div>
+      </nav>
+    {% endif %}
+  </header>
+
+  {% if page.breadcrumb %}
+    <div class="site-breadcrumb l-container">
+      {{ page.breadcrumb }}
+    </div>
+  {% endif %}
+
+  <main id="main-content" class="site-main" tabindex="-1">
+    {% if page.highlighted %}
+      <div class="l-container site-main__highlighted">{{ page.highlighted }}</div>
+    {% endif %}
+    {{ page.content_top }}
+    {% if page.sidebar %}
+      <div class="l-container l-main l-with-sidebar">
+        <div class="site-main__content">{{ page.content }}</div>
+        <aside class="site-main__sidebar" aria-label="{{ 'Related'|t }}">{{ page.sidebar }}</aside>
+      </div>
+    {% else %}
+      <div class="site-main__content">{{ page.content }}</div>
+    {% endif %}
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="l-container site-footer__columns">
+      <div class="site-footer__about">
+        <p class="site-footer__name">{{ 'Ministry of Foreign Affairs and International Cooperation'|t }}</p>
+        <p>{{ 'Republic of South Sudan'|t }}</p>
+        {{ page.footer_first }}
+      </div>
+      <div class="site-footer__links">
+        {{ page.footer_second }}
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <div class="l-container">
+        <p>{{ 'Development demonstration of the proposed MoFA WEBSITE. Not an official Government of the Republic of South Sudan website. All content is placeholder and unverified.'|t }}</p>
+        {{ page.footer_bottom }}
+      </div>
+    </div>
+  </footer>
+</div>

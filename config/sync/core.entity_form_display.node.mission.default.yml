@@ -1,0 +1,228 @@
+uuid: f447654b-f33e-4770-a266-34daee218746
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.mission.body
+    - field.field.node.mission.field_address
+    - field.field.node.mission.field_city
+    - field.field.node.mission.field_content_owner
+    - field.field.node.mission.field_countries_served
+    - field.field.node.mission.field_email
+    - field.field.node.mission.field_head_of_mission
+    - field.field.node.mission.field_host_country
+    - field.field.node.mission.field_image
+    - field.field.node.mission.field_jurisdiction_status
+    - field.field.node.mission.field_last_reviewed
+    - field.field.node.mission.field_mission_type
+    - field.field.node.mission.field_phone
+    - field.field.node.mission.field_placeholder
+    - field.field.node.mission.field_source_notes
+    - field.field.node.mission.field_sources
+    - field.field.node.mission.field_summary
+    - field.field.node.mission.field_website
+    - node.type.mission
+    - workflows.workflow.editorial
+  module:
+    - content_moderation
+    - datetime
+    - link
+    - media_library
+    - path
+    - telephone
+    - text
+id: node.mission.default
+targetEntityType: node
+bundle: mission
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 5
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_address:
+    type: string_textarea
+    weight: 6
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_city:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_content_owner:
+    type: string_textfield
+    weight: 54
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_countries_served:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_email:
+    type: email_default
+    weight: 9
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_head_of_mission:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_host_country:
+    type: options_select
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_image:
+    type: media_library_widget
+    weight: 12
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_jurisdiction_status:
+    type: options_select
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_last_reviewed:
+    type: datetime_default
+    weight: 53
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_mission_type:
+    type: options_select
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_phone:
+    type: telephone_default
+    weight: 15
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_placeholder:
+    type: boolean_checkbox
+    weight: 50
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_source_notes:
+    type: text_textarea
+    weight: 52
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_sources:
+    type: link_default
+    weight: 51
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_summary:
+    type: string_textarea
+    weight: 16
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_website:
+    type: link_default
+    weight: 17
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true

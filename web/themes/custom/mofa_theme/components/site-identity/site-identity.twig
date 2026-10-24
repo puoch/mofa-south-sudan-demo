@@ -1,0 +1,12 @@
+{#
+  The coat of arms is a labelled placeholder. Replace images/coat-of-arms-placeholder.svg
+  with the official master artwork from an authorized government source. Do not redraw it.
+  The wordmark is set in type until an approved MFA&IC wordmark exists.
+#}
+<a class="site-identity" href="{{ front_url|default('/') }}" rel="home">
+  <img class="site-identity__arms" src="{{ arms_src }}" width="64" height="64" alt="{{ 'Placeholder for the Coat of Arms of the Republic of South Sudan'|t }}">
+  <span class="site-identity__wordmark">
+    <span class="site-identity__country">{{ 'Republic of South Sudan'|t }}</span>
+    <span class="site-identity__ministry">{{ 'Ministry of Foreign Affairs and International Cooperation'|t }}</span>
+  </span>
+</a>

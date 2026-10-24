@@ -1,0 +1,14 @@
+uuid: bd2928a0-975c-44d2-8b50-e0a3111784cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.content_author
+  module:
+    - user
+id: user_add_role_action.content_author
+label: 'Add the Content author role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: content_author

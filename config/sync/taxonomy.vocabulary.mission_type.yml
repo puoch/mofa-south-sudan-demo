@@ -1,0 +1,9 @@
+uuid: 4992e232-a318-482d-834d-35619a8ffccb
+langcode: en
+status: true
+dependencies: {  }
+name: 'Mission type'
+vid: mission_type
+description: 'Category of diplomatic representation.'
+weight: 0
+new_revision: false

@@ -1,0 +1,58 @@
+uuid: 0ab12b04-a28d-4164-b64d-6ff697248386
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.service.body
+    - field.field.node.service.field_content_owner
+    - field.field.node.service.field_last_reviewed
+    - field.field.node.service.field_placeholder
+    - field.field.node.service.field_service_category
+    - field.field.node.service.field_service_status
+    - field.field.node.service.field_source_notes
+    - field.field.node.service.field_sources
+    - field.field.node.service.field_summary
+    - node.type.service
+id: node.service.teaser
+targetEntityType: node
+bundle: service
+mode: teaser
+content:
+  field_placeholder:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_service_category:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_summary:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  content_moderation_control: true
+  field_content_owner: true
+  field_last_reviewed: true
+  field_service_status: true
+  field_source_notes: true
+  field_sources: true
+  langcode: true
+  links: true

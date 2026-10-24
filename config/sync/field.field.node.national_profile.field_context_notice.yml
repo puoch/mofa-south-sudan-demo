@@ -1,0 +1,22 @@
+uuid: 5d78c9dc-65ca-4027-b00e-09b73e7f94b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_context_notice
+    - node.type.national_profile
+  module:
+    - text
+id: node.national_profile.field_context_notice
+field_name: field_context_notice
+entity_type: node
+bundle: national_profile
+label: 'Dated context notice'
+description: 'Time-sensitive information (for example a political transition) kept apart from evergreen text. Requires a notice date.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

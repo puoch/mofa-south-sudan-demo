@@ -1,0 +1,24 @@
+uuid: 28d51efb-27e0-4e5c-935f-b81f66854ef0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.leader_profile
+  module:
+    - text
+id: node.leader_profile.body
+field_name: body
+entity_type: node
+bundle: leader_profile
+label: Biography
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

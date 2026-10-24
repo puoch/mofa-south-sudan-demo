@@ -1,0 +1,30 @@
+uuid: f02a78e0-4701-46e7-a134-b7cb779e4aa0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_service_status
+field_name: field_service_status
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: information
+      label: 'Information only'
+    -
+      value: not_available
+      label: 'Not yet available online'
+    -
+      value: operational
+      label: 'Operational (requires Ministry approval)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

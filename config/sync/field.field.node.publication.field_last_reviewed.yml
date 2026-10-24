@@ -1,0 +1,21 @@
+uuid: a1dfaa57-147c-48de-89d9-1e47095a5744
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_reviewed
+    - node.type.publication
+  module:
+    - datetime
+id: node.publication.field_last_reviewed
+field_name: field_last_reviewed
+entity_type: node
+bundle: publication
+label: 'Last reviewed'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

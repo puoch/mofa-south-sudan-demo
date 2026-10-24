@@ -1,0 +1,120 @@
+uuid: 56db66e1-b307-4899-8f78-2f87db255cbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.national_profile.body
+    - field.field.node.national_profile.field_content_owner
+    - field.field.node.national_profile.field_context_notice
+    - field.field.node.national_profile.field_context_notice_date
+    - field.field.node.national_profile.field_hero_image
+    - field.field.node.national_profile.field_last_reviewed
+    - field.field.node.national_profile.field_placeholder
+    - field.field.node.national_profile.field_source_notes
+    - field.field.node.national_profile.field_sources
+    - field.field.node.national_profile.field_summary
+    - node.type.national_profile
+  module:
+    - datetime
+    - link
+    - text
+    - user
+id: node.national_profile.default
+targetEntityType: node
+bundle: national_profile
+mode: default
+content:
+  body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 120
+    region: content
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_content_owner:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 121
+    region: content
+  field_context_notice:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 122
+    region: content
+  field_context_notice_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: mofa_date
+    third_party_settings: {  }
+    weight: 123
+    region: content
+  field_hero_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 124
+    region: content
+  field_last_reviewed:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: mofa_date
+    third_party_settings: {  }
+    weight: 125
+    region: content
+  field_placeholder:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 126
+    region: content
+  field_sources:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 127
+    region: content
+  field_summary:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 128
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_source_notes: true
+  langcode: true

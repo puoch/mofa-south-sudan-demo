@@ -1,0 +1,18 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Hero
+status: stable
+description: Opening band for the home page and gateway pages. Uses an image placeholder until authorized imagery is approved.
+props:
+  type: object
+  required: [title]
+  properties:
+    eyebrow: { type: string, title: Eyebrow }
+    title: { type: string, title: Title }
+    heading_level: { type: integer, title: Heading level (1 on real pages), enum: [1, 2] }
+    tagline: { type: string, title: Tagline }
+    text: { type: string, title: Supporting text }
+    image_label: { type: string, title: Placeholder image description }
+    placeholder: { type: boolean, title: Show placeholder badge }
+slots:
+  actions:
+    title: Actions

@@ -1,0 +1,69 @@
+# Proposed information architecture (Phase 1).
+# Top-level order follows the approved navigation. Child pages follow the
+# master specification; they are subject to the Ministry's sitemap and
+# editorial approval. Paths are created as pages in Phase 2.
+main:
+  - title: Home
+    path: /
+  - title: Missions
+    path: /missions
+    children:
+      - { title: Mission directory, path: /missions/directory }
+      - { title: Countries and jurisdictions served, path: /missions/jurisdictions }
+  - title: About MFA&IC
+    path: /about-mfaic
+    children:
+      - { title: Ministry overview, path: /about-mfaic/overview }
+      - { title: Mandate and functions, path: /about-mfaic/mandate }
+      - { title: Leadership, path: /about-mfaic/leadership }
+      - { title: Departments, path: /about-mfaic/departments }
+      - { title: Foreign policy and cooperation, path: /about-mfaic/foreign-policy }
+  - title: About South Sudan
+    path: /about-south-sudan
+    children:
+      - { title: Basic Information, path: /about-south-sudan/basic-information }
+      - { title: History and Government, path: /about-south-sudan/history-and-government }
+      - { title: Geography and Natural Heritage, path: /about-south-sudan/geography-and-natural-heritage }
+      - { title: People and Culture, path: /about-south-sudan/people-and-culture }
+      - { title: Economy and Investment, path: /about-south-sudan/economy-and-investment }
+      - { title: Foreign Relations, path: /about-south-sudan/foreign-relations }
+      - { title: National Symbols, path: /about-south-sudan/national-symbols }
+  - title: Services
+    path: /services
+    children:
+      - { title: Consular information, path: /services/consular }
+      - { title: Immigration guidance, path: /services/immigration }
+      - { title: Trade and investment, path: /services/trade-and-investment }
+      - { title: Other services, path: /services/other }
+  - title: News / Press
+    path: /news
+    children:
+      - { title: News, path: /news/latest }
+      - { title: Press releases, path: /news/press-releases }
+      - { title: Statements, path: /news/statements }
+      - { title: Announcements, path: /news/announcements }
+  - title: SSD Diaspora
+    path: /diaspora
+    children:
+      - { title: Diaspora information, path: /diaspora/information }
+      - { title: Registration (demonstration), path: /diaspora/registration }
+      - { title: Guidance and resources, path: /diaspora/resources }
+      - { title: Contact a mission, path: /diaspora/missions }
+  - title: Contacts
+    path: /contacts
+    children:
+      - { title: Ministry headquarters, path: /contacts/headquarters }
+      - { title: Departments, path: /contacts/departments }
+      - { title: Mission contacts, path: /contacts/missions }
+  - title: Archives
+    path: /archives
+    children:
+      - { title: Historical announcements, path: /archives/announcements }
+      - { title: Official publications, path: /archives/publications }
+      - { title: Archived news, path: /archives/news }
+footer:
+  - { title: About this demonstration, path: /about-this-site }
+  - { title: Accessibility, path: /accessibility }
+  - { title: Privacy notice (pending approval), path: /privacy }
+  - { title: Contacts, path: /contacts }
+  - { title: Component library (development), path: /styleguide }

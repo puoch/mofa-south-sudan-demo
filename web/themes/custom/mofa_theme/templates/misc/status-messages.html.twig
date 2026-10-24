@@ -1,0 +1,9 @@
+{% for type, messages in message_list %}
+  <div class="l-container">
+    <div class="messages messages--{{ type }}" role="{{ type == 'error' ? 'alert' : 'status' }}">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}

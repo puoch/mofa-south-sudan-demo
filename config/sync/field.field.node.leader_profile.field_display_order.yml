@@ -1,0 +1,23 @@
+uuid: 1fc89658-6ede-490b-a48d-55137885f92b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_display_order
+    - node.type.leader_profile
+id: node.leader_profile.field_display_order
+field_name: field_display_order
+entity_type: node
+bundle: leader_profile
+label: 'Display order'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,23 @@
+uuid: 40d35a37-5f1c-4745-af2b-212330b74205
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_placeholder
+    - node.type.mission
+id: node.mission.field_placeholder
+field_name: field_placeholder
+entity_type: node
+bundle: mission
+label: 'Unverified placeholder content'
+description: 'Leave ticked until the content has been verified and approved. Ticked content shows a visible placeholder notice.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Placeholder
+  off_label: Verified
+field_type: boolean

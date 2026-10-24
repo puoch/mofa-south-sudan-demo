@@ -1,0 +1,44 @@
+.button,
+.button:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border: 2px solid var(--color-brand-navy);
+  border-radius: var(--radius-2);
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.25;
+}
+.button--primary,
+.button--primary:visited {
+  background: var(--color-brand-navy);
+  color: #ffffff;
+}
+.button--primary:hover {
+  background: var(--color-brand-navy-dark);
+}
+.button--secondary,
+.button--secondary:visited {
+  background: var(--color-surface);
+  color: var(--color-brand-navy);
+}
+.button--secondary:hover {
+  background: var(--color-brand-navy-tint);
+}
+.button-inactive {
+  display: inline-grid;
+  gap: var(--space-1);
+}
+.button--inactive {
+  border-style: dashed;
+  border-color: var(--color-line-strong);
+  background: var(--color-canvas);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+.button-inactive__note {
+  font-size: var(--font-size-100);
+  color: var(--color-text-muted);
+}

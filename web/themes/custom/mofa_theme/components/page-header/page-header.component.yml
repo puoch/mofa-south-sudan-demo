@@ -1,0 +1,12 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Page header
+status: stable
+description: Page title with optional eyebrow and lead text (for example the About South Sudan heading and its tagline).
+props:
+  type: object
+  required: [title]
+  properties:
+    eyebrow: { type: string, title: Eyebrow }
+    title: { type: string, title: Title }
+    lead: { type: string, title: Lead text }
+    placeholder: { type: boolean, title: Show placeholder badge }

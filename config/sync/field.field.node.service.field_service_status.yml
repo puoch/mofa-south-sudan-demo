@@ -1,0 +1,23 @@
+uuid: 5ed569d6-1c3f-4532-bec5-3f2ed70c39db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_service_status
+    - node.type.service
+  module:
+    - options
+id: node.service.field_service_status
+field_name: field_service_status
+entity_type: node
+bundle: service
+label: 'Service status'
+description: 'Do not choose "Operational" without separate Ministry approval.'
+required: true
+translatable: true
+default_value:
+  -
+    value: information
+default_value_callback: ''
+settings: {  }
+field_type: list_string

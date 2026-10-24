@@ -1,0 +1,21 @@
+.alert {
+  margin-block: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-inline-start: 6px solid var(--color-info-border);
+  background: var(--color-info-bg);
+}
+.alert--warning {
+  border-color: var(--color-warning-border);
+  background: var(--color-warning-bg);
+}
+.alert--success {
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
+}
+.alert__heading {
+  margin-block-end: var(--space-1);
+  font-weight: 700;
+}
+.alert__message {
+  margin: 0;
+}

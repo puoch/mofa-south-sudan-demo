@@ -1,0 +1,14 @@
+uuid: 50fc24d3-3a7f-4c88-83fe-7bd2ef226da7
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.administrator
+  module:
+    - user
+id: user_add_role_action.administrator
+label: 'Add the Administrator (Ministry ICT) role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: administrator

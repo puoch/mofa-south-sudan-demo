@@ -1,0 +1,11 @@
+uuid: eceb5784-60d4-492d-88a4-892e87a1eb4f
+langcode: en
+status: true
+dependencies: {  }
+name: 'Diplomatic mission'
+type: mission
+description: 'Embassies and other approved representations. Draft data must stay marked until approved.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

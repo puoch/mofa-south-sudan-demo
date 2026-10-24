@@ -1,0 +1,122 @@
+uuid: 16d3e415-fe7f-4ca2-bcea-e74934d07669
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.archive_record.body
+    - field.field.node.archive_record.field_collection
+    - field.field.node.archive_record.field_content_owner
+    - field.field.node.archive_record.field_document
+    - field.field.node.archive_record.field_last_reviewed
+    - field.field.node.archive_record.field_original_date
+    - field.field.node.archive_record.field_placeholder
+    - field.field.node.archive_record.field_source_notes
+    - field.field.node.archive_record.field_sources
+    - field.field.node.archive_record.field_summary
+    - node.type.archive_record
+  module:
+    - datetime
+    - link
+    - text
+    - user
+id: node.archive_record.default
+targetEntityType: node
+bundle: archive_record
+mode: default
+content:
+  body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 120
+    region: content
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_collection:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 121
+    region: content
+  field_content_owner:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 122
+    region: content
+  field_document:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 123
+    region: content
+  field_last_reviewed:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: mofa_date
+    third_party_settings: {  }
+    weight: 124
+    region: content
+  field_original_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: mofa_date
+    third_party_settings: {  }
+    weight: 125
+    region: content
+  field_placeholder:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 126
+    region: content
+  field_sources:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 127
+    region: content
+  field_summary:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 128
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_source_notes: true
+  langcode: true

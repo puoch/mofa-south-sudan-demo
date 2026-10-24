@@ -1,0 +1,21 @@
+uuid: 79376d7b-59dc-400d-a702-293d793c6e1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_reviewed
+    - node.type.mission
+  module:
+    - datetime
+id: node.mission.field_last_reviewed
+field_name: field_last_reviewed
+entity_type: node
+bundle: mission
+label: 'Last reviewed'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

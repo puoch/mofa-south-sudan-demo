@@ -1,0 +1,16 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Editorial metadata
+status: stable
+description: Sources, content owner and last-reviewed date shown at the end of reference pages.
+props:
+  type: object
+  properties:
+    last_reviewed: { type: string, title: Last reviewed (formatted date) }
+    owner: { type: string, title: Content owner }
+    sources:
+      type: array
+      items:
+        type: object
+        properties:
+          title: { type: string }
+          url: { type: string }

@@ -1,0 +1,199 @@
+uuid: 4efadfce-5bb9-4154-ba4f-cefc8426967a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.mission.body
+    - field.field.node.mission.field_address
+    - field.field.node.mission.field_city
+    - field.field.node.mission.field_content_owner
+    - field.field.node.mission.field_countries_served
+    - field.field.node.mission.field_email
+    - field.field.node.mission.field_head_of_mission
+    - field.field.node.mission.field_host_country
+    - field.field.node.mission.field_image
+    - field.field.node.mission.field_jurisdiction_status
+    - field.field.node.mission.field_last_reviewed
+    - field.field.node.mission.field_mission_type
+    - field.field.node.mission.field_phone
+    - field.field.node.mission.field_placeholder
+    - field.field.node.mission.field_source_notes
+    - field.field.node.mission.field_sources
+    - field.field.node.mission.field_summary
+    - field.field.node.mission.field_website
+    - node.type.mission
+  module:
+    - datetime
+    - link
+    - options
+    - telephone
+    - text
+    - user
+id: node.mission.default
+targetEntityType: node
+bundle: mission
+mode: default
+content:
+  body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 136
+    region: content
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 137
+    region: content
+  field_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 138
+    region: content
+  field_content_owner:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 139
+    region: content
+  field_countries_served:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 140
+    region: content
+  field_email:
+    type: email_mailto
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 141
+    region: content
+  field_head_of_mission:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 142
+    region: content
+  field_host_country:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 143
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 144
+    region: content
+  field_jurisdiction_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 145
+    region: content
+  field_last_reviewed:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: mofa_date
+    third_party_settings: {  }
+    weight: 146
+    region: content
+  field_mission_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 147
+    region: content
+  field_phone:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 148
+    region: content
+  field_placeholder:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 149
+    region: content
+  field_sources:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 150
+    region: content
+  field_summary:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 151
+    region: content
+  field_website:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 152
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_source_notes: true
+  langcode: true

@@ -1,0 +1,102 @@
+uuid: 26d3fb47-b0c6-4f4c-adf8-e498dd20cce3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.page.body
+    - field.field.node.page.field_content_owner
+    - field.field.node.page.field_hero_image
+    - field.field.node.page.field_last_reviewed
+    - field.field.node.page.field_placeholder
+    - field.field.node.page.field_source_notes
+    - field.field.node.page.field_sources
+    - field.field.node.page.field_summary
+    - node.type.page
+  module:
+    - datetime
+    - link
+    - text
+    - user
+_core:
+  default_config_hash: M_Y8L5tfmhx7DR143E05YyZSpvgil6VFvqcfBWykalg
+id: node.page.default
+targetEntityType: node
+bundle: page
+mode: default
+content:
+  body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 122
+    region: content
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_content_owner:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_hero_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 117
+    region: content
+  field_last_reviewed:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: mofa_date
+    third_party_settings: {  }
+    weight: 118
+    region: content
+  field_placeholder:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 119
+    region: content
+  field_sources:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 120
+    region: content
+  field_summary:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 121
+    region: content
+  links:
+    weight: 101
+    region: content
+hidden:
+  field_source_notes: true
+  langcode: true

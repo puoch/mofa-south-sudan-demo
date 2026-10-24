@@ -1,0 +1,20 @@
+uuid: ff06cab9-f7ba-401e-8a44-950e6bae3e52
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_context_notice_date
+field_name: field_context_notice_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

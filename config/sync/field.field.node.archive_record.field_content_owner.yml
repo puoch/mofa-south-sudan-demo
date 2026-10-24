@@ -1,0 +1,19 @@
+uuid: 4a7a8acc-34e9-487b-9db0-4079c791a94a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_owner
+    - node.type.archive_record
+id: node.archive_record.field_content_owner
+field_name: field_content_owner
+entity_type: node
+bundle: archive_record
+label: 'Content owner'
+description: 'The department or unit responsible for keeping this content accurate.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

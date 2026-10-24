@@ -1,0 +1,11 @@
+uuid: 06f11b91-6ec3-401d-abd8-8625f82237e5
+langcode: en
+status: true
+dependencies: {  }
+name: 'Leadership profile'
+type: leader_profile
+description: 'Ministry leadership. Publish only officeholders confirmed by the Ministry.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

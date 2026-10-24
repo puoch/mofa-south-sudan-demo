@@ -1,0 +1,9 @@
+uuid: 9848344c-e82f-404b-8f7e-39b150b53e6f
+langcode: en
+status: true
+dependencies: {  }
+name: 'Service category'
+vid: service_category
+description: 'Grouping for service information pages.'
+weight: 0
+new_revision: false

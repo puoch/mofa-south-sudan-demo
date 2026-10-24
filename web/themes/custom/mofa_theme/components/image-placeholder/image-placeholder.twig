@@ -1,0 +1,6 @@
+<div class="image-placeholder" style="aspect-ratio: {{ ratio|default('16/9') }}" role="img" aria-label="{{ 'Image placeholder: @label'|t({ '@label': label|default('authorized image pending'|t) }) }}">
+  <span class="image-placeholder__label" aria-hidden="true">
+    <span class="image-placeholder__tag">{{ 'Authorized image pending'|t }}</span>
+    {% if label %}<span>{{ label }}</span>{% endif %}
+  </span>
+</div>

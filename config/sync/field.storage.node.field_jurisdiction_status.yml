@@ -1,0 +1,30 @@
+uuid: 935b0807-c022-40fc-aa9f-12d01b11cc2f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_jurisdiction_status
+field_name: field_jurisdiction_status
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: placeholder
+      label: 'Unverified placeholder'
+    -
+      value: pending
+      label: 'Pending Ministry approval'
+    -
+      value: approved
+      label: 'Approved by the Ministry'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

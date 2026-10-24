@@ -1,0 +1,17 @@
+# Local development with DDEV (https://ddev.com). Requires Docker.
+name: mofa
+type: drupal11
+docroot: web
+php_version: "8.3"
+webserver_type: nginx-fpm
+database:
+  type: postgres
+  version: "16"
+composer_version: "2"
+nodejs_version: "22"
+# DDEV writes web/sites/default/settings.ddev.php with local database
+# credentials; settings.php includes it only inside DDEV.
+disable_settings_management: false
+web_environment:
+  - MOFA_ENVIRONMENT=development
+  - DRUPAL_ERROR_LEVEL=verbose

@@ -1,0 +1,18 @@
+uuid: 3cf64398-3505-403e-8cea-7327ecf15ed3
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - mofa_styleguide
+    - system
+_core:
+  default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access content'
+  - 'view media'
+  - 'view mofa styleguide'

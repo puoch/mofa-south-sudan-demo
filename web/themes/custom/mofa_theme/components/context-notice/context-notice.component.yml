@@ -1,0 +1,12 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Dated context notice
+status: stable
+description: Time-sensitive information kept apart from evergreen text, always shown with the date it was last confirmed.
+props:
+  type: object
+  required: [date, body]
+  properties:
+    heading: { type: string, title: Heading }
+    date: { type: string, title: As-of date (formatted) }
+    datetime: { type: string, title: Machine-readable date (YYYY-MM-DD) }
+    body: { type: string, title: Notice text }

@@ -1,0 +1,19 @@
+uuid: 21e3738b-32cc-4b63-8c0d-451d722f4656
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_owner
+    - node.type.national_profile
+id: node.national_profile.field_content_owner
+field_name: field_content_owner
+entity_type: node
+bundle: national_profile
+label: 'Content owner'
+description: 'The department or unit responsible for keeping this content accurate.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,9 @@
+uuid: cabe8e3c-860b-4b23-8295-ca2eff9994d0
+langcode: en
+status: true
+dependencies: {  }
+name: 'News category'
+vid: news_category
+description: 'Type of news item: news, press release, statement or announcement.'
+weight: 0
+new_revision: false

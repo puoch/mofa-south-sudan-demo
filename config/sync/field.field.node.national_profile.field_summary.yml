@@ -1,0 +1,19 @@
+uuid: 45d6b5aa-5a83-482c-a7c1-7aba08693a94
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_summary
+    - node.type.national_profile
+id: node.national_profile.field_summary
+field_name: field_summary
+entity_type: node
+bundle: national_profile
+label: Summary
+description: 'One or two sentences used in listings and search results.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

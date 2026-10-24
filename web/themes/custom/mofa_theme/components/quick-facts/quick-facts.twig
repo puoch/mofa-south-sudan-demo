@@ -1,0 +1,18 @@
+{% set labels = { placeholder: 'Placeholder'|t, pending: 'Pending approval'|t, approved: 'Approved'|t } %}
+<section class="quick-facts" aria-labelledby="quick-facts-heading">
+  <h2 class="quick-facts__heading" id="quick-facts-heading">{{ heading|default('At a glance'|t) }}</h2>
+  <dl class="quick-facts__list">
+    {% for item in items %}
+      <div class="quick-facts__row">
+        <dt>{{ item.term }}</dt>
+        <dd>
+          <span class="quick-facts__value">{{ item.value }}</span>
+          {% if item.status and item.status != 'approved' %}
+            <span class="quick-facts__status quick-facts__status--{{ item.status }}">{{ labels[item.status] }}</span>
+          {% endif %}
+          {% if item.source %}<span class="quick-facts__source">{{ 'Source: @source'|t({ '@source': item.source }) }}</span>{% endif %}
+        </dd>
+      </div>
+    {% endfor %}
+  </dl>
+</section>

@@ -1,0 +1,99 @@
+uuid: 6662ac10-2f86-4783-b558-54872c6ede6d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.mission.body
+    - field.field.node.mission.field_address
+    - field.field.node.mission.field_city
+    - field.field.node.mission.field_content_owner
+    - field.field.node.mission.field_countries_served
+    - field.field.node.mission.field_email
+    - field.field.node.mission.field_head_of_mission
+    - field.field.node.mission.field_host_country
+    - field.field.node.mission.field_image
+    - field.field.node.mission.field_jurisdiction_status
+    - field.field.node.mission.field_last_reviewed
+    - field.field.node.mission.field_mission_type
+    - field.field.node.mission.field_phone
+    - field.field.node.mission.field_placeholder
+    - field.field.node.mission.field_source_notes
+    - field.field.node.mission.field_sources
+    - field.field.node.mission.field_summary
+    - field.field.node.mission.field_website
+    - node.type.mission
+id: node.mission.teaser
+targetEntityType: node
+bundle: mission
+mode: teaser
+content:
+  field_city:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_host_country:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_mission_type:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_placeholder:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_summary:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  content_moderation_control: true
+  field_address: true
+  field_content_owner: true
+  field_countries_served: true
+  field_email: true
+  field_head_of_mission: true
+  field_jurisdiction_status: true
+  field_last_reviewed: true
+  field_phone: true
+  field_source_notes: true
+  field_sources: true
+  field_website: true
+  langcode: true
+  links: true

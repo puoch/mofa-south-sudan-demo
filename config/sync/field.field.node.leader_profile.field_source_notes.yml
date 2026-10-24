@@ -1,0 +1,22 @@
+uuid: ae8b6013-e611-4111-9ea0-feff6d0d5b16
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_source_notes
+    - node.type.leader_profile
+  module:
+    - text
+id: node.leader_profile.field_source_notes
+field_name: field_source_notes
+entity_type: node
+bundle: leader_profile
+label: 'Source and review notes'
+description: 'Editorial notes on sourcing, approvals and open questions. Not shown publicly.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

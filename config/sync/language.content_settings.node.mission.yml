@@ -1,0 +1,16 @@
+uuid: 7ee38def-3448-4486-ab2e-666aac8f4af8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.mission
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.mission
+target_entity_type_id: node
+target_bundle: mission
+default_langcode: site_default
+language_alterable: false

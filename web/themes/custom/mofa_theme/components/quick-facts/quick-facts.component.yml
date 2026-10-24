@@ -1,0 +1,18 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Quick facts
+status: stable
+description: Scannable country facts. Each fact carries its own source and approval status, so a pending figure can never look approved.
+props:
+  type: object
+  required: [items]
+  properties:
+    heading: { type: string, title: Heading }
+    items:
+      type: array
+      items:
+        type: object
+        properties:
+          term: { type: string }
+          value: { type: string }
+          source: { type: string }
+          status: { type: string, enum: [placeholder, pending, approved] }

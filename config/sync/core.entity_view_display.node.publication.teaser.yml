@@ -1,0 +1,63 @@
+uuid: f441acf2-19cd-40d1-883f-8bb873c0f206
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.publication.body
+    - field.field.node.publication.field_content_owner
+    - field.field.node.publication.field_document
+    - field.field.node.publication.field_last_reviewed
+    - field.field.node.publication.field_placeholder
+    - field.field.node.publication.field_publication_date
+    - field.field.node.publication.field_publication_type
+    - field.field.node.publication.field_source_notes
+    - field.field.node.publication.field_sources
+    - field.field.node.publication.field_summary
+    - node.type.publication
+  module:
+    - datetime
+id: node.publication.teaser
+targetEntityType: node
+bundle: publication
+mode: teaser
+content:
+  field_placeholder:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_publication_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: mofa_date
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_summary:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  content_moderation_control: true
+  field_content_owner: true
+  field_document: true
+  field_last_reviewed: true
+  field_publication_type: true
+  field_source_notes: true
+  field_sources: true
+  langcode: true
+  links: true

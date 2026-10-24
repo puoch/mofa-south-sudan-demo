@@ -1,0 +1,21 @@
+uuid: 680af38c-5b6a-48dd-9507-fdef09e30670
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_context_notice_date
+    - node.type.national_profile
+  module:
+    - datetime
+id: node.national_profile.field_context_notice_date
+field_name: field_context_notice_date
+entity_type: node
+bundle: national_profile
+label: 'Context notice date'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

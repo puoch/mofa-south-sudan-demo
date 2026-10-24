@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Main navigation using the disclosure pattern: each section link stays a
+ * real link, and a separate button reveals its child pages. Without
+ * JavaScript every level stays visible and usable.
+ */
+#}
+{% import _self as menus %}
+{{ menus.menu_links(items, attributes, 0, 'nav') }}
+
+{% macro menu_links(items, attributes, menu_level, prefix) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul{{ attributes.addClass('nav', 'nav__list') }}>
+    {% else %}
+      <ul class="nav__sub" id="{{ prefix }}" data-nav-sub>
+    {% endif %}
+    {% for item in items %}
+      {% set sub_id = prefix ~ '-' ~ loop.index %}
+      <li class="nav__item{{ item.below ? ' nav__item--parent' }}{{ item.in_active_trail ? ' is-active-trail' }}">
+        {{ link(item.title, item.url, { class: [menu_level == 0 ? 'nav__link' : 'nav__sublink'] }) }}
+        {% if item.below and menu_level == 0 %}
+          <button type="button" class="nav__toggle" aria-expanded="true" aria-controls="{{ sub_id }}" data-nav-toggle hidden>
+            <span class="visually-hidden">{{ 'Show pages in @section'|t({ '@section': item.title }) }}</span>
+            <svg class="nav__chevron" aria-hidden="true" focusable="false" viewBox="0 0 12 8" width="12" height="8"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, sub_id) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

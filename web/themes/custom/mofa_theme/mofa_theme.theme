@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * Theme hooks for the MoFA theme.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ *
+ * Exposes the editorial fields in a template-friendly shape so every content
+ * type shows the placeholder notice and the sources/review box the same way.
+ */
+function mofa_theme_preprocess_node(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $variables['is_placeholder'] = $node->hasField('field_placeholder')
+    && (bool) $node->get('field_placeholder')->value;
+  $variables['summary'] = $node->hasField('field_summary') ? $node->get('field_summary')->value : NULL;
+
+  $variables['editorial'] = [
+    'last_reviewed' => NULL,
+    'owner' => $node->hasField('field_content_owner') ? $node->get('field_content_owner')->value : NULL,
+    'sources' => [],
+  ];
+  if ($node->hasField('field_last_reviewed') && !$node->get('field_last_reviewed')->isEmpty()) {
+    $date = new DrupalDateTime($node->get('field_last_reviewed')->value);
+    $variables['editorial']['last_reviewed'] = \Drupal::service('date.formatter')
+      ->format($date->getTimestamp(), 'mofa_date');
+  }
+  if ($node->hasField('field_sources')) {
+    foreach ($node->get('field_sources') as $item) {
+      $variables['editorial']['sources'][] = [
+        'title' => $item->title ?: $item->uri,
+        'url' => $item->getUrl()->toString(),
+      ];
+    }
+  }
+  $variables['meta_line'] = _mofa_theme_meta_line($node);
+}
+
+/**
+ * Builds the short meta line used on teasers: date and category.
+ */
+function _mofa_theme_meta_line(NodeInterface $node): ?string {
+  $parts = [];
+  foreach (['field_news_category', 'field_service_category', 'field_publication_type', 'field_mission_type'] as $field) {
+    if ($node->hasField($field) && $term = $node->get($field)->entity) {
+      $parts[] = $term->label();
+    }
+  }
+  if ($node->bundle() === 'news_item') {
+    $parts[] = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'mofa_date');
+  }
+  return $parts ? implode(' · ', $parts) : NULL;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ *
+ * Node templates and the component library print their own heading, so the
+ * generic page title block is hidden there to avoid a duplicate <h1>.
+ */
+function mofa_theme_preprocess_block(array &$variables): void {
+  $route = (string) \Drupal::routeMatch()->getRouteName();
+  // Node pages and the component library lay out their own containers.
+  $variables['full_width'] = $route === 'entity.node.canonical' || str_starts_with($route, 'mofa_styleguide.');
+  $variables['#cache']['contexts'][] = 'route';
+  if (($variables['plugin_id'] ?? '') === 'page_title_block' && $variables['full_width']) {
+    $variables['content'] = [];
+    $variables['attributes']['hidden'] = TRUE;
+  }
+}

@@ -1,0 +1,14 @@
+uuid: ed5b1ba5-06d3-410c-bf63-f60403ea2c60
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.administrator
+  module:
+    - user
+id: user_remove_role_action.administrator
+label: 'Remove the Administrator (Ministry ICT) role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: administrator

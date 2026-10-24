@@ -1,0 +1,13 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Site identity
+status: stable
+description: Coat of arms beside a separate MFA&IC wordmark. Both are placeholders until official artwork is supplied.
+props:
+  type: object
+  properties:
+    front_url:
+      type: string
+      title: Home page URL
+    arms_src:
+      type: string
+      title: Coat of arms image URL

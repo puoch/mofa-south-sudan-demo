@@ -1,0 +1,4 @@
+services:
+  mofa_core.navigation_builder:
+    class: Drupal\mofa_core\NavigationBuilder
+    arguments: ['@entity_type.manager', '@extension.list.module']

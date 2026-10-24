@@ -1,0 +1,25 @@
+uuid: 42905b18-0c3b-40a2-959d-57202ab8917d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mission_type
+    - node.type.mission
+    - taxonomy.vocabulary.mission_type
+id: node.mission.field_mission_type
+field_name: field_mission_type
+entity_type: node
+bundle: mission
+label: 'Mission type'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      mission_type: mission_type
+    auto_create: false
+field_type: entity_reference

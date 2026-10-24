@@ -1,0 +1,9 @@
+uuid: 2923c2aa-1e47-4df1-b9fa-3a7f7cd0602d
+langcode: en
+status: true
+dependencies: {  }
+name: 'Countries and territories'
+vid: country
+description: 'Populate only from a Ministry-approved list. The choice of list is pending approval.'
+weight: 0
+new_revision: false
