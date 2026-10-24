@@ -1,0 +1,156 @@
+/**
+ * Registration prototype styles.
+ *
+ * shared/tokens.css, shared/base.css and shared/forms.css are exact copies of
+ * the website theme's files, so both systems share one design system. CI
+ * fails if they drift; update them by copying from mofa_theme/css.
+ */
+@import url("shared/tokens.css");
+@import url("shared/base.css");
+@import url("shared/forms.css");
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/source-serif-4-latin-600-normal.woff2") format("woff2");
+}
+
+.demo-banner {
+  background: var(--color-placeholder-bg);
+  border-block-end: 3px solid var(--color-placeholder-border);
+  color: var(--color-placeholder-text);
+  padding-block: var(--space-3);
+}
+.demo-banner p {
+  margin: 0;
+  max-width: none;
+}
+.container {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.site-header {
+  background: var(--color-brand-navy);
+  color: #ffffff;
+  padding-block: var(--space-4);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.site-header img {
+  inline-size: 56px;
+  block-size: auto;
+  flex: none;
+}
+.site-header__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-400);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  color: #ffffff;
+}
+.site-header__sub {
+  margin: 0;
+  font-size: var(--font-size-100);
+}
+main {
+  padding-block: var(--space-6) var(--space-8);
+}
+fieldset {
+  border: 0;
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  min-width: 0;
+}
+legend {
+  font-family: var(--font-display);
+  font-size: var(--font-size-500);
+  font-weight: 600;
+  color: var(--color-ink);
+  margin-block-end: var(--space-4);
+  padding: 0;
+}
+.form-item--checkbox {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+.form-item--checkbox input {
+  inline-size: 24px;
+  block-size: 24px;
+  margin: 0;
+  flex: none;
+  accent-color: var(--color-brand-navy);
+}
+.form-item--checkbox label {
+  font-weight: 400;
+  margin: 0;
+}
+.form-item--checkbox .form-item--error-message {
+  flex-basis: 100%;
+}
+.form-item--checkbox {
+  flex-wrap: wrap;
+}
+.panel {
+  border-inline-start: 6px solid var(--color-info-border);
+  background: var(--color-info-bg);
+  padding: var(--space-4) var(--space-5);
+  margin-block: 0 var(--space-6);
+}
+.panel > :last-child {
+  margin-block-end: 0;
+}
+.panel--warning {
+  border-color: var(--color-warning-border);
+  background: var(--color-warning-bg);
+}
+.panel--success {
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
+}
+.error-summary ul {
+  padding-inline-start: var(--space-5);
+}
+.error-summary a {
+  color: var(--color-warning-border);
+  font-weight: 600;
+}
+.reference {
+  display: inline-block;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: var(--font-size-500);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  overflow-wrap: anywhere;
+}
+.site-footer {
+  border-block-start: 1px solid var(--color-line);
+  padding-block: var(--space-5);
+  font-size: var(--font-size-100);
+  color: var(--color-text-muted);
+}
+h2.h3 {
+  font-family: var(--font-body);
+  font-size: var(--font-size-400);
+}

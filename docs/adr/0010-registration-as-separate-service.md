@@ -1,6 +1,6 @@
 # 0010. Diaspora registration as a separately protected service
 
-- Status: Proposed, awaiting decision. Not authorized for implementation.
+- Status: Prototype built in Phase 3 with synthetic data only. Approval for real use is still open.
 - Date: 2026-10-24
 
 ## Context
@@ -15,5 +15,7 @@ database (with row-level security), encryption keys and staff login. This
 Drupal site would only link to it and pass no personal data.
 
 ## Status in this repository
-Nothing related to registration is implemented. Phase 2 adds only an
-informational page and an inactive, clearly labelled entry point.
+Phase 2 added an informational page and an inactive entry point. Phase 3
+builds the service in `registration-service/` as a development prototype that
+accepts synthetic data only (ADR 0013 to 0015). Staff access, routing to
+missions, row-level security and anything production-facing are not built.

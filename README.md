@@ -18,6 +18,7 @@ PostgreSQL.
 | `web/modules/custom/mofa_core/` | Home page, navigation (`navigation.yml`, `drush mofa:navigation`) and synthetic placeholder content (`placeholder_content.yml`, `drush mofa:placeholder-content`). |
 | `web/modules/custom/mofa_styleguide/` | Development-only component library at `/styleguide`. Disable before any production use. |
 | `web/sites/default/settings.php` | Settings read from environment variables. No secrets. |
+| `registration-service/` | Phase 3 diaspora registration prototype: a separate Symfony app with its own database. Synthetic data only. See its README. |
 | `tests/drush/` | Structure checks for the content model, workflow and permissions. |
 | `tests/e2e/` | Playwright end-to-end, accessibility (axe-core) and reflow tests. |
 | `docs/` | Architecture, decisions, content model, design system, testing and open approvals. |
@@ -67,12 +68,14 @@ cd tests/e2e && npm ci && npx playwright test
 | Phase | Scope | Status |
 | --- | --- | --- |
 | 1 | Setup, design system, content architecture | Complete |
-| 2 | Public website foundation with placeholder pages | Complete, awaiting review |
-| 3+ | Registration, real content, hosting | Not authorized |
+| 2 | Public website foundation with placeholder pages | Complete |
+| 3 | Diaspora registration prototype, synthetic data only | Complete, awaiting review |
+| Later | Staff and mission access, real content, hosting | Not authorized |
 
 See [docs/approvals-and-blockers.md](docs/approvals-and-blockers.md) for what
 is still pending, [docs/phase-1-report.md](docs/phase-1-report.md) and
-[docs/phase-2-report.md](docs/phase-2-report.md) for phase summaries, and
+[docs/phase-2-report.md](docs/phase-2-report.md) and
+[docs/phase-3-report.md](docs/phase-3-report.md) for phase summaries, and
 [docs/guides/editor-guide.md](docs/guides/editor-guide.md) for editors.
 
 ## Rules for contributors

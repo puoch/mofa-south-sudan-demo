@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{% block title %}Diaspora registration prototype{% endblock %} | MFA&amp;IC demonstration</title>
+    <link rel="stylesheet" href="{{ asset('css/registry.css') }}">
+  </head>
+  <body>
+    <a class="skip-link visually-hidden focusable" href="#main">Skip to main content</a>
+    <div class="demo-banner" role="region" aria-label="Demonstration notice">
+      <div class="container">
+        <p><strong>Demonstration only.</strong> This is a development prototype, not an official Ministry service. Do not enter real personal or passport information. It accepts made-up details only.</p>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <img src="{{ asset('images/coat-of-arms-80.png') }}" srcset="{{ asset('images/coat-of-arms-160.png') }} 2x" width="56" height="56" alt="Coat of Arms of the Republic of South Sudan">
+        <div>
+          <p class="site-header__name">Ministry of Foreign Affairs and International Cooperation</p>
+          <p class="site-header__sub">Diaspora registration prototype</p>
+        </div>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <div class="container">
+        {% block body %}{% endblock %}
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p>Proposed design, not approved by the Republic of South Sudan or the MFA&amp;IC. Records in this prototype are synthetic and may be deleted at any time. <a href="{{ path('privacy') }}">Draft privacy notice</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

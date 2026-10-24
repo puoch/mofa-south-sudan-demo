@@ -27,6 +27,7 @@ jobs:
       DB_PASSWORD: ci-only-password
       DB_HOST: 127.0.0.1
       DB_PORT: "5432"
+      DATABASE_URL: postgresql://mofa_registry:ci-only-registry@127.0.0.1:5432/mofa_registry?serverVersion=16&charset=utf8
       DRUPAL_ERROR_LEVEL: verbose
       MOFA_ENVIRONMENT: ci
     steps:
@@ -38,7 +39,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"
-          extensions: pdo_pgsql, gd, intl, mbstring, opcache
+          extensions: pdo_pgsql, gd, intl, mbstring, opcache, sodium
           tools: composer:v2
 
       - name: Install PHP dependencies
@@ -55,6 +56,38 @@ jobs:
           ./gitleaks git . --redact --verbose
           rm gitleaks
 
+      - name: Registration prototype shares the theme's design tokens
+        run: |
+          for f in tokens.css base.css forms.css; do
+            diff -u "web/themes/custom/mofa_theme/css/$f" "registration-service/public/css/shared/$f"
+          done
+
+      - name: Install registration prototype
+        working-directory: registration-service
+        env:
+          PGPASSWORD: ci-only-password
+        run: |
+          psql -h 127.0.0.1 -U mofa -d mofa -c "CREATE ROLE mofa_registry LOGIN PASSWORD 'ci-only-registry' CREATEDB"
+          psql -h 127.0.0.1 -U mofa -d mofa -c "CREATE DATABASE mofa_registry OWNER mofa_registry"
+          psql -h 127.0.0.1 -U mofa -d mofa -c "CREATE DATABASE mofa_registry_test OWNER mofa_registry"
+          composer install --no-interaction --no-progress --prefer-dist
+          find src tests migrations -name '*.php' | xargs -n1 php -l
+          {
+            echo "APP_SECRET=$(php -r 'echo bin2hex(random_bytes(16));')"
+            echo "REGISTRY_FIELD_KEY=$(php -r 'echo base64_encode(random_bytes(32));')"
+            echo "REGISTRY_INDEX_KEY=$(php -r 'echo base64_encode(random_bytes(32));')"
+          } > .env.local
+          php bin/console doctrine:migrations:migrate --no-interaction
+          php bin/console doctrine:migrations:migrate --no-interaction --env=test
+          php bin/console doctrine:schema:validate
+          php bin/console lint:container
+          php bin/console lint:twig templates
+          php bin/console registry:seed-synthetic --count=5
+
+      - name: Registration prototype unit and functional tests
+        working-directory: registration-service
+        run: php bin/phpunit
+
       - name: Install site from configuration
         run: |
           export DRUPAL_HASH_SALT="$(php -r 'echo bin2hex(random_bytes(32));')"
@@ -70,6 +103,10 @@ jobs:
           php -S 127.0.0.1:8080 .ht.router.php > /tmp/php-server.log 2>&1 &
           sleep 2
           curl --fail -s -o /dev/null http://127.0.0.1:8080/styleguide
+          cd ../registration-service/public
+          php -S 127.0.0.1:8081 > /tmp/registry-server.log 2>&1 &
+          sleep 2
+          curl --fail -s -o /dev/null http://127.0.0.1:8081/register
 
       - uses: actions/setup-node@v4
         with:
@@ -83,6 +120,8 @@ jobs:
 
       - name: End-to-end, accessibility and reflow tests
         working-directory: tests/e2e
+        env:
+          REGISTRY_URL: http://127.0.0.1:8081
         run: npx playwright test
 
       - name: Upload test report

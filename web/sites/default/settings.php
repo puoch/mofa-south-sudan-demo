@@ -40,6 +40,10 @@ $config['system.logging']['error_level'] = getenv('DRUPAL_ERROR_LEVEL') ?: 'hide
 // This site is a development demonstration: keep it out of search engines.
 $settings['mofa_environment'] = getenv('MOFA_ENVIRONMENT') ?: 'development';
 
+// Link to the synthetic-data registration prototype (development only). When
+// empty, the diaspora registration page shows an inactive button.
+$settings['mofa_registration_prototype_url'] = getenv('MOFA_REGISTRATION_PROTOTYPE_URL') ?: '';
+
 if (file_exists($app_root . '/' . $site_path . '/settings.ddev.php') && getenv('IS_DDEV_PROJECT') === 'true') {
   include $app_root . '/' . $site_path . '/settings.ddev.php';
 }

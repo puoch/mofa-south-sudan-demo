@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Draft privacy notice{% endblock %}
+
+{% block body %}
+  <h1>Draft privacy notice</h1>
+  <div class="panel panel--warning">
+    <p><strong>Placeholder.</strong> This notice has not been written or approved. The legal basis, purposes, retention period, rights and contact details must come from the Ministry and its legal advisers before any real registration.</p>
+  </div>
+  <h2 class="h3">What this prototype stores</h2>
+  <p>Only made-up details entered for testing. Passport details and dates of birth are encrypted before they are stored. Records may be deleted at any time.</p>
+  <h2 class="h3">What a final notice must cover</h2>
+  <ul>
+    <li>Who is responsible for the information and how to contact them</li>
+    <li>Why each item is collected and the legal basis for it</li>
+    <li>Who can see records, including diplomatic missions</li>
+    <li>Where the information is hosted, and for how long it is kept</li>
+    <li>How to ask for a correction or deletion</li>
+  </ul>
+  <p><a href="{{ path('register') }}">Back to the registration form</a></p>
+{% endblock %}

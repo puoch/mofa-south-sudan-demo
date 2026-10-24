@@ -1,0 +1,42 @@
+{% use 'form_div_layout.html.twig' %}
+
+{# Rows use the website theme's form classes. Symfony already links help and
+   error text to each field with aria-describedby and sets aria-invalid. #}
+{%- block form_row_render -%}
+  {%- set checkbox = 'checkbox' in block_prefixes -%}
+  {%- set row_class = 'form-item' ~ (checkbox ? ' form-item--checkbox') ~ (row_attr.class is defined ? ' ' ~ row_attr.class) -%}
+  <div{% with {attr: row_attr|merge({class: row_class})} %}{{ block('attributes') }}{% endwith %}>
+    {%- if checkbox -%}
+      {{- form_widget(form, widget_attr) -}}
+      {{- form_label(form) -}}
+      {{- form_errors(form) -}}
+    {%- else -%}
+      {{- form_label(form) -}}
+      {{- form_help(form) -}}
+      {{- form_errors(form) -}}
+      {{- form_widget(form, widget_attr) -}}
+    {%- endif -%}
+  </div>
+{%- endblock form_row_render -%}
+
+{%- block form_help -%}
+  {%- if help -%}
+    <div id="{{ id }}_help" class="form-item__description">{{ help|trans({}, translation_domain) }}</div>
+  {%- endif -%}
+{%- endblock form_help -%}
+
+{%- block form_errors -%}
+  {%- if errors|length > 0 -%}
+    {%- for error in errors -%}
+      <p id="{{ id ~ '_error' ~ loop.index }}" class="form-item--error-message"><span class="visually-hidden">Error: </span>{{ error.message }}</p>
+    {%- endfor -%}
+  {%- endif -%}
+{%- endblock form_errors -%}
+
+{# Checkbox labels are full sentences; mark only required text inputs. #}
+{%- block form_label -%}
+  {%- if label is not same as(false) -%}
+    {%- set label = label|default(name|humanize) -%}
+    <label for="{{ id }}"{% if required and 'checkbox' not in block_prefixes %} class="form-required"{% endif %}>{{ label|trans({}, translation_domain) }}</label>
+  {%- endif -%}
+{%- endblock form_label -%}
