@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block banner %}<p><strong>Staff console prototype.</strong> Every record here is synthetic. Viewing, revealing and reassigning records are logged.</p>{% endblock %}
+{% block site_sub %}Diaspora registry staff console (prototype){% endblock %}
+{% block container_class %} container--wide{% endblock %}
+
+{% block nav %}
+  {% if app.user %}
+    <nav class="container staff-nav" aria-label="Staff console">
+      <ul>
+        {% if not is_granted('ROLE_ACCOUNT_ADMIN') %}
+          <li><a href="{{ path('staff_records') }}"{% if app.current_route starts with 'staff_record' %} aria-current="page"{% endif %}>Records</a></li>
+        {% endif %}
+        {% if is_granted('ROLE_HQ_OVERSIGHT') %}
+          <li><a href="{{ path('staff_audit') }}"{% if app.current_route == 'staff_audit' %} aria-current="page"{% endif %}>Audit log</a></li>
+        {% endif %}
+        {% if is_granted('ROLE_ACCOUNT_ADMIN') %}
+          <li><a href="{{ path('staff_accounts') }}"{% if app.current_route == 'staff_accounts' %} aria-current="page"{% endif %}>Accounts</a></li>
+        {% endif %}
+        <li class="staff-nav__user">{{ app.user.displayName }}, {{ app.user.roleLabel }}{% if app.user.mission %} ({{ app.user.mission.code }}){% endif %}</li>
+        <li><a href="{{ logout_path('staff') }}">Sign out</a></li>
+      </ul>
+    </nav>
+  {% endif %}
+{% endblock %}

@@ -20,6 +20,8 @@ final class RegistrationFormTest extends WebTestCase
         $this->client = static::createClient();
         $this->db = static::getContainer()->get(Connection::class);
         $this->db->executeStatement('DELETE FROM registration');
+        // No routing rules: every record goes to the headquarters queue.
+        $this->db->executeStatement('DELETE FROM jurisdiction_rule');
     }
 
     private function validData(array $overrides = []): array

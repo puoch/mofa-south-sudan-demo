@@ -38,6 +38,21 @@ class AuditEvent
         $this->occurredAt = new \DateTimeImmutable();
     }
 
+    public function getOccurredAt(): \DateTimeImmutable
+    {
+        return $this->occurredAt;
+    }
+
+    public function getActor(): string
+    {
+        return $this->actor;
+    }
+
+    public function getOutcome(): string
+    {
+        return $this->outcome;
+    }
+
     public function getAction(): string
     {
         return $this->action;

@@ -85,7 +85,16 @@ jobs:
           php bin/console doctrine:schema:validate
           php bin/console lint:container
           php bin/console lint:twig templates
-          php bin/console registry:seed-synthetic --count=5
+          php bin/console registry:seed-missions
+          php bin/console registry:seed-synthetic --count=30
+          # Demo staff credentials exist only for this run.
+          REGISTRY_DEMO_PASSWORD="$(php -r 'echo bin2hex(random_bytes(12));')"
+          REGISTRY_DEMO_TOTP_SECRET="$(php -r 'require "vendor/autoload.php"; echo App\Security\Totp::generateSecret();')"
+          echo "::add-mask::$REGISTRY_DEMO_PASSWORD"
+          echo "::add-mask::$REGISTRY_DEMO_TOTP_SECRET"
+          echo "REGISTRY_DEMO_PASSWORD=$REGISTRY_DEMO_PASSWORD" >> "$GITHUB_ENV"
+          echo "REGISTRY_DEMO_TOTP_SECRET=$REGISTRY_DEMO_TOTP_SECRET" >> "$GITHUB_ENV"
+          REGISTRY_DEMO_PASSWORD="$REGISTRY_DEMO_PASSWORD" REGISTRY_DEMO_TOTP_SECRET="$REGISTRY_DEMO_TOTP_SECRET" php bin/console registry:seed-staff --set=desktop --set=mobile
 
       - name: Registration prototype unit and functional tests
         working-directory: registration-service

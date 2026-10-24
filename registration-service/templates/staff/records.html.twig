@@ -1,0 +1,49 @@
+{% extends 'staff/base.html.twig' %}
+
+{% block title %}Records{% endblock %}
+
+{% macro assignment_label(code) %}{{ code == 'hq_queue' ? 'Headquarters queue' : code }}{% endmacro %}
+
+{% block body %}
+  <h1>Records</h1>
+  {% if is_granted('ROLE_MISSION_STAFF') %}
+    <p>Records assigned to {{ app.user.mission.name }}.</p>
+  {% else %}
+    <form method="get" class="filter">
+      <div class="form-item">
+        <label for="assignment">Assigned to</label>
+        <select id="assignment" name="assignment">
+          <option value="">All records</option>
+          <option value="hq_queue"{% if assignment == 'hq_queue' %} selected{% endif %}>Headquarters queue</option>
+          {% for mission in missions %}
+            <option value="{{ mission.code }}"{% if assignment == mission.code %} selected{% endif %}>{{ mission.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-actions"><input type="submit" value="Filter"></div>
+    </form>
+  {% endif %}
+
+  {% if records is empty %}
+    <p>No records.</p>
+  {% else %}
+    <div class="table-wrap" role="region" aria-label="Records" tabindex="0">
+      <table>
+        <caption class="visually-hidden">Registrations, newest first (up to 100)</caption>
+        <thead><tr><th scope="col">Reference</th><th scope="col">Name</th><th scope="col">Country of residence</th><th scope="col">Assigned to</th><th scope="col">Received</th><th scope="col">Flags</th></tr></thead>
+        <tbody>
+          {% for record in records %}
+            <tr>
+              <td><a href="{{ path('staff_record', {reference: record.reference}) }}" class="mono">{{ record.reference }}</a></td>
+              <td>{{ record.fullName }}</td>
+              <td>{{ record.countryOfResidence|country_name }}</td>
+              <td>{{ _self.assignment_label(record.assignment) }}</td>
+              <td>{{ record.createdAt|date('j M Y H:i') }}</td>
+              <td>{{ record.possibleDuplicate ? 'Possible duplicate' }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+{% endblock %}
