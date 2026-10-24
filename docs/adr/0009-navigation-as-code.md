@@ -15,5 +15,5 @@ repeatedly.
 - Site managers can still reorder or disable links in the UI, but the next
   run of the command restores the file's order. Once the Ministry approves
   the IA, menus can be handed over to editors and the command retired.
-- Menu paths point at pages that Phase 2 creates. Until then they return
-  "Page not found".
+- Every menu path resolves to a placeholder page, listing or category page
+  (Phase 2); a test fails if any menu link returns an error.

@@ -13,6 +13,7 @@ global:
       css/footer.css: {}
       css/content.css: {}
       css/forms.css: {}
+      css/listing.css: {}
   js:
     js/navigation.js: {}
   dependencies:

@@ -5,7 +5,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.rss
     - core.entity_view_mode.node.teaser
+    - workflows.workflow.editorial
   module:
+    - content_moderation
     - node
     - taxonomy
     - user
@@ -213,6 +215,16 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        moderation_state:
+          id: moderation_state
+          table: node_field_data
+          field: moderation_state
+          entity_type: node
+          plugin_id: moderation_state_filter
+          operator: 'not in'
+          value:
+            editorial-archived: editorial-archived
+          group: 1
       style:
         type: default
         options:
@@ -259,7 +271,8 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:workflow_list'
   feed_1:
     id: feed_1
     display_title: Feed
@@ -297,7 +310,8 @@ display:
         - url
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:workflow_list'
   page_1:
     id: page_1
     display_title: Page
@@ -317,4 +331,5 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:workflow_list'

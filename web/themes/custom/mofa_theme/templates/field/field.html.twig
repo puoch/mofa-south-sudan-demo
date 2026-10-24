@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Field wrapper with label-position classes.
+ */
+#}
+{% set classes = [
+  'field',
+  'field--name-' ~ field_name|clean_class,
+  'field--type-' ~ field_type|clean_class,
+  'field--label-' ~ label_display,
+] %}
+{% if label_hidden %}
+  {% if multiple %}
+    <div{{ attributes.addClass(classes) }}>
+      {% for item in items %}<div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>{% endfor %}
+    </div>
+  {% else %}
+    {% for item in items %}<div{{ attributes.addClass(classes).merge(item.attributes) }}>{{ item.content }}</div>{% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass('field__label', label_display == 'visually_hidden' ? 'visually-hidden') }}>{{ label }}</div>
+    {% if multiple %}<div class="field__items">{% endif %}
+    {% for item in items %}<div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>{% endfor %}
+    {% if multiple %}</div>{% endif %}
+  </div>
+{% endif %}

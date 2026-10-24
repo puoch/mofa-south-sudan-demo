@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Hooks for MoFA core.
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Path of the diaspora registration information page.
+ */
+const MOFA_CORE_REGISTRATION_PATH = '/diaspora/registration';
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for nodes.
+ *
+ * Adds the inactive registration entry point to the diaspora registration
+ * page. Registration is not authorized: this is a non-interactive element
+ * with no form, and it collects nothing.
+ */
+function mofa_core_node_view(array &$build, NodeInterface $node, EntityViewDisplayInterface $display, string $view_mode): void {
+  if ($view_mode !== 'full' || $node->bundle() !== 'page') {
+    return;
+  }
+  $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/' . $node->id());
+  if ($alias !== MOFA_CORE_REGISTRATION_PATH) {
+    return;
+  }
+  $build['mofa_registration_demo'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['registration-demo']],
+    '#weight' => 1000,
+    'notice' => [
+      '#type' => 'component',
+      '#component' => 'mofa_theme:alert',
+      '#props' => [
+        'variant' => 'info',
+        'heading' => t('Registration is not available'),
+        'message' => t('This website is a demonstration and does not collect registration information. The button below is inactive.'),
+      ],
+    ],
+    'button' => [
+      '#type' => 'component',
+      '#component' => 'mofa_theme:button',
+      '#props' => [
+        'label' => t('Register as a member of the diaspora'),
+        'inactive_note' => t('Demonstration only. Registration is not active and collects no information.'),
+      ],
+    ],
+  ];
+  $build['#cache']['tags'][] = 'path_alias_list';
+}

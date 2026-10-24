@@ -51,6 +51,7 @@ permissions:
   - 'use editorial transition publish'
   - 'use editorial transition request_changes'
   - 'use editorial transition restore_to_draft'
+  - 'use editorial transition withdraw'
   - 'use text format basic_html'
   - 'view any unpublished content'
   - 'view archive_record revisions'

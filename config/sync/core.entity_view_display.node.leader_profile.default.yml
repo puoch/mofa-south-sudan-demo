@@ -25,7 +25,7 @@ mode: default
 content:
   body:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 118
@@ -37,7 +37,7 @@ content:
     region: content
   field_content_owner:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
       link_rel: canonical
@@ -46,7 +46,7 @@ content:
     region: content
   field_display_order:
     type: number_integer
-    label: above
+    label: inline
     settings:
       thousand_separator: ''
       prefix_suffix: true
@@ -55,7 +55,7 @@ content:
     region: content
   field_image:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
@@ -64,7 +64,7 @@ content:
     region: content
   field_last_reviewed:
     type: datetime_default
-    label: above
+    label: inline
     settings:
       timezone_override: ''
       format_type: mofa_date
@@ -73,7 +73,7 @@ content:
     region: content
   field_placeholder:
     type: boolean
-    label: above
+    label: inline
     settings:
       format: default
       format_custom_false: ''
@@ -83,7 +83,7 @@ content:
     region: content
   field_position_title:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
       link_rel: canonical
@@ -92,7 +92,7 @@ content:
     region: content
   field_sources:
     type: link
-    label: above
+    label: inline
     settings:
       trim_length: 80
       url_only: false

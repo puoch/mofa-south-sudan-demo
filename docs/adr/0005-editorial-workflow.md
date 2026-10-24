@@ -7,7 +7,12 @@
 One core Content Moderation workflow applies to every content type and to
 image and document media:
 
-Draft → In review → Approved for publication → Published → Archived
+Draft → In review → Approved for publication → Published → Archived, plus
+Withdrawn.
+
+- **Archived** items stay public, but leave the current listings and appear
+  in the Archives section (updated in Phase 2).
+- **Withdrawn** items are not public. Use it to take something down.
 
 | Transition | From | To | Role |
 | --- | --- | --- | --- |
@@ -17,7 +22,8 @@ Draft → In review → Approved for publication → Published → Archived
 | Approve | In review | Approved | Reviewer |
 | Publish | Approved | Published | Publisher |
 | Archive | Published | Archived | Publisher |
-| Restore to draft | Archived | Draft | Publisher |
+| Withdraw | Published, Archived | Withdrawn | Publisher |
+| Restore to draft | Archived, Withdrawn | Draft | Publisher |
 
 There is no path from Draft or In review straight to Published, and an
 archived item must be reviewed again before it returns.

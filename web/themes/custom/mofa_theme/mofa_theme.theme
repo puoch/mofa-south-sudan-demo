@@ -40,6 +40,100 @@ function mofa_theme_preprocess_node(array &$variables): void {
     }
   }
   $variables['meta_line'] = _mofa_theme_meta_line($node);
+
+  // Dated context notice (Country profile pages).
+  $variables['context_notice'] = NULL;
+  if ($node->hasField('field_context_notice') && !$node->get('field_context_notice')->isEmpty()) {
+    $date = $node->get('field_context_notice_date')->value;
+    $variables['context_notice'] = [
+      'body' => $node->get('field_context_notice')->value,
+      'datetime' => $date,
+      'date' => $date ? \Drupal::service('date.formatter')->format((new DrupalDateTime($date))->getTimestamp(), 'mofa_date') : t('Date not set'),
+    ];
+  }
+
+  $variables['eyebrow'] = $variables['view_mode'] === 'full' ? _mofa_theme_eyebrow($node) : NULL;
+
+  // Section and gateway pages list their child pages from the main menu.
+  $variables['child_tiles'] = [];
+  if ($variables['view_mode'] === 'full' && in_array($node->bundle(), ['page', 'national_profile'], TRUE)) {
+    $variables['child_tiles'] = _mofa_theme_child_tiles($node);
+    $variables['#cache']['tags'][] = 'config:system.menu.main';
+    $variables['#cache']['tags'][] = 'node_list';
+  }
+}
+
+/**
+ * Returns the small label above a full page's title.
+ *
+ * Pages in the main menu show their top-level section; other content types
+ * show what kind of item they are.
+ */
+function _mofa_theme_eyebrow(NodeInterface $node): ?string {
+  $trail = array_values(array_filter(\Drupal::service('menu.active_trail')->getActiveTrailIds('main')));
+  if (count($trail) > 1) {
+    $top = \Drupal::service('plugin.manager.menu.link')->createInstance(end($trail));
+    return (string) $top->getTitle();
+  }
+  if ($node->bundle() === 'news_item' && $term = $node->get('field_news_category')->entity) {
+    return $term->label();
+  }
+  return match ($node->bundle()) {
+    'mission' => (string) t('Mission'),
+    'leader_profile' => (string) t('Leadership'),
+    'service' => (string) t('Services'),
+    'publication' => (string) t('Publication'),
+    'archive_record' => (string) t('Archives'),
+    default => NULL,
+  };
+}
+
+/**
+ * Returns link-tile items for the main-menu children of a node's menu link.
+ *
+ * Each tile uses the child page's summary when the child is a node.
+ */
+function _mofa_theme_child_tiles(NodeInterface $node): array {
+  $links = \Drupal::entityTypeManager()->getStorage('menu_link_content')->loadByProperties(['menu_name' => 'main']);
+  $own = $node->toUrl()->getInternalPath();
+  $parent = NULL;
+  foreach ($links as $link) {
+    $url = $link->getUrlObject();
+    if ($url->isRouted() && $url->getRouteName() === 'entity.node.canonical' && $url->getInternalPath() === $own) {
+      $parent = $link->getPluginId();
+      break;
+    }
+  }
+  if (!$parent) {
+    return [];
+  }
+  $tree = \Drupal::service('menu.link_tree');
+  $parameters = (new \Drupal\Core\Menu\MenuTreeParameters())->setRoot($parent)->excludeRoot()->setMaxDepth(1)->onlyEnabledLinks();
+  $items = $tree->transform($tree->load('main', $parameters), [
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ]);
+  $tiles = [];
+  foreach ($items as $element) {
+    $url = $element->link->getUrlObject();
+    $description = NULL;
+    if ($url->isRouted() && $url->getRouteName() === 'entity.node.canonical') {
+      $child = \Drupal::entityTypeManager()->getStorage('node')->load($url->getRouteParameters()['node']);
+      if ($child && $child->hasField('field_summary')) {
+        $description = $child->get('field_summary')->value;
+      }
+    }
+    elseif ($url->isRouted() && $url->getRouteName() === 'entity.taxonomy_term.canonical') {
+      $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($url->getRouteParameters()['taxonomy_term']);
+      $description = $term ? t('All @category items', ['@category' => mb_strtolower($term->label())]) : NULL;
+    }
+    $tiles[] = [
+      'title' => $element->link->getTitle(),
+      'url' => $url->toString(),
+      'description' => $description,
+    ];
+  }
+  return $tiles;
 }
 
 /**
@@ -67,7 +161,7 @@ function _mofa_theme_meta_line(NodeInterface $node): ?string {
 function mofa_theme_preprocess_block(array &$variables): void {
   $route = (string) \Drupal::routeMatch()->getRouteName();
   // Node pages and the component library lay out their own containers.
-  $variables['full_width'] = $route === 'entity.node.canonical' || str_starts_with($route, 'mofa_styleguide.');
+  $variables['full_width'] = in_array($route, ['entity.node.canonical', 'mofa_core.home'], TRUE) || str_starts_with($route, 'mofa_styleguide.');
   $variables['#cache']['contexts'][] = 'route';
   if (($variables['plugin_id'] ?? '') === 'page_title_block' && $variables['full_width']) {
     $variables['content'] = [];

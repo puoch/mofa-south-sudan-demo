@@ -68,3 +68,16 @@
 .page-title-block {
   padding-block: var(--space-5) 0;
 }
+.node-full__body .field--label-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin-block: var(--space-2);
+}
+.node-full__body .field--label-inline .field__label {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.node-full__body .field--label-inline .field__label::after {
+  content: ":";
+}

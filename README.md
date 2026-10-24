@@ -15,7 +15,7 @@ PostgreSQL.
 | --- | --- |
 | `config/sync/` | Exported Drupal configuration. The source of truth for content types, workflow, roles, theme settings and blocks. |
 | `web/themes/custom/mofa_theme/` | Responsive, accessible public theme: design tokens, layouts and single-directory components. |
-| `web/modules/custom/mofa_core/` | Navigation builder (`drush mofa:navigation`) and the information architecture in `navigation.yml`. |
+| `web/modules/custom/mofa_core/` | Home page, navigation (`navigation.yml`, `drush mofa:navigation`) and synthetic placeholder content (`placeholder_content.yml`, `drush mofa:placeholder-content`). |
 | `web/modules/custom/mofa_styleguide/` | Development-only component library at `/styleguide`. Disable before any production use. |
 | `web/sites/default/settings.php` | Settings read from environment variables. No secrets. |
 | `tests/drush/` | Structure checks for the content model, workflow and permissions. |
@@ -49,7 +49,7 @@ set -a; . ./.env; set +a
 cd web && php -S 127.0.0.1:8080 .ht.router.php
 ```
 
-Open http://127.0.0.1:8080/ (the front page is the component library in this phase).
+Open http://127.0.0.1:8080/. The component library is at `/styleguide`.
 
 ## Everyday commands
 
@@ -57,6 +57,7 @@ Open http://127.0.0.1:8080/ (the front page is the component library in this pha
 vendor/bin/drush config:export      # after changing configuration in the UI
 vendor/bin/drush config:import      # apply configuration from config/sync
 vendor/bin/drush mofa:navigation    # create or update the menus from navigation.yml
+vendor/bin/drush mofa:placeholder-content  # create or update the synthetic placeholder content
 vendor/bin/drush php:script tests/drush/structure-check.php
 cd tests/e2e && npm ci && npx playwright test
 ```
@@ -65,13 +66,14 @@ cd tests/e2e && npm ci && npx playwright test
 
 | Phase | Scope | Status |
 | --- | --- | --- |
-| 1 | Setup, design system, content architecture | Complete, awaiting review |
-| 2 | Public website foundation with placeholder pages | Authorized, starts after Phase 1 review |
+| 1 | Setup, design system, content architecture | Complete |
+| 2 | Public website foundation with placeholder pages | Complete, awaiting review |
 | 3+ | Registration, real content, hosting | Not authorized |
 
 See [docs/approvals-and-blockers.md](docs/approvals-and-blockers.md) for what
-is still pending, and [docs/phase-1-report.md](docs/phase-1-report.md) for the
-Phase 1 summary.
+is still pending, [docs/phase-1-report.md](docs/phase-1-report.md) and
+[docs/phase-2-report.md](docs/phase-2-report.md) for phase summaries, and
+[docs/guides/editor-guide.md](docs/guides/editor-guide.md) for editors.
 
 ## Rules for contributors
 
