@@ -3,7 +3,8 @@ const { defineConfig, devices } = require('@playwright/test');
 
 module.exports = defineConfig({
   testDir: './specs',
-  reporter: [['list'], ['html', { open: 'never', outputFolder: 'report' }]],
+  // On GitHub Actions, failures also appear as annotations on the check run.
+  reporter: [...(process.env.GITHUB_ACTIONS ? [['github']] : []), ['list'], ['html', { open: 'never', outputFolder: 'report' }]],
   use: {
     baseURL: process.env.BASE_URL || 'http://127.0.0.1:8080',
     trace: 'retain-on-failure',
