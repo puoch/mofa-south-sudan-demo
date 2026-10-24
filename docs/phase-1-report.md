@@ -14,8 +14,8 @@ Date: 24 October 2026. Scope as authorized on 24 October 2026 (Phase 1 only).
    Accessible disclosure navigation on desktop, Menu button on phones,
    works without JavaScript.
 4. **Design system and theme.** Tokens with a clearly temporary dark blue,
-   self-hosted fonts, logical CSS for later right-to-left, placeholder coat of
-   arms beside a typographic MFA&IC wordmark, site-wide demonstration banner.
+   self-hosted fonts, logical CSS for later right-to-left, the supplied coat of
+   arms artwork beside a typographic MFA&IC wordmark, site-wide demonstration banner.
 5. **Reusable layouts and components.** 13 single-directory components and
    home, gateway, listing and detail layouts, all viewable at `/styleguide`.
 6. **Content management structure.** Eight content types, five vocabularies,

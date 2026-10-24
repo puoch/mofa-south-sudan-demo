@@ -63,7 +63,7 @@ final class StyleguideController extends ControllerBase {
     $body['notice'] = $this->component('alert', [
       'variant' => 'warning',
       'heading' => 'Temporary branding',
-      'message' => 'The dark blue below follows the agreed direction but is a temporary design token, not the official MFA&IC colour. National flag colours are not used because no official digital colour values have been supplied. The coat of arms is a labelled placeholder.',
+      'message' => 'The dark blue below follows the agreed direction but is a temporary design token, not the official MFA&IC colour. National flag colours are not used because no official digital colour values have been supplied. The coat of arms uses the artwork supplied by the project owner; the MFA&IC wordmark is set in type until an approved wordmark exists.',
     ]);
 
     // Colours.

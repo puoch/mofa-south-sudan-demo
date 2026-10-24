@@ -8,7 +8,8 @@ named approval. Updated 24 October 2026.
 | Item | Needed for | Status |
 | --- | --- | --- |
 | Ministry sitemap | Confirming navigation and child pages | Not received (the research report refers to it) |
-| Official coat of arms artwork (vector) | Header identity, National Symbols page | Not received |
+| Coat of arms artwork | Header identity | Received 24 October 2026 (512px PNG seal); in use |
+| Coat of arms vector master and usage rules (clear space, minimum size) | Print-quality use, National Symbols page | Not received |
 | Approved MFA&IC wordmark | Header identity | Not received |
 | Official dark-blue colour specification | Replacing the temporary token | Not received |
 | Official flag artwork or technical colour standard | Any use of national colours | Not received; research found none published |

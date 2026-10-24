@@ -16,8 +16,12 @@ Twig template and its own CSS. Layout primitives (`l-container`, `l-grid`,
   Ministry supplies an approved specification.
 - No national flag colours are defined: no official digital values have been
   found or supplied (the research report confirms this).
-- The coat of arms is a labelled placeholder image. The official artwork must
-  come from an authorized source and must not be redrawn.
+- The coat of arms uses artwork supplied by the project owner on 24 October
+  2026 (a 512px PNG of the coat of arms in its circular seal). It is used
+  unaltered, only resized. A vector master from an authorized source should
+  replace it; the artwork must never be redrawn.
+- The blue in the seal artwork is not used as a design token: the official
+  dark-blue specification is still pending.
 - The MFA&IC wordmark is set in type until an approved wordmark exists.
 
 ## Consequences

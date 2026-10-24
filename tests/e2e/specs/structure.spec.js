@@ -37,9 +37,11 @@ test('pages are excluded from search engines', async ({ page }) => {
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
 });
 
-test('the coat of arms is a labelled placeholder, not official artwork', async ({ page }) => {
+test('the coat of arms loads and has descriptive alternative text', async ({ page }) => {
   await page.goto('/styleguide');
-  await expect(page.locator('.site-identity__arms')).toHaveAttribute('alt', /Placeholder/);
+  const arms = page.locator('.site-identity__arms');
+  await expect(arms).toHaveAttribute('alt', 'Coat of Arms of the Republic of South Sudan');
+  expect(await arms.evaluate((img) => img.complete && img.naturalWidth > 0)).toBe(true);
 });
 
 test('the demonstration registration button cannot be activated', async ({ page }) => {

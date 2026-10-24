@@ -9,7 +9,7 @@
     {{ include('mofa_theme:demo-banner', {}, with_context = false) }}
     {{ page.header_notice }}
     <div class="site-header__identity l-container">
-      {{ include('mofa_theme:site-identity', { front_url: path('<front>'), arms_src: base_path ~ directory ~ '/images/coat-of-arms-placeholder.svg' }, with_context = false) }}
+      {{ include('mofa_theme:site-identity', { front_url: path('<front>'), arms_path: base_path ~ directory ~ '/images/coat-of-arms' }, with_context = false) }}
       <button type="button" class="site-header__menu-toggle" aria-expanded="false" aria-controls="site-nav" hidden>
         <span class="site-header__menu-icon" aria-hidden="true"></span>
         <span>{{ 'Menu'|t }}</span>

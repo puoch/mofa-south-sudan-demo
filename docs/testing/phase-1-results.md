@@ -22,7 +22,7 @@ mobile-only tests that do not apply to the other device project).
 | Nine sections in approved order | Pass | Pass |
 | Skip link | Pass | Pass |
 | noindex on every page | Pass | Pass |
-| Coat of arms labelled as placeholder | Pass | Pass |
+| Coat of arms loads with descriptive alt text | Pass | Pass |
 | Demonstration registration button cannot be activated | Pass | Pass |
 | No third-party requests | Pass | Pass |
 | Desktop submenu behaviour and keyboard access | Pass | n/a |

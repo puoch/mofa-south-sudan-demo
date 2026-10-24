@@ -33,7 +33,7 @@ sources. Do not sample them from images or third-party sites.
 | Component | Purpose |
 | --- | --- |
 | `demo-banner` | Site-wide "development demonstration, not official" notice |
-| `site-identity` | Coat of arms placeholder beside the MFA&IC wordmark |
+| `site-identity` | Supplied coat of arms artwork beside the typographic MFA&IC wordmark |
 | `placeholder-notice` | Full notice or compact badge for unverified content |
 | `page-header` | Title with eyebrow, lead text and placeholder badge |
 | `hero` | Opening band for home and gateway pages |
