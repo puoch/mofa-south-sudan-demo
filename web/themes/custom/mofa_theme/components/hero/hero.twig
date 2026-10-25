@@ -1,4 +1,4 @@
-<section class="hero{{ background ? ' hero--image' }}" aria-labelledby="hero-title">
+<section class="hero" aria-labelledby="hero-title">
   <div class="l-container hero__inner">
     <div class="hero__text">
       {% if eyebrow or placeholder %}
@@ -13,10 +13,8 @@
       {% if text %}<p class="hero__body">{{ text }}</p>{% endif %}
       {% if actions %}<div class="hero__actions">{{ actions }}</div>{% endif %}
     </div>
-    {% if not background %}
-      <div class="hero__media">
-        {{ include('mofa_theme:image-placeholder', { label: image_label, ratio: '4/3' }, with_context = false) }}
-      </div>
-    {% endif %}
+    <div class="hero__media">
+      {{ include('mofa_theme:image-placeholder', { label: image_label, ratio: '4/3' }, with_context = false) }}
+    </div>
   </div>
 </section>

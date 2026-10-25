@@ -12,32 +12,82 @@
   height: 56px;
 }
 .site-identity__wordmark {
+  /* Flag ribbon: the flag picture supplied by the project owner (25 October 2026),
+     its navy areas turned black, cropped to the hoist and faded into black where
+     the text sits. The flag stays on the left in every language direction. */
+  --flag-width: 4.75rem;
+  position: relative;
+  isolation: isolate;
   display: grid;
+  align-content: center;
   gap: 2px;
-  border-inline-start: 2px solid var(--color-brand-navy);
-  padding-inline-start: var(--space-3);
+  min-height: 3.5rem;
+  border-left: 2px solid #000000;
+  padding: var(--space-2) var(--space-4) var(--space-2) calc(var(--flag-width) + var(--space-3));
+  background: #000000;
+}
+.site-identity__wordmark::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  z-index: -1;
+  width: calc(var(--flag-width) + 1.5rem);
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0) 0, rgb(0 0 0 / 0) 66%, #000000 100%),
+    url("../../images/flag-ribbon-480.jpg") left center / cover no-repeat;
 }
 .site-identity__country {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: #d5dbe4;
 }
 .site-identity__ministry {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1rem, 0.85rem + 0.7vw, 1.375rem);
   line-height: 1.2;
-  color: var(--color-brand-navy);
+  color: #ffffff;
   max-width: 26ch;
+}
+@media (max-width: 39.99em) {
+  /* Narrow screens: the coat of arms sits above a full-width ribbon so the
+     text keeps room next to the flag. */
+  .site-identity,
+  .site-identity:visited {
+    display: grid;
+    justify-items: start;
+    width: 100%;
+  }
+  .site-identity__wordmark {
+    justify-self: stretch;
+  }
+  .site-identity__ministry {
+    max-width: none;
+  }
 }
 @media (min-width: 48em) {
   .site-identity__arms {
     width: 72px;
     height: 72px;
   }
+  .site-identity__wordmark {
+    --flag-width: 7.5rem;
+    min-height: 4.5rem;
+  }
+  .site-identity__wordmark::before {
+    background-image:
+      linear-gradient(90deg, rgb(0 0 0 / 0) 0, rgb(0 0 0 / 0) 66%, #000000 100%),
+      url("../../images/flag-ribbon-960.jpg");
+  }
   .site-identity__ministry {
     max-width: none;
+  }
+}
+@media (forced-colors: active) {
+  .site-identity__wordmark::before {
+    forced-color-adjust: none;
   }
 }
