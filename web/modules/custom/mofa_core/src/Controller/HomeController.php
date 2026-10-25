@@ -45,8 +45,8 @@ final class HomeController extends ControllerBase {
         'title' => (string) $this->t('Ministry of Foreign Affairs and International Cooperation'),
         'tagline' => $slogan !== '' ? $slogan : (string) $this->t('Placeholder welcome line'),
         'text' => (string) $this->t('Placeholder introduction to the Ministry. Approved text will replace it.'),
-        'image_label' => (string) $this->t('Authorized national image (not a political officeholder)'),
         'placeholder' => TRUE,
+        'background' => TRUE,
       ], [
         'actions' => [
           $this->component('button', ['label' => (string) $this->t('Services'), 'url' => '/services']),

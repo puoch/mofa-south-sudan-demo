@@ -13,6 +13,7 @@ props:
     text: { type: string, title: Supporting text }
     image_label: { type: string, title: Placeholder image description }
     placeholder: { type: boolean, title: Show placeholder badge }
+    background: { type: boolean, title: Use the flag background picture (replaces the image placeholder) }
 slots:
   actions:
     title: Actions
