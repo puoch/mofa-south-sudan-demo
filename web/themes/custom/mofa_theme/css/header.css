@@ -2,6 +2,7 @@
   background: var(--color-surface);
 }
 .site-header__identity {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,6 +42,14 @@
 }
 .site-header__menu-icon::before { inset-block-start: -6px; }
 .site-header__menu-icon::after { inset-block-start: 6px; }
+@media (max-width: 39.99em) {
+  /* The identity stacks on narrow screens; keep the toggle beside the arms. */
+  .site-header__menu-toggle {
+    position: absolute;
+    inset-block-start: var(--space-4);
+    inset-inline-end: var(--gutter);
+  }
+}
 @media (min-width: 64em) {
   .site-header__menu-toggle {
     display: none;

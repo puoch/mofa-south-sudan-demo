@@ -13,7 +13,7 @@ named approval. Updated 24 October 2026.
 | Approved MFA&IC wordmark | Header identity | Not received |
 | Official dark-blue colour specification | Replacing the temporary token | Not received |
 | Official flag artwork or technical colour standard | Any use of national colours | Not received; research found none published |
-| Home page hero background (flag ribbon picture) | Home page title area | Received 25 October 2026 from the project owner, replacing an earlier stylised flag picture; in use. Its rights and official approval are not yet confirmed |
+| Flag ribbon picture | Header, behind the Ministry name | Received 25 October 2026 from the project owner, replacing an earlier stylised flag picture; in use. Its rights and official approval are not yet confirmed |
 | Authorized photographs and approved map | Replacing image placeholders | Not received |
 
 ## Government decisions (from the specification)

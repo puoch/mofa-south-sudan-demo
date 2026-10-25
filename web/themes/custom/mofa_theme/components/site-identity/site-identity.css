@@ -12,10 +12,28 @@
   height: 56px;
 }
 .site-identity__wordmark {
+  /* Flag ribbon picture supplied by the project owner (25 October 2026).
+     The flag's hoist shows on the left; a light veil keeps the navy type
+     readable where the ribbon runs behind the text. The flag stays on the
+     left in every language direction. */
+  --flag-width: 5rem;
+  --ribbon-veil: 244 246 247;
   display: grid;
+  align-content: center;
   gap: 2px;
+  min-height: 3.5rem;
   border-inline-start: 2px solid var(--color-brand-navy);
-  padding-inline-start: var(--space-3);
+  padding: var(--space-2) var(--space-4) var(--space-2) calc(var(--flag-width) + var(--space-3));
+  background:
+    linear-gradient(
+      90deg,
+      rgb(var(--ribbon-veil) / 0) 0,
+      rgb(var(--ribbon-veil) / 0) var(--flag-width),
+      rgb(var(--ribbon-veil) / 0.9) calc(var(--flag-width) + var(--space-3)),
+      rgb(var(--ribbon-veil) / 0.9) 100%
+    ),
+    url("../../images/header-ribbon-600.jpg") left center / auto 100% no-repeat,
+    rgb(var(--ribbon-veil));
 }
 .site-identity__country {
   font-size: 0.75rem;
@@ -32,10 +50,39 @@
   color: var(--color-brand-navy);
   max-width: 26ch;
 }
+@media (max-width: 39.99em) {
+  /* Narrow screens: the coat of arms sits above a full-width ribbon so the
+     text keeps room next to the flag. */
+  .site-identity,
+  .site-identity:visited {
+    display: grid;
+    justify-items: start;
+    width: 100%;
+  }
+  .site-identity__wordmark {
+    justify-self: stretch;
+  }
+  .site-identity__ministry {
+    max-width: none;
+  }
+}
 @media (min-width: 48em) {
   .site-identity__arms {
     width: 72px;
     height: 72px;
+  }
+  .site-identity__wordmark {
+    --flag-width: 8rem;
+    min-height: 4.5rem;
+    background-image:
+      linear-gradient(
+        90deg,
+        rgb(var(--ribbon-veil) / 0) 0,
+        rgb(var(--ribbon-veil) / 0) var(--flag-width),
+        rgb(var(--ribbon-veil) / 0.9) calc(var(--flag-width) + var(--space-3)),
+        rgb(var(--ribbon-veil) / 0.9) 100%
+      ),
+      url("../../images/header-ribbon-1200.jpg");
   }
   .site-identity__ministry {
     max-width: none;
