@@ -14,6 +14,7 @@ named approval. Updated 24 October 2026.
 | Official dark-blue colour specification | Replacing the temporary token | Not received |
 | Official flag artwork or technical colour standard | Any use of national colours | Not received; research found none published |
 | Flag ribbon picture | Header, behind the Ministry name | Received 25 October 2026 from the project owner, replacing an earlier stylised flag picture; in use. Its rights and official approval are not yet confirmed |
+| Portrait of the caretaker Minister | Home page "Message from the Minister" section | Received 25 October 2026 from the project owner, who confirmed permission to use it. Shown with the role as supplied; no name or message supplied yet (placeholder shown) |
 | Authorized photographs and approved map | Replacing image placeholders | Not received |
 
 ## Government decisions (from the specification)
