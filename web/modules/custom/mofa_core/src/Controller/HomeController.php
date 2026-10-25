@@ -55,6 +55,17 @@ final class HomeController extends ControllerBase {
       ]),
     ];
 
+    // Portrait supplied by the project owner (25 October 2026). Only the role
+    // they gave is shown; the message stays a labelled placeholder.
+    $theme_path = base_path() . \Drupal::service('extension.path.resolver')->getPath('theme', 'mofa_theme');
+    $build['leader'] = $this->section((string) $this->t('Message from the Minister'), $this->component('leader-message', [
+      'role' => (string) $this->t('Caretaker Minister of Foreign Affairs and International Cooperation, Republic of South Sudan'),
+      'text' => (string) $this->t('Placeholder welcome message. The Minister\'s approved message will replace it.'),
+      'image_src' => $theme_path . '/images/minister-portrait',
+      'image_alt' => (string) $this->t('Portrait of the caretaker Minister of Foreign Affairs and International Cooperation'),
+      'placeholder' => TRUE,
+    ]));
+
     $build['news'] = $this->section(
       (string) $this->t('Ministry announcements'),
       views_embed_view('news', 'latest') ?? [],

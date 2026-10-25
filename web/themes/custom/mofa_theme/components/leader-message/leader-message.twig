@@ -1,0 +1,13 @@
+{#
+  Portrait supplied by the project owner on 25 October 2026 as the caretaker
+  Minister. Show only the name, role and message the Ministry supplies.
+#}
+<div class="leader-message">
+  <img class="leader-message__portrait" src="{{ image_src }}-480.jpg" srcset="{{ image_src }}-240.jpg 240w, {{ image_src }}-480.jpg 480w" sizes="(min-width: 48em) 240px, 160px" width="240" height="300" alt="{{ image_alt }}" loading="lazy">
+  <div class="leader-message__body">
+    {% if placeholder %}{{ include('mofa_theme:placeholder-notice', { compact: true }, with_context = false) }}{% endif %}
+    {% if name %}<p class="leader-message__name">{{ name }}</p>{% endif %}
+    <p class="leader-message__role">{{ role }}</p>
+    {% if text %}<p class="leader-message__text">{{ text }}</p>{% endif %}
+  </div>
+</div>

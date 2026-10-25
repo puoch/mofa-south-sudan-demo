@@ -1,0 +1,14 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Leader message
+status: stable
+description: Portrait, role and short welcome message from the Ministry's leadership. Show only names, roles and words supplied and approved by the Ministry.
+props:
+  type: object
+  required: [role, image_src, image_alt]
+  properties:
+    name: { type: string, title: Name (only if supplied) }
+    role: { type: string, title: Role as supplied }
+    text: { type: string, title: Message }
+    image_src: { type: string, title: Portrait path (without size suffix or extension) }
+    image_alt: { type: string, title: Portrait alternative text }
+    placeholder: { type: boolean, title: Show placeholder badge }
