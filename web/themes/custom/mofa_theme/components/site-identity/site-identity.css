@@ -13,24 +13,37 @@
 }
 .site-identity__wordmark {
   /* Flag ribbon picture supplied by the project owner (25 October 2026).
-     The flag's hoist shows on the left; a light veil keeps the navy type
-     readable where the ribbon runs behind the text. The flag stays on the
-     left in every language direction. */
-  --flag-width: 5rem;
+     The navy rule stays clear of the picture; the flag's hoist is kept
+     small on the left and a light veil keeps the navy type readable where
+     the ribbon runs behind the text. The flag stays on the left in every
+     language direction. */
+  --flag-width: 4.75rem;
+  --ribbon-gap: var(--space-2);
   --ribbon-veil: 244 246 247;
+  position: relative;
+  isolation: isolate;
   display: grid;
   align-content: center;
   gap: 2px;
   min-height: 3.5rem;
   border-inline-start: 2px solid var(--color-brand-navy);
-  padding: var(--space-2) var(--space-4) var(--space-2) calc(var(--flag-width) + var(--space-3));
+  padding: var(--space-2) var(--space-4) var(--space-2) calc(var(--ribbon-gap) + var(--flag-width) + var(--space-3));
+}
+.site-identity__wordmark::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: var(--ribbon-gap);
+  right: 0;
+  z-index: -1;
+  border-radius: 0 var(--radius-2) var(--radius-2) 0;
   background:
     linear-gradient(
       90deg,
       rgb(var(--ribbon-veil) / 0) 0,
       rgb(var(--ribbon-veil) / 0) var(--flag-width),
-      rgb(var(--ribbon-veil) / 0.9) calc(var(--flag-width) + var(--space-3)),
-      rgb(var(--ribbon-veil) / 0.9) 100%
+      rgb(var(--ribbon-veil) / 0.88) calc(var(--flag-width) + var(--space-3)),
+      rgb(var(--ribbon-veil) / 0.88) 100%
     ),
     url("../../images/header-ribbon-600.jpg") left center / auto 100% no-repeat,
     rgb(var(--ribbon-veil));
@@ -72,15 +85,17 @@
     height: 72px;
   }
   .site-identity__wordmark {
-    --flag-width: 8rem;
+    --flag-width: 4.5rem;
     min-height: 4.5rem;
+  }
+  .site-identity__wordmark::before {
     background-image:
       linear-gradient(
         90deg,
         rgb(var(--ribbon-veil) / 0) 0,
         rgb(var(--ribbon-veil) / 0) var(--flag-width),
-        rgb(var(--ribbon-veil) / 0.9) calc(var(--flag-width) + var(--space-3)),
-        rgb(var(--ribbon-veil) / 0.9) 100%
+        rgb(var(--ribbon-veil) / 0.88) calc(var(--flag-width) + var(--space-3)),
+        rgb(var(--ribbon-veil) / 0.88) 100%
       ),
       url("../../images/header-ribbon-1200.jpg");
   }
