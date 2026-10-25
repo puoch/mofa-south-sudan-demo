@@ -17,7 +17,7 @@
      small on the left and a light veil keeps the navy type readable where
      the ribbon runs behind the text. The flag stays on the left in every
      language direction. */
-  --flag-width: 4.75rem;
+  --flag-width: 2.25rem;
   --ribbon-gap: var(--space-2);
   --ribbon-veil: 244 246 247;
   position: relative;
@@ -85,7 +85,7 @@
     height: 72px;
   }
   .site-identity__wordmark {
-    --flag-width: 4.5rem;
+    --flag-width: 2rem;
     min-height: 4.5rem;
   }
   .site-identity__wordmark::before {
