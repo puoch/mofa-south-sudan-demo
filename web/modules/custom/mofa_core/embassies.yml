@@ -1,0 +1,26 @@
+# Embassies abroad, exactly as listed in the project owner's document
+# "Mission abroad.docx" (received 28 October 2026). Unverified: the
+# Ministry has not confirmed these missions or their accreditations.
+# Do not add addresses, contacts or heads of mission until the Ministry
+# supplies them. Flags: images/flags/<code>.svg (flag-icons, MIT).
+- { country: Belgium, code: be, missions: [{ type: Embassy, city: Brussels }], accredited: [Luxembourg, European Union] }
+- { country: China, code: cn, missions: [{ type: Embassy, city: Beijing }], accredited: [Australia, Malaysia, South Korea] }
+- { country: Egypt, code: eg, missions: [{ type: Embassy, city: Cairo }] }
+- { country: France, code: fr, missions: [{ type: Embassy, city: Paris }], accredited: [Portugal, Spain] }
+- { country: Germany, code: de, missions: [{ type: Embassy, city: Berlin }], accredited: [Austria, Czechia] }
+- { country: India, code: in, missions: [{ type: Embassy, city: New Delhi }], accredited: [Sri Lanka] }
+- { country: Israel, code: il, missions: [{ type: Embassy, city: Tel Aviv }] }
+- { country: Italy, code: it, missions: [{ type: Embassy, city: Rome }], accredited: [Greece] }
+- { country: Japan, code: jp, missions: [{ type: Embassy, city: Tokyo }] }
+- { country: Kenya, code: ke, missions: [{ type: Embassy, city: Nairobi }] }
+- { country: Nigeria, code: ng, missions: [{ type: Embassy, city: Abuja }], accredited: [Benin, Cameroon, Equatorial Guinea, Gambia, Guinea, Ivory Coast, Mali, Niger, Senegal] }
+- { country: Norway, code: 'no', missions: [{ type: Embassy, city: Oslo }], accredited: [Denmark, Finland, Iceland, Sweden] }
+- { country: Russia, code: ru, missions: [{ type: Embassy, city: Moscow }], accredited: [Azerbaijan] }
+- { country: South Africa, code: za, missions: [{ type: Embassy, city: Pretoria }], accredited: [Namibia, Seychelles] }
+- { country: Sudan, code: sd, missions: [{ type: Embassy, city: Khartoum }] }
+- { country: Turkey, code: tr, missions: [{ type: Embassy, city: Ankara }] }
+- { country: Uganda, code: ug, missions: [{ type: Embassy, city: Kampala }], accredited: [Burundi, Rwanda] }
+- { country: United Arab Emirates, code: ae, missions: [{ type: Embassy, city: Abu Dhabi }, { type: Consulate-General, city: Dubai }] }
+- { country: United Kingdom, code: gb, missions: [{ type: Embassy, city: London }] }
+# The document ends mid-word ("accrediting to Canad"); read as Canada.
+- { country: United States, code: us, missions: [{ type: Embassy, city: 'Washington, D.C.' }], accredited: [Canada] }

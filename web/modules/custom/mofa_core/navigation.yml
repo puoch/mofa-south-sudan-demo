@@ -8,6 +8,10 @@ main:
   - title: Missions
     path: /missions
     children:
+      - title: Missions abroad
+        path: /missions/abroad
+        children:
+          - { title: Embassies, path: /missions/abroad/embassies }
       - { title: Mission directory, path: /missions/directory }
       - { title: Countries and jurisdictions served, path: /missions/jurisdictions }
   - title: About MFA&IC

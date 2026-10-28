@@ -4,6 +4,8 @@ module.exports = [
   { path: '/missions', name: 'Missions' },
   { path: '/missions/directory', name: 'Mission directory' },
   { path: '/missions/placeholder-mission-a', name: 'Mission profile' },
+  { path: '/missions/abroad/embassies', name: 'Embassies' },
+  { path: '/missions/abroad/embassies/nigeria', name: 'Embassy profile' },
   { path: '/about-mfaic', name: 'About MFA&IC' },
   { path: '/about-mfaic/leadership', name: 'Leadership' },
   { path: '/about-south-sudan', name: 'About South Sudan gateway' },

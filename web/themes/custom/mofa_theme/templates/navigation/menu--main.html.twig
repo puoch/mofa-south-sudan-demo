@@ -27,6 +27,12 @@
             <svg class="nav__chevron" aria-hidden="true" focusable="false" viewBox="0 0 12 8" width="12" height="8"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
           </button>
           {{ menus.menu_links(item.below, attributes, menu_level + 1, sub_id) }}
+        {% elseif item.below and menu_level == 1 %}
+          <ul class="nav__subsub">
+            {% for child in item.below %}
+              <li class="nav__item{{ child.in_active_trail ? ' is-active-trail' }}">{{ link(child.title, child.url, { class: ['nav__sublink', 'nav__sublink--nested'] }) }}</li>
+            {% endfor %}
+          </ul>
         {% endif %}
       </li>
     {% endfor %}

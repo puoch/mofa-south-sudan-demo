@@ -1,0 +1,24 @@
+<div class="embassy-profile">
+  <div class="embassy-profile__head">
+    <img class="embassy-profile__flag" src="{{ flag }}" width="120" height="90" alt="{{ 'Flag of @country'|t({ '@country': country }) }}">
+    {{ include('mofa_theme:placeholder-notice', { compact: true }, with_context = false) }}
+  </div>
+  {% for mission in missions %}
+    <section class="embassy-profile__mission" aria-labelledby="mission-{{ loop.index }}">
+      <h2 id="mission-{{ loop.index }}">{{ mission.title }}</h2>
+      <dl class="embassy-profile__details">
+        <dt>{{ 'City'|t }}</dt>
+        <dd>{{ mission.city }}</dd>
+        {% if loop.first and accredited %}
+          <dt>{{ 'Also accredited to'|t }}</dt>
+          <dd>{{ accredited|join(', ') }}</dd>
+        {% endif %}
+        <dt>{{ 'Address, telephone and email'|t }}</dt>
+        <dd class="embassy-profile__pending">{{ 'To be added once supplied by the Ministry.'|t }}</dd>
+        <dt>{{ 'Head of mission'|t }}</dt>
+        <dd class="embassy-profile__pending">{{ 'To be added once supplied by the Ministry.'|t }}</dd>
+      </dl>
+    </section>
+  {% endfor %}
+  {% if back_url %}<p><a href="{{ back_url }}">{{ 'All embassies'|t }}</a></p>{% endif %}
+</div>

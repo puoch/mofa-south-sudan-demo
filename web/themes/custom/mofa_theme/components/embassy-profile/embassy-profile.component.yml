@@ -1,0 +1,21 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Embassy profile
+status: stable
+description: A country's South Sudanese missions, their accreditations, and contact details once supplied.
+props:
+  type: object
+  required: [country, flag, missions]
+  properties:
+    country: { type: string }
+    flag: { type: string, title: Flag image path }
+    missions:
+      type: array
+      items:
+        type: object
+        properties:
+          title: { type: string }
+          city: { type: string }
+    accredited:
+      type: array
+      items: { type: string }
+    back_url: { type: string }

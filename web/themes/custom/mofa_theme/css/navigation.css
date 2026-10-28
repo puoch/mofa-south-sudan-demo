@@ -72,6 +72,19 @@
 .nav__sublink:hover {
   text-decoration: underline;
 }
+/* Third level (for example Missions abroad > Embassies), indented. */
+.nav__sub .nav__item {
+  flex-wrap: wrap;
+}
+.nav__subsub {
+  flex-basis: 100%;
+  list-style: none;
+  margin: 0;
+  padding-inline-start: var(--space-4);
+}
+.nav__sublink--nested::before {
+  content: "\2013\00a0";
+}
 
 @media (min-width: 64em) {
   .nav__list {

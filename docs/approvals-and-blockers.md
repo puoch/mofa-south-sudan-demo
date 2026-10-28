@@ -15,6 +15,7 @@ named approval. Updated 24 October 2026.
 | Official flag artwork or technical colour standard | Any use of national colours | Not received; research found none published |
 | Flag ribbon picture | Header, behind the Ministry name | Received 25 October 2026 from the project owner, replacing an earlier stylised flag picture; in use. Its rights and official approval are not yet confirmed |
 | Portrait of the caretaker Minister | Home page "Message from the Minister" section | Received 25 October 2026 from the project owner, who confirmed permission to use it. Shown with the role as supplied; no name or message supplied yet (placeholder shown) |
+| Embassy list and accreditations | Missions abroad > Embassies | Received 28 October 2026 from the project owner ("Mission abroad.docx"); shown as supplied and labelled unverified. Not confirmed by the Ministry. Addresses, contacts and heads of mission not received. The document's last line is cut off ("accrediting to Canad"), read as Canada |
 | Authorized photographs and approved map | Replacing image placeholders | Not received |
 
 ## Government decisions (from the specification)
