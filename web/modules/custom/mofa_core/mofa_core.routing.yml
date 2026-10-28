@@ -5,3 +5,28 @@ mofa_core.home:
     _title: 'Home'
   requirements:
     _permission: 'access content'
+
+mofa_core.missions_abroad:
+  path: '/missions/abroad'
+  defaults:
+    _controller: '\Drupal\mofa_core\Controller\EmbassyController::abroad'
+    _title: 'Missions abroad'
+  requirements:
+    _permission: 'access content'
+
+mofa_core.embassies:
+  path: '/missions/abroad/embassies'
+  defaults:
+    _controller: '\Drupal\mofa_core\Controller\EmbassyController::embassies'
+    _title: 'Embassies'
+  requirements:
+    _permission: 'access content'
+
+mofa_core.embassy:
+  path: '/missions/abroad/embassies/{country}'
+  defaults:
+    _controller: '\Drupal\mofa_core\Controller\EmbassyController::embassy'
+    _title_callback: '\Drupal\mofa_core\Controller\EmbassyController::embassyTitle'
+  requirements:
+    _permission: 'access content'
+    country: '[a-z-]+'

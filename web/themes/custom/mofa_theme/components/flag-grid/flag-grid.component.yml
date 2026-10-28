@@ -1,0 +1,18 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Flag grid
+status: stable
+description: Grid of country flags, each linking to a mission or country page.
+props:
+  type: object
+  required: [items]
+  properties:
+    label: { type: string, title: Accessible name for the list }
+    items:
+      type: array
+      items:
+        type: object
+        properties:
+          title: { type: string }
+          description: { type: string }
+          url: { type: string }
+          flag: { type: string, title: Flag image path }

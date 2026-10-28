@@ -1,0 +1,12 @@
+<ul class="flag-grid"{% if label %} aria-label="{{ label }}"{% endif %}>
+  {% for item in items %}
+    <li class="flag-grid__item">
+      <a class="flag-grid__link" href="{{ item.url }}">
+        {# Decorative: the country name is the link text. #}
+        <img class="flag-grid__flag" src="{{ item.flag }}" width="96" height="72" alt="" loading="lazy">
+        <span class="flag-grid__title">{{ item.title }}</span>
+        {% if item.description %}<span class="flag-grid__description">{{ item.description }}</span>{% endif %}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
