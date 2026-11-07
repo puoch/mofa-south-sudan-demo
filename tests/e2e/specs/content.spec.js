@@ -87,7 +87,7 @@ test.describe('site content', () => {
 
   test('services page offers citizens, foreigners and important links buttons', async ({ page }) => {
     await page.goto('/services');
-    const buttons = page.locator('.section-buttons .button');
+    const buttons = page.locator('.section-buttons__link');
     await expect(buttons).toHaveText(['Citizens', 'Foreigners', 'Important links']);
     await buttons.nth(1).click();
     await expect(page).toHaveURL(/\/services\/foreigners$/);

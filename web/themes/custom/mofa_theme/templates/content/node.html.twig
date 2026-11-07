@@ -27,7 +27,7 @@
         <nav class="section-buttons" aria-label="{{ 'Services'|t }}">
           <ul class="section-buttons__list">
             {% for item in child_tiles %}
-              <li>{{ include('mofa_theme:button', { label: item.title, url: item.url }, with_context = false) }}</li>
+              <li><a class="section-buttons__link" href="{{ item.url }}">{{ item.title }}</a></li>
             {% endfor %}
           </ul>
         </nav>
