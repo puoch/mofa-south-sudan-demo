@@ -95,6 +95,18 @@
   width: 100%;
   min-height: 4rem;
   font-size: var(--font-size-300);
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+/* The button under the pointer glows blue. */
+.section-buttons .button:hover {
+  background: var(--color-link);
+  border-color: var(--color-link);
+  box-shadow: 0 0 0 3px rgb(29 74 143 / 0.25), 0 0 1.25rem rgb(56 130 230 / 0.6);
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-buttons .button {
+    transition: none;
+  }
 }
 .registration-demo {
   margin-block: var(--space-6);
