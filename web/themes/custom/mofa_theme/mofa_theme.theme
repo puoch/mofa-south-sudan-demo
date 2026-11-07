@@ -58,6 +58,8 @@ function mofa_theme_preprocess_node(array &$variables): void {
   $variables['child_tiles'] = [];
   if ($variables['view_mode'] === 'full' && in_array($node->bundle(), ['page', 'national_profile'], TRUE)) {
     $variables['child_tiles'] = _mofa_theme_child_tiles($node);
+    // The Services landing page shows its sections as large buttons.
+    $variables['child_buttons'] = $node->toUrl()->toString() === base_path() . 'services';
     $variables['#cache']['tags'][] = 'config:system.menu.main';
     $variables['#cache']['tags'][] = 'node_list';
   }

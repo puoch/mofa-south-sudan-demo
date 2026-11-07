@@ -35,10 +35,17 @@ main:
   - title: Services
     path: /services
     children:
-      - { title: Consular information, path: /services/consular }
-      - { title: Immigration guidance, path: /services/immigration }
-      - { title: Trade and investment, path: /services/trade-and-investment }
-      - { title: Other services, path: /services/other }
+      - title: Citizens
+        path: /services/citizens
+        children:
+          - { title: Consular information, path: /services/consular }
+          - { title: Other services, path: /services/other }
+      - title: Foreigners
+        path: /services/foreigners
+        children:
+          - { title: Immigration guidance, path: /services/immigration }
+          - { title: Trade and investment, path: /services/trade-and-investment }
+      - { title: Important links, path: /services/important-links }
   - title: News / Press
     path: /news
     children:

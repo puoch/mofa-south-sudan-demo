@@ -78,10 +78,37 @@ nodes:
   - type: page
     path: /services
     title: Services
-    summary: Information about consular matters, immigration guidance, trade and investment, and other Ministry services.
+    summary: Services and information for citizens and foreigners, with important links.
     body: |
       <p>This section will explain the services the Ministry and its missions provide, and how to get help.</p>
       <p>Pages here are information only. They do not mean that any service, such as visa issuance, immigration processing or payments, is available online.</p>
+  - type: page
+    path: /services/citizens
+    title: Citizens
+    summary: Information for South Sudanese citizens, at home and abroad.
+    body: |
+      <p>This page will bring together information for South Sudanese citizens, including consular information from the Ministry and its missions abroad.</p>
+      <p>Which services are offered, and how to apply for them, will be published once the Ministry approves them.</p>
+  - type: page
+    path: /services/foreigners
+    title: Foreigners
+    summary: Information for foreign nationals visiting, living in or doing business with South Sudan.
+    body: |
+      <p>This page will bring together information for foreign nationals, including immigration guidance and trade and investment information.</p>
+      <p>Visa applications and immigration processing are not available on this website. Approved requirements and procedures will be published once the Ministry supplies them.</p>
+  - type: page
+    path: /services/important-links
+    title: Important links
+    summary: Quick links to frequently used pages on this website.
+    body: |
+      <ul>
+        <li><a href="/missions/abroad/embassies">Embassies</a>: South Sudan's embassies abroad, by country.</li>
+        <li><a href="/diaspora/registration">Diaspora registration (demonstration)</a>: what online registration will involve.</li>
+        <li><a href="/diaspora/assistance">Help and enquiries (demonstration)</a>: how South Sudanese abroad will be able to ask for help.</li>
+        <li><a href="/contacts">Contacts</a>: how to contact the Ministry, its departments and its missions.</li>
+        <li><a href="/news">News and press</a>: news, press releases and statements.</li>
+      </ul>
+      <p>Links to other official websites will be added once the Ministry approves them.</p>
 
   - type: page
     path: /diaspora

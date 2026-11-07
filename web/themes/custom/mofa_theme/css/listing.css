@@ -76,6 +76,26 @@
 .node-full__children {
   margin-block-start: var(--space-7);
 }
+.section-buttons {
+  margin-block-start: var(--space-6);
+}
+.section-buttons__list {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 40em) {
+  .section-buttons__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.section-buttons .button {
+  width: 100%;
+  min-height: 4rem;
+  font-size: var(--font-size-300);
+}
 .registration-demo {
   margin-block: var(--space-6);
   display: grid;
