@@ -85,6 +85,15 @@ test.describe('site content', () => {
     await expect(page.locator('.field--name-field-countries-served')).toHaveCount(0);
   });
 
+  test('services page offers citizens, foreigners and important links buttons', async ({ page }) => {
+    await page.goto('/services');
+    const buttons = page.locator('.section-buttons__link');
+    await expect(buttons).toHaveText(['Citizens', 'Foreigners', 'Important links']);
+    await buttons.nth(1).click();
+    await expect(page).toHaveURL(/\/services\/foreigners$/);
+    await expect(page.locator('.link-tiles__title')).toHaveText(['Immigration guidance', 'Trade and investment']);
+  });
+
   test('home page lists the latest news from content', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('.listing__item')).toHaveCount(3);

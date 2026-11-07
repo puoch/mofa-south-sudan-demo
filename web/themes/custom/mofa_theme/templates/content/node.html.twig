@@ -23,7 +23,15 @@
       <div class="node-full__body">
         {{ content|without('field_placeholder', 'field_summary', 'field_sources', 'field_last_reviewed', 'field_content_owner', 'field_context_notice', 'field_context_notice_date', 'moderation_control') }}
       </div>
-      {% if child_tiles %}
+      {% if child_tiles and child_buttons %}
+        <nav class="section-buttons" aria-label="{{ 'Services'|t }}">
+          <ul class="section-buttons__list">
+            {% for item in child_tiles %}
+              <li><a class="section-buttons__link" href="{{ item.url }}">{{ item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% elseif child_tiles %}
         <div class="node-full__children">
           {{ include('mofa_theme:link-tiles', { heading: node.bundle == 'national_profile' ? 'Explore South Sudan'|t : 'In this section'|t, items: child_tiles }, with_context = false) }}
         </div>
