@@ -102,11 +102,11 @@
   text-decoration: none;
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
-/* The choice under the pointer glows blue. */
+/* The choice under the pointer fills blue with white text. */
 .section-buttons__link:hover {
-  background: #dce6f6;
-  color: var(--color-brand-navy);
-  box-shadow: 0 0 0 2px var(--color-link), 0 0 1.25rem rgb(56 130 230 / 0.55);
+  background: var(--color-link);
+  color: #ffffff;
+  box-shadow: 0 0 1.25rem rgb(56 130 230 / 0.45);
 }
 @media (prefers-reduced-motion: reduce) {
   .section-buttons__link {
