@@ -31,9 +31,31 @@ for page in pages:
         missing.append(str(page.relative_to(out)))
     page.write_text(html, encoding='utf-8')
 
+# GitHub Pages also answers /services/ (and redirects /services there when a
+# services/ folder exists) by serving services.html. Its relative links then
+# resolve one folder too deep, so the stylesheets fail to load and the page
+# shows unstyled. Give each such address its own index.html that sends the
+# visitor to the real page.
+REDIRECT = ('<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8">'
+            '<meta name="robots" content="noindex, nofollow">'
+            '<meta http-equiv="refresh" content="0; url=../{name}">'
+            '<link rel="canonical" href="../{name}">'
+            '<script>location.replace("../{name}" + location.search + location.hash);</script>'
+            '<title>Redirecting</title></head>'
+            '<body><p><a href="../{name}">Continue to the page</a></p></body></html>\n')
+redirects = 0
+for page in pages:
+    if page.name == 'index.html':
+        continue
+    stub = page.with_suffix('') / 'index.html'
+    if not stub.exists():
+        stub.parent.mkdir(exist_ok=True)
+        stub.write_text(REDIRECT.format(name=page.name), encoding='utf-8')
+        redirects += 1
+
 (out / 'robots.txt').write_text('User-agent: *\nDisallow: /\n', encoding='utf-8')
 (out / '.nojekyll').write_text('', encoding='utf-8')
 
 if missing:
     sys.exit('Pages without the demonstration banner or noindex: ' + ', '.join(missing))
-print(f'{len(pages)} pages processed')
+print(f'{len(pages)} pages processed, {redirects} folder addresses redirected')
